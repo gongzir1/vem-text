@@ -1,5 +1,6 @@
 from args import args
 from torchvision import datasets, transforms
+from badnet import CIFAR10Poison
 import torchvision
 from data.Dirichlet_noniid import *
 
@@ -34,6 +35,7 @@ class CIFAR10:
         tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=args.non_iid_degree, force=False)
 
         self.tr_loaders = []
+        
         tr_count = 0
         for pos, indices in tr_per_participant_list.items():
             if len(indices)==1 or len(indices)==0:
@@ -41,6 +43,8 @@ class CIFAR10:
             tr_count += len(indices)
             batch_size = args.batch_size
             self.tr_loaders.append(get_train(train_dataset, indices, args.batch_size))
+
+           
 #         print ("number of total training points:" ,tr_count)
         self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
     
@@ -50,3 +54,50 @@ class CIFAR10:
     
     def get_te_loader(self):
         return self.te_loader
+ 
+  
+def build_poisoned_training_set(is_train, args):
+    transform, detransform = build_transform(args.dataset)
+    print("Transform = ", transform)
+
+    if args.dataset == 'CIFAR10':
+        trainset = CIFAR10Poison(args, args.data_path, train=is_train, download=True, transform=transform)
+        nb_classes = 10
+    elif args.dataset == 'MNIST':
+        trainset = MNISTPoison(args, args.data_path, train=is_train, download=True, transform=transform)
+        nb_classes = 10
+    else:
+        raise NotImplementedError()
+
+    assert nb_classes == args.nb_classes
+    print("Number of the class = %d" % args.nb_classes)
+    print(trainset)
+
+    return trainset, nb_classes
+
+
+def build_testset(is_train, args):
+    transform, detransform = build_transform(args.dataset)
+    print("Transform = ", transform)
+
+    if args.dataset == 'CIFAR10':
+        testset_clean = datasets.CIFAR10(args.data_path, train=is_train, download=True, transform=transform)
+        testset_poisoned = CIFAR10Poison(args, args.data_path, train=is_train, download=True, transform=transform)
+        nb_classes = 10
+    elif args.dataset == 'MNIST':
+        testset_clean = datasets.MNIST(args.data_path, train=is_train, download=True, transform=transform)
+        testset_poisoned = MNISTPoison(args, args.data_path, train=is_train, download=True, transform=transform)
+        nb_classes = 10
+    else:
+        raise NotImplementedError()
+
+    assert nb_classes == args.nb_classes
+    print("Number of the class = %d" % args.nb_classes)
+    print(testset_clean, testset_poisoned)
+
+    return testset_clean, testset_poisoned
+
+    
+
+
+

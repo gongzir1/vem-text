@@ -11,6 +11,8 @@ from FL_train import *
 
 
 def main():
+    start_time = time.time() 
+
     if args.seed is not None:
         random.seed(args.seed)
         torch.manual_seed(args.seed)
@@ -63,8 +65,29 @@ def main():
         Tr_Mean(tr_loaders, te_loader)
     elif args.FL_type == "Mkrum":
         Mkrum(tr_loaders, te_loader)
+    elif args.FL_type == "Test":
+        Test_random(tr_loaders, te_loader)
+    elif args.FL_type =="FRL_label_flip":
+        FRL_train_label_flip_attack(tr_loaders, te_loader)
+    elif args.FL_type =="FRL_SAGR_train_label_flip":
+        FRL_SAGR_train_label_flip(tr_loaders, te_loader)
+    elif args.FL_type =="FRL_train_label_flip_attack_agr_malicious":
+        FRL_train_label_flip_attack_agr_malicious(tr_loaders, te_loader) 
+    elif args.FL_type =="AS":
+        AS(tr_loaders, te_loader)
+    elif args.FL_type =="My_attack":
+        My_attack(tr_loaders, te_loader)
     else:
         FedAVG(tr_loaders, te_loader)
+
+
+    end_time = time.time()  # Record the end time
+    total_time = end_time - start_time  # Calculate the total running time
+    print(f"Total running time: {total_time:.2f} seconds")
+
+    # Append the total running time to the output.txt file
+    with open(run_base_dir / "output.txt", "a") as f:
+        f.write(f"Total running time: {total_time:.2f} seconds\n")
 
    
 if __name__ == "__main__":

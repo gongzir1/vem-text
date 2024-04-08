@@ -25,7 +25,7 @@ def parse_arguments():
     parser.add_argument(
         "--nClients", type=int, default=1000, help="number of clients participating in FL (default: 1000)")
     parser.add_argument(
-        "--at_fractions", type=float, default=0.0, help="fraction of malicious clients (default: 0%)")
+        "--at_fractions", type=float, default=0.1, help="fraction of malicious clients (default: 0%)")
     
     parser.add_argument(
         "--non_iid_degree",
@@ -55,7 +55,7 @@ def parse_arguments():
     )
     
     parser.add_argument(
-        "--data_loc", type=str, default="/scratch/hamid/CIFAR10/", help="Location to store data",
+        "--data_loc", type=str, default="/CIFAR10/data/", help="Location to store data",
     )
     
     parser.add_argument(
@@ -63,7 +63,7 @@ def parse_arguments():
     )
     
     parser.add_argument(
-        "--FL_type", type=str, default="FRL", help="Type of FL (defualt: FRL)"
+        "--FL_type", type=str, default="My_attack", help="Type of FL (defualt: FRL)"
     )
     
     parser.add_argument(

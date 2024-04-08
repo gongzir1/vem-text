@@ -10,12 +10,14 @@ import numpy as np
 
 def our_attack_trmean(all_updates, n_attackers, dev_type='sign', threshold=5.0, threshold_diff=1e-5):
     
-    model_re = torch.mean(all_updates, 0)
+    # here all_updates are all updates from malicious clients
+
+    model_re = torch.mean(all_updates, 0)    # aggregate the malicious update
     
     if dev_type == 'sign':
         deviation = torch.sign(model_re)
     elif dev_type == 'unit_vec':
-        deviation = model_re / torch.norm(model_re)  # unit vector, dir opp to good dir
+        deviation = model_re / torch.norm(model_re)  # unit vector, direction opp to good dir
     elif dev_type == 'std':
         deviation = torch.std(all_updates, 0)
 
@@ -53,6 +55,7 @@ def our_attack_trmean(all_updates, n_attackers, dev_type='sign', threshold=5.0, 
 
 def our_attack_mkrum(all_updates, model_re, n_attackers,dev_type='unit_vec', threshold=5.0, threshold_diff=1e-5):
 
+    # three attacks types
     if dev_type == 'unit_vec':
         deviation = model_re / torch.norm(model_re)  # unit vector, dir opp to good dir
     elif dev_type == 'sign':
