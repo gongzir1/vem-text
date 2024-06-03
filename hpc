@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --account=def-s5375591
+#SBATCH --job-name=frl
+#SBATCH --cpus-per-task=15
+#SBATCH --gres=gpu:a100:1
+#SBATCH --time=100:00:00
+#SBATCH --ntasks=1
+#SBATCH --qos=work
+#SBATCH --error=error.txt
+#SBATCH --output=stdout.txt
+#SBATCH --mem=50gb             # memory per node
+##./program                    # you can use 'nvidia-smi' for a test
+
+source /usr/local/bin/s3proxy.sh
+echo "load anaconda3"
+# module load anaconda3/2024.02
+echo "activate conda env"
+source activate FRL
+echo "Running NVIDIA SMI"
+nvidia-smi
+echo "test torch cuda and number of devices"
+python -c "import torch; print(torch.cuda.device_count(), torch.__version__)"
+python main.py --data_loc "/CIFAR10/data" --config experiments/cifar10-0.3-conv8.txt
+
+#SBATCH --gres=gpu:a100_1g.10gb:1
+##SBATCH --gres=gpu:a100_1g.20gb:1
+##SBATCH --gres=gpu:a100_3g.40gb:1

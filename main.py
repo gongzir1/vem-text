@@ -18,7 +18,7 @@ config={
 "parameters":{
 "lr":{"values": [0.1,0.01]},
 "nep":{"values": [100]},
-"max_t":{"values": [2500]},
+"max_t":{"values": [2000]},
 "iteration":{"values": [50]},
 "temp":{"values": [0.1]},
 "noise":{"values": [1]},

@@ -2,8 +2,8 @@ from args import args
 from torchvision import datasets, transforms
 import torchvision
 from data.Dirichlet_noniid import *
-import numpy as np
-import matplotlib.pyplot as plt
+# import numpy as np
+# import matplotlib.pyplot as plt
 import wandb
 from torch.utils.data import DataLoader, random_split
 

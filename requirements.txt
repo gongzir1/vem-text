@@ -1,3 +1,7 @@
 numpy==1.23.5
 torch==1.13.1
 torchvision==0.14.1
+wandb==0.16.6
+scikit-learn==1.4.1.post1
+
+
