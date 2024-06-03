@@ -1,0 +1,18 @@
+wandb_version: 1
+
+k:
+  value: 0.5
+l:
+  value: 1
+lr1:
+  value: 0.1
+n_max:
+  value: 0.05
+nep:
+  value: 20
+β:
+  value: 0.5
+γ:
+  value: 0.5
+δ:
+  value: 0.5

@@ -1,0 +1,13 @@
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.00 | total number of malicious clients: 0
+e 0 | malicious users: 0 | test acc 0.6220 test loss 2.028137 best test_acc 0.6220
+e 1 | malicious users: 0 | test acc 0.6711 test loss 1.604132 best test_acc 0.6711
+e 2 | malicious users: 0 | test acc 0.7154 test loss 1.031552 best test_acc 0.7154
+e 3 | malicious users: 0 | test acc 0.6856 test loss 1.253875 best test_acc 0.7154
+e 4 | malicious users: 0 | test acc 0.8077 test loss 0.782246 best test_acc 0.8077
+e 5 | malicious users: 0 | test acc 0.7927 test loss 0.757882 best test_acc 0.8077
+e 6 | malicious users: 0 | test acc 0.8671 test loss 0.502954 best test_acc 0.8671
+e 7 | malicious users: 0 | test acc 0.9033 test loss 0.429986 best test_acc 0.9033
+e 8 | malicious users: 0 | test acc 0.8576 test loss 0.543333 best test_acc 0.9033
+e 9 | malicious users: 0 | test acc 0.8965 test loss 0.356157 best test_acc 0.9033
+e 10 | malicious users: 0 | test acc 0.8824 test loss 0.442834 best test_acc 0.9033

@@ -1,0 +1,113 @@
+=> Saving data in Logs/FRL~try=360
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  0.5
+batch size is :  8
+test batch size is:  128
+use_cuda:  True
+type of FL:  FRL_defense_Eud
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+e 0 | malicious users: 4 | test acc 0.0974 test loss 2.252723 best test_acc 0.0974
+e 1 | malicious users: 6 | test acc 0.4446 test loss 2.070748 best test_acc 0.4446
+e 2 | malicious users: 3 | test acc 0.3760 test loss 1.810629 best test_acc 0.4446
+e 3 | malicious users: 4 | test acc 0.3899 test loss 1.801046 best test_acc 0.4446
+e 4 | malicious users: 3 | test acc 0.6279 test loss 1.558172 best test_acc 0.6279
+e 5 | malicious users: 8 | test acc 0.1092 test loss 4.314293 best test_acc 0.6279
+e 6 | malicious users: 7 | test acc 0.1062 test loss 2.322175 best test_acc 0.6279
+e 7 | malicious users: 5 | test acc 0.1754 test loss 2.287421 best test_acc 0.6279
+e 8 | malicious users: 4 | test acc 0.2779 test loss 2.214829 best test_acc 0.6279
+e 9 | malicious users: 4 | test acc 0.3395 test loss 2.084512 best test_acc 0.6279
+e 10 | malicious users: 4 | test acc 0.3734 test loss 1.957216 best test_acc 0.6279
+e 11 | malicious users: 4 | test acc 0.5586 test loss 1.848263 best test_acc 0.6279
+e 12 | malicious users: 7 | test acc 0.2554 test loss 2.038553 best test_acc 0.6279
+e 13 | malicious users: 2 | test acc 0.1910 test loss 2.203819 best test_acc 0.6279
+e 14 | malicious users: 4 | test acc 0.2291 test loss 2.078599 best test_acc 0.6279
+e 15 | malicious users: 9 | test acc 0.1235 test loss 2.526635 best test_acc 0.6279
+e 16 | malicious users: 4 | test acc 0.1778 test loss 2.202104 best test_acc 0.6279
+e 17 | malicious users: 4 | test acc 0.3020 test loss 1.913505 best test_acc 0.6279
+e 18 | malicious users: 1 | test acc 0.4899 test loss 1.762921 best test_acc 0.6279
+e 19 | malicious users: 7 | test acc 0.2681 test loss 2.103751 best test_acc 0.6279
+e 20 | malicious users: 6 | test acc 0.3603 test loss 1.700585 best test_acc 0.6279
+e 21 | malicious users: 4 | test acc 0.1755 test loss 2.042968 best test_acc 0.6279
+e 22 | malicious users: 4 | test acc 0.4838 test loss 1.580094 best test_acc 0.6279
+e 23 | malicious users: 3 | test acc 0.5981 test loss 1.644914 best test_acc 0.6279
+e 24 | malicious users: 5 | test acc 0.5955 test loss 1.515936 best test_acc 0.6279
+e 25 | malicious users: 5 | test acc 0.4320 test loss 1.661668 best test_acc 0.6279
+e 26 | malicious users: 5 | test acc 0.3104 test loss 1.743929 best test_acc 0.6279
+e 27 | malicious users: 4 | test acc 0.6410 test loss 1.527800 best test_acc 0.6410
+e 28 | malicious users: 8 | test acc 0.2123 test loss 2.777576 best test_acc 0.6410
+e 29 | malicious users: 1 | test acc 0.2476 test loss 2.213915 best test_acc 0.6410
+e 30 | malicious users: 6 | test acc 0.1775 test loss 1.873741 best test_acc 0.6410
+e 31 | malicious users: 9 | test acc 0.1989 test loss 2.155252 best test_acc 0.6410
+e 32 | malicious users: 7 | test acc 0.1941 test loss 2.097211 best test_acc 0.6410
+e 33 | malicious users: 5 | test acc 0.3850 test loss 1.827559 best test_acc 0.6410
+e 34 | malicious users: 2 | test acc 0.5630 test loss 1.613629 best test_acc 0.6410
+e 35 | malicious users: 1 | test acc 0.6744 test loss 1.401432 best test_acc 0.6744
+e 36 | malicious users: 4 | test acc 0.5099 test loss 1.517501 best test_acc 0.6744
+e 37 | malicious users: 5 | test acc 0.4657 test loss 1.506696 best test_acc 0.6744
+e 38 | malicious users: 7 | test acc 0.4644 test loss 1.548094 best test_acc 0.6744
+e 39 | malicious users: 5 | test acc 0.4440 test loss 1.451491 best test_acc 0.6744
+e 40 | malicious users: 8 | test acc 0.2089 test loss 2.245007 best test_acc 0.6744
+e 41 | malicious users: 4 | test acc 0.3166 test loss 1.990789 best test_acc 0.6744
+e 42 | malicious users: 2 | test acc 0.2879 test loss 1.842260 best test_acc 0.6744
+e 43 | malicious users: 2 | test acc 0.5447 test loss 1.644266 best test_acc 0.6744
+e 44 | malicious users: 2 | test acc 0.4616 test loss 1.477816 best test_acc 0.6744
+e 45 | malicious users: 4 | test acc 0.5018 test loss 1.670694 best test_acc 0.6744
+e 46 | malicious users: 10 | test acc 0.5046 test loss 1.355425 best test_acc 0.6744
+e 47 | malicious users: 6 | test acc 0.4233 test loss 1.557742 best test_acc 0.6744
+e 48 | malicious users: 2 | test acc 0.4830 test loss 1.655338 best test_acc 0.6744
+e 49 | malicious users: 6 | test acc 0.4806 test loss 1.470733 best test_acc 0.6744
+e 50 | malicious users: 6 | test acc 0.4008 test loss 1.750514 best test_acc 0.6744
+e 51 | malicious users: 4 | test acc 0.4528 test loss 1.631636 best test_acc 0.6744
+e 52 | malicious users: 2 | test acc 0.6115 test loss 1.260089 best test_acc 0.6744
+e 53 | malicious users: 8 | test acc 0.3330 test loss 2.447990 best test_acc 0.6744
+e 54 | malicious users: 3 | test acc 0.1478 test loss 2.208328 best test_acc 0.6744
+e 55 | malicious users: 4 | test acc 0.3138 test loss 1.829305 best test_acc 0.6744
+e 56 | malicious users: 4 | test acc 0.3661 test loss 1.714597 best test_acc 0.6744
+e 57 | malicious users: 5 | test acc 0.4393 test loss 1.752502 best test_acc 0.6744
+e 58 | malicious users: 6 | test acc 0.4871 test loss 1.486951 best test_acc 0.6744
+e 59 | malicious users: 5 | test acc 0.4027 test loss 1.536229 best test_acc 0.6744
+e 60 | malicious users: 4 | test acc 0.6063 test loss 1.292329 best test_acc 0.6744
+e 61 | malicious users: 11 | test acc 0.6021 test loss 1.540437 best test_acc 0.6744
+e 62 | malicious users: 5 | test acc 0.5574 test loss 1.412280 best test_acc 0.6744
+e 63 | malicious users: 5 | test acc 0.5471 test loss 1.377446 best test_acc 0.6744
+e 64 | malicious users: 4 | test acc 0.4641 test loss 1.344301 best test_acc 0.6744
+e 65 | malicious users: 8 | test acc 0.2881 test loss 2.428445 best test_acc 0.6744
+e 66 | malicious users: 4 | test acc 0.2215 test loss 2.227387 best test_acc 0.6744
+e 67 | malicious users: 5 | test acc 0.3459 test loss 1.916105 best test_acc 0.6744
+e 68 | malicious users: 4 | test acc 0.5722 test loss 1.641192 best test_acc 0.6744
+e 69 | malicious users: 6 | test acc 0.5017 test loss 1.661339 best test_acc 0.6744
+e 70 | malicious users: 3 | test acc 0.2917 test loss 1.583701 best test_acc 0.6744
+e 71 | malicious users: 6 | test acc 0.3867 test loss 1.726895 best test_acc 0.6744
+e 72 | malicious users: 3 | test acc 0.5778 test loss 1.327123 best test_acc 0.6744
+e 73 | malicious users: 8 | test acc 0.3059 test loss 1.966789 best test_acc 0.6744
+e 74 | malicious users: 5 | test acc 0.5213 test loss 1.639930 best test_acc 0.6744
+e 75 | malicious users: 5 | test acc 0.5687 test loss 1.443635 best test_acc 0.6744
+e 76 | malicious users: 3 | test acc 0.3470 test loss 1.539026 best test_acc 0.6744
+e 77 | malicious users: 4 | test acc 0.5946 test loss 1.489484 best test_acc 0.6744
+e 78 | malicious users: 10 | test acc 0.4748 test loss 1.463194 best test_acc 0.6744
+e 79 | malicious users: 11 | test acc 0.5184 test loss 1.505259 best test_acc 0.6744
+e 80 | malicious users: 6 | test acc 0.4009 test loss 1.608827 best test_acc 0.6744
+e 81 | malicious users: 3 | test acc 0.6414 test loss 1.341056 best test_acc 0.6744
+e 82 | malicious users: 6 | test acc 0.3375 test loss 1.652824 best test_acc 0.6744
+e 83 | malicious users: 4 | test acc 0.5672 test loss 1.317164 best test_acc 0.6744
+e 84 | malicious users: 5 | test acc 0.7109 test loss 1.315683 best test_acc 0.7109
+e 85 | malicious users: 4 | test acc 0.3908 test loss 1.516414 best test_acc 0.7109
+e 86 | malicious users: 3 | test acc 0.4654 test loss 1.622331 best test_acc 0.7109
+e 87 | malicious users: 4 | test acc 0.3924 test loss 1.394346 best test_acc 0.7109
+e 88 | malicious users: 3 | test acc 0.6570 test loss 1.254009 best test_acc 0.7109
+e 89 | malicious users: 6 | test acc 0.1321 test loss 2.244525 best test_acc 0.7109
+e 90 | malicious users: 5 | test acc 0.6122 test loss 1.484446 best test_acc 0.7109
+e 91 | malicious users: 3 | test acc 0.6639 test loss 1.279085 best test_acc 0.7109
+e 92 | malicious users: 2 | test acc 0.6479 test loss 1.254382 best test_acc 0.7109
+e 93 | malicious users: 3 | test acc 0.6435 test loss 1.198771 best test_acc 0.7109
+e 94 | malicious users: 3 | test acc 0.7594 test loss 1.172640 best test_acc 0.7594
+e 95 | malicious users: 5 | test acc 0.5372 test loss 1.542114 best test_acc 0.7594
+e 96 | malicious users: 9 | test acc 0.6080 test loss 1.261548 best test_acc 0.7594
+e 97 | malicious users: 7 | test acc 0.4346 test loss 1.506652 best test_acc 0.7594
+e 98 | malicious users: 7 | test acc 0.3870 test loss 2.362084 best test_acc 0.7594
+e 99 | malicious users: 5 | test acc 0.2545 test loss 1.961147 best test_acc 0.7594
+e 100 | malicious users: 7 | test acc 0.3540 test loss 1.683801 best test_acc 0.7594
+e 101 | malicious users: 2 | test acc 0.5235 test loss 1.413888 best test_acc 0.7594
+e 102 | malicious users: 6 | test acc 0.4081 test loss 1.567606 best test_acc 0.7594

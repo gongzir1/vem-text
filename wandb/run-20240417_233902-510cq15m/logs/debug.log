@@ -1,0 +1,20 @@
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_setup.py:_flush():76] Configure stats pid to 691603
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'My-attack-new-0.1', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '510cq15m', 'sweep_param_path': '/home/test/FRL/wandb/sweep-cos5mvw2/config-510cq15m.yaml', 'sweep_id': 'cos5mvw2'}
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240417_233902-510cq15m/logs/debug.log
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240417_233902-510cq15m/logs/debug-internal.log
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_init.py:init():561] calling init triggers
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_init.py:init():568] wandb.init called with sweep_config: {'k_s': 5, 'lr1': 0.01, 'lr2': 0.01, 'scale1': 10, 'scale2': 1000, 'v': 0.7, 'α': 0.3, 'β': 0.3, 'γ': 0.7, 'δ': 0.001}
+config: {}
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_init.py:init():611] starting backend
+2024-04-17 23:39:02,977 INFO    Thread-6 (_run_job):691603 [wandb_init.py:init():615] setting up manager
+2024-04-17 23:39:02,980 INFO    Thread-6 (_run_job):691603 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-04-17 23:39:02,980 INFO    Thread-6 (_run_job):691603 [wandb_init.py:init():623] backend started and connected
+2024-04-17 23:39:02,985 INFO    Thread-6 (_run_job):691603 [wandb_run.py:_config_callback():1347] config_cb None None {'k_s': 5, 'lr1': 0.01, 'lr2': 0.01, 'scale1': 10, 'scale2': 1000, 'v': 0.7, 'α': 0.3, 'β': 0.3, 'γ': 0.7, 'δ': 0.001}
+2024-04-17 23:39:02,985 INFO    Thread-6 (_run_job):691603 [wandb_init.py:init():715] updated telemetry
+2024-04-17 23:39:02,988 INFO    Thread-6 (_run_job):691603 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout

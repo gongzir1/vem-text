@@ -10,9 +10,11 @@ import numpy as np
 import models.module_util as module_util
 
 from args import args as pargs
+import wandb
 
 StandardConv = nn.Conv2d
 StandardBN = nn.BatchNorm2d
+
 
 class NonAffineBN(nn.BatchNorm2d):
     def __init__(self, dim):
@@ -33,10 +35,10 @@ class MaskConv(nn.Conv2d):
         self.weight.requires_grad = False
             
         # default sparsity
-        self.sparsity = pargs.sparsity
+        self.sparsity = wandb.config.k
         
     def forward(self, x):
-        subnet = module_util.GetSubnet.apply(self.scores.abs(), self.sparsity)
+        subnet = module_util.GetSubnet.apply(self.scores.abs(), wandb.config.k)
         w = self.weight * subnet
         x = F.conv2d(
             x, w, self.bias, self.stride, self.padding, self.dilation, self.groups

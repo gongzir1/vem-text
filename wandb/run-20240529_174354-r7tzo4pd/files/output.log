@@ -1,0 +1,9 @@
+
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+e 0 | malicious users: 5 | test acc 0.4069 test loss 2.192933 best test_acc 0.4069
+e 1 | malicious users: 5 | test acc 0.5016 test loss 1.774563 best test_acc 0.5016
+e 2 | malicious users: 5 | test acc 0.5790 test loss 1.595733 best test_acc 0.5790
+e 3 | malicious users: 5 | test acc 0.7541 test loss 1.144619 best test_acc 0.7541
+e 4 | malicious users: 5 | test acc 0.6771 test loss 1.100705 best test_acc 0.7541
+e 5 | malicious users: 5 | test acc 0.8155 test loss 1.152241 best test_acc 0.8155
+e 6 | malicious users: 5 | test acc 0.8097 test loss 1.014547 best test_acc 0.8155

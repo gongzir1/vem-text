@@ -1,0 +1,24 @@
+wandb_version: 1
+
+k_s:
+  value: 5
+lr1:
+  value: 0.01
+lr2:
+  value: 0.001
+nep:
+  value: 100
+scale1:
+  value: 100
+scale2:
+  value: 100
+v:
+  value: 0.7
+α:
+  value: 0.5
+β:
+  value: 0.3
+γ:
+  value: 1.5
+δ:
+  value: 0.001

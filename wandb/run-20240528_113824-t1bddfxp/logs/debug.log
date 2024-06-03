@@ -1,0 +1,29 @@
+2024-05-28 11:38:24,916 INFO    Thread-7 (_run_job):415546 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-05-28 11:38:24,917 INFO    Thread-7 (_run_job):415546 [wandb_setup.py:_flush():76] Configure stats pid to 415546
+2024-05-28 11:38:24,917 INFO    Thread-7 (_run_job):415546 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-05-28 11:38:24,917 INFO    Thread-7 (_run_job):415546 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-05-28 11:38:24,917 INFO    Thread-7 (_run_job):415546 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'debug', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'sweep_id': 'u8jldkel', 'run_id': 't1bddfxp', 'sweep_param_path': '/home/test/FRL/wandb/sweep-u8jldkel/config-t1bddfxp.yaml'}
+2024-05-28 11:38:24,917 INFO    Thread-7 (_run_job):415546 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-05-28 11:38:24,918 INFO    Thread-7 (_run_job):415546 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-05-28 11:38:24,918 INFO    Thread-7 (_run_job):415546 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-05-28 11:38:24,918 INFO    Thread-7 (_run_job):415546 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240528_113824-t1bddfxp/logs/debug.log
+2024-05-28 11:38:24,918 INFO    Thread-7 (_run_job):415546 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240528_113824-t1bddfxp/logs/debug-internal.log
+2024-05-28 11:38:24,918 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():561] calling init triggers
+2024-05-28 11:38:24,919 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():568] wandb.init called with sweep_config: {'iteration': 50, 'k': 0.2, 'lr': 0.001, 'm_r': 0.3, 'max_t': 1000, 'nep': 100, 'noise': 1, 'temp': 0.1}
+config: {}
+2024-05-28 11:38:24,919 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():611] starting backend
+2024-05-28 11:38:24,919 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():615] setting up manager
+2024-05-28 11:38:24,928 INFO    Thread-7 (_run_job):415546 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-05-28 11:38:24,930 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():623] backend started and connected
+2024-05-28 11:38:24,955 INFO    Thread-7 (_run_job):415546 [wandb_run.py:_config_callback():1347] config_cb None None {'iteration': 50, 'k': 0.2, 'lr': 0.001, 'm_r': 0.3, 'max_t': 1000, 'nep': 100, 'noise': 1, 'temp': 0.1}
+2024-05-28 11:38:24,956 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():715] updated telemetry
+2024-05-28 11:38:24,963 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-05-28 11:38:25,491 INFO    Thread-7 (_run_job):415546 [wandb_run.py:_on_init():2357] communicating current version
+2024-05-28 11:38:25,621 INFO    Thread-7 (_run_job):415546 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.0 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-05-28 11:38:25,621 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():799] starting run threads in backend
+2024-05-28 11:38:29,786 INFO    Thread-7 (_run_job):415546 [wandb_run.py:_console_start():2335] atexit reg
+2024-05-28 11:38:29,787 INFO    Thread-7 (_run_job):415546 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-05-28 11:38:29,787 INFO    Thread-7 (_run_job):415546 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-05-28 11:38:29,787 INFO    Thread-7 (_run_job):415546 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-05-28 11:38:29,788 INFO    Thread-7 (_run_job):415546 [wandb_init.py:init():842] run started, returning control to user process

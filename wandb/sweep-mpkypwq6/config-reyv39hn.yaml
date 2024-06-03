@@ -1,0 +1,14 @@
+wandb_version: 1
+
+lr1:
+  value: 0.01
+lr2:
+  value: 0.001
+α:
+  value: 0.7
+β:
+  value: 0.5
+γ:
+  value: 0.3
+δ:
+  value: 0.1

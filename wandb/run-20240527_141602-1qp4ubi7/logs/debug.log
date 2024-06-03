@@ -1,0 +1,38 @@
+2024-05-27 14:16:02,313 INFO    Thread-9 (_run_job):15279 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-05-27 14:16:02,313 INFO    Thread-9 (_run_job):15279 [wandb_setup.py:_flush():76] Configure stats pid to 15279
+2024-05-27 14:16:02,314 INFO    Thread-9 (_run_job):15279 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-05-27 14:16:02,314 INFO    Thread-9 (_run_job):15279 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-05-27 14:16:02,314 INFO    Thread-9 (_run_job):15279 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'different-k-mnist-attack-0.1', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'sweep_id': 'dr0tv8jb', 'run_id': '1qp4ubi7', 'sweep_param_path': '/home/test/FRL/wandb/sweep-dr0tv8jb/config-1qp4ubi7.yaml'}
+2024-05-27 14:16:02,314 INFO    Thread-9 (_run_job):15279 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-05-27 14:16:02,314 INFO    Thread-9 (_run_job):15279 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-05-27 14:16:02,314 INFO    Thread-9 (_run_job):15279 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240527_141602-1qp4ubi7/logs/debug.log
+2024-05-27 14:16:02,314 INFO    Thread-9 (_run_job):15279 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240527_141602-1qp4ubi7/logs/debug-internal.log
+2024-05-27 14:16:02,314 INFO    Thread-9 (_run_job):15279 [wandb_init.py:init():561] calling init triggers
+2024-05-27 14:16:02,315 INFO    Thread-9 (_run_job):15279 [wandb_init.py:init():568] wandb.init called with sweep_config: {'iteration': 50, 'k': 0, 'lr': 0.001, 'm_r': 0, 'max_t': 1000, 'nep': 100, 'noise': 1, 'temp': 0.1}
+config: {}
+2024-05-27 14:16:02,315 INFO    Thread-9 (_run_job):15279 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-05-27 14:16:02,409 ERROR   Thread-9 (_run_job):15279 [wandb_init.py:init():1209] error
+Traceback (most recent call last):
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 1181, in init
+    run = wi.init()
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 607, in init
+    with telemetry.context() as tel:
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/lib/telemetry.py", line 42, in __exit__
+    self._run._telemetry_callback(self._obj)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 763, in _telemetry_callback
+    self._telemetry_flush()
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 774, in _telemetry_flush
+    self._backend.interface._publish_telemetry(self._telemetry_obj)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 101, in _publish_telemetry
+    self._publish(rec)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self._send_message(msg)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe

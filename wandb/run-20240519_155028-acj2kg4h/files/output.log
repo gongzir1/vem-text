@@ -1,0 +1,4 @@
+
+fraction of maliciou clients: 0.00 | total number of malicious clients: 0
+e 0 | malicious users: 0 | test acc 0.4946 test loss 1.988951 best test_acc 0.4946
+e 1 | malicious users: 0 | test acc 0.7019 test loss 1.167163 best test_acc 0.7019

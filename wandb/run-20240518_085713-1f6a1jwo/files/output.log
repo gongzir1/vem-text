@@ -1,0 +1,3 @@
+
+fraction of maliciou clients: 0.10 | total number of malicious clients: 100
+tensor(3456, dtype=torch.int32)

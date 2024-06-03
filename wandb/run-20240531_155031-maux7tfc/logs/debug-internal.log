@@ -1,0 +1,5 @@
+2024-05-31 15:50:31,628 INFO    StreamThr :987521 [internal.py:wandb_internal():86] W&B internal server running at pid: 987521, started at: 2024-05-31 15:50:31.627668
+2024-05-31 15:50:31,645 DEBUG   HandlerThread:987521 [handler.py:handle_request():146] handle_request: status
+2024-05-31 15:50:31,658 INFO    WriterThread:987521 [datastore.py:open_for_write():87] open: /home/test/FRL/wandb/run-20240531_155031-maux7tfc/run-maux7tfc.wandb
+2024-05-31 15:50:31,659 DEBUG   SenderThread:987521 [sender.py:send():379] send: header
+2024-05-31 15:50:31,669 DEBUG   SenderThread:987521 [sender.py:send():379] send: run

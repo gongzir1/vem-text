@@ -6,7 +6,34 @@ import pickle
 import torch.nn as nn
 import argparse, os, sys, csv, shutil, time, random, operator, pickle, ast, math, copy
 import numpy as np
+from utils import *
 
+def cosine_distance_PICK_OUT(all_updates,FLmodel,n_attackers):
+    cs_selected_all={}
+    cs_selected,cs_not_selected=compare_user_updates_cluster(FLmodel, all_updates,n_attackers)
+
+    return cs_selected,cs_not_selected
+
+def cosine_distance(all_updates,FLmodel,n_attackers):
+    cs_selected_all={}
+    cs_selected=compare_user_updates_layer_wise_new(FLmodel, all_updates)
+
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            cs_selected_all[str(n)]=all_updates[str(n)][cs_selected, :]
+
+    return cs_selected_all
+            
+def my_cosine_distance(all_updates,FLmodel,n_attackers):
+    cs_selected_all={}
+    cs_selected=my_compare_user_updates_cluster(FLmodel, all_updates)
+
+    # for n, m in FLmodel.named_modules():
+    #     if hasattr(m, "scores"): 
+    #         cs_selected_all[str(n)]=all_updates[str(n)][cs_selected, :]
+    
+
+    # return cs_selected_all
     
 def tr_mean(all_updates, n_attackers):
     sorted_updates = torch.sort(all_updates, 0)[0]

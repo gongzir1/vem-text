@@ -1,0 +1,5 @@
+=> Saving data in Logs/FRL~try=336
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  0.5
+batch size is :  8

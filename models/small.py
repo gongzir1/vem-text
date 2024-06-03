@@ -28,8 +28,34 @@ class LeNet(nn.Module):
         out = out.view(out.size(0), 64* 14 * 14, 1, 1)
         out = self.linear(out)
         return out.squeeze()
-    
-    
+
+
+class Conv2(nn.Module):
+    def __init__(self):
+        super(Conv2, self).__init__()
+        builder = Builder()
+        self.convs = nn.Sequential(
+            builder.conv3x3(1, 64, first_layer=True),  # Change input channels to 1
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # Max pooling after first conv layer
+
+            builder.conv3x3(64, 128),  # Second conv layer
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # Max pooling after second conv layer
+        )
+
+        self.linear = nn.Sequential(
+            builder.conv1x1(128 * 7 * 7, 256),  # Adjust dimensions accordingly
+            nn.ReLU(),
+            builder.conv1x1(256, 10),  # Fully connected layer 2 (output layer)
+        )
+
+    def forward(self, x):
+        out = self.convs(x)
+        out = out.view(out.size(0), 128 * 7 * 7, 1, 1)  # Flatten the output for the fully connected layers
+        out = self.linear(out)
+        return out.squeeze()
+
 class Conv8(nn.Module):
     def __init__(self):
         super(Conv8, self).__init__()

@@ -1,0 +1,52 @@
+2024-04-25 07:31:52,319 INFO    Thread-33 (_run_job):906093 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-04-25 07:31:52,319 INFO    Thread-33 (_run_job):906093 [wandb_setup.py:_flush():76] Configure stats pid to 906093
+2024-04-25 07:31:52,320 INFO    Thread-33 (_run_job):906093 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-04-25 07:31:52,320 INFO    Thread-33 (_run_job):906093 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-04-25 07:31:52,320 INFO    Thread-33 (_run_job):906093 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'My-attack-Noise-Mask-0.1', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '1p93379l', 'sweep_param_path': '/home/test/FRL/wandb/sweep-rmydj4wl/config-1p93379l.yaml', 'sweep_id': 'rmydj4wl'}
+2024-04-25 07:31:52,320 INFO    Thread-33 (_run_job):906093 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-04-25 07:31:52,320 INFO    Thread-33 (_run_job):906093 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-04-25 07:31:52,320 INFO    Thread-33 (_run_job):906093 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-04-25 07:31:52,320 INFO    Thread-33 (_run_job):906093 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240425_073152-1p93379l/logs/debug.log
+2024-04-25 07:31:52,321 INFO    Thread-33 (_run_job):906093 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240425_073152-1p93379l/logs/debug-internal.log
+2024-04-25 07:31:52,321 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():561] calling init triggers
+2024-04-25 07:31:52,321 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():568] wandb.init called with sweep_config: {'k': 0.47328381026362376, 'lr1': 0.001, 'n_max': 0.04040734043786213, 'nep': 20, 'β': 0.42166940978036305, 'γ': 0.5163253119055037, 'δ': 0.5482920068867511}
+config: {}
+2024-04-25 07:31:52,321 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():611] starting backend
+2024-04-25 07:31:52,321 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():615] setting up manager
+2024-04-25 07:31:52,336 INFO    Thread-33 (_run_job):906093 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-04-25 07:31:52,337 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():623] backend started and connected
+2024-04-25 07:31:52,354 INFO    Thread-33 (_run_job):906093 [wandb_run.py:_config_callback():1347] config_cb None None {'k': 0.47328381026362376, 'lr1': 0.001, 'n_max': 0.04040734043786213, 'nep': 20, 'β': 0.42166940978036305, 'γ': 0.5163253119055037, 'δ': 0.5482920068867511}
+2024-04-25 07:31:52,355 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():715] updated telemetry
+2024-04-25 07:31:52,361 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-04-25 07:31:52,895 INFO    Thread-33 (_run_job):906093 [wandb_run.py:_on_init():2357] communicating current version
+2024-04-25 07:31:52,951 INFO    Thread-33 (_run_job):906093 [wandb_run.py:_on_init():2366] got version response 
+2024-04-25 07:31:52,951 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():799] starting run threads in backend
+2024-04-25 07:31:54,542 INFO    Thread-33 (_run_job):906093 [wandb_run.py:_console_start():2335] atexit reg
+2024-04-25 07:31:54,542 INFO    Thread-33 (_run_job):906093 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-04-25 07:31:54,542 INFO    Thread-33 (_run_job):906093 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-04-25 07:31:54,542 INFO    Thread-33 (_run_job):906093 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-04-25 07:31:54,543 INFO    Thread-33 (_run_job):906093 [wandb_init.py:init():842] run started, returning control to user process
+2024-04-25 11:48:45,527 ERROR   Thread-1 (_heartbeat):906093 [internal_api.py:execute():373] 502 response executing GraphQL.
+2024-04-25 11:48:45,527 ERROR   Thread-1 (_heartbeat):906093 [internal_api.py:execute():374] 
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>502 Server Error</title>
+</head>
+<body text=#000000 bgcolor=#ffffff>
+<h1>Error: Server Error</h1>
+<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>
+<h2></h2>
+</body></html>
+
+2024-04-25 11:49:48,059 ERROR   Thread-1 (_heartbeat):906093 [internal_api.py:execute():373] 502 response executing GraphQL.
+2024-04-25 11:49:48,059 ERROR   Thread-1 (_heartbeat):906093 [internal_api.py:execute():374] 
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>502 Server Error</title>
+</head>
+<body text=#000000 bgcolor=#ffffff>
+<h1>Error: Server Error</h1>
+<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>
+<h2></h2>
+</body></html>
+

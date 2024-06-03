@@ -5,6 +5,8 @@ import os
 import random
 import numpy as np
 import torch
+import matplotlib.pyplot as plt
+import wandb
 
 def get_train(dataset, indices, batch_size=args.batch_size, shuffle=True):
     train_loader = torch.utils.data.DataLoader(dataset,
@@ -14,8 +16,8 @@ def get_train(dataset, indices, batch_size=args.batch_size, shuffle=True):
     return train_loader
 
 def sample_dirichlet_train_data_train(train_dataset, no_participants, alpha=args.non_iid_degree, force=False):
+# def sample_dirichlet_train_data_train(train_dataset, no_participants, alpha=wandb.config.non_iid, force=False):
     file_add = '%s_train_dirichlet_a_%.1f_n%d.pkl'%(args.set, alpha, no_participants)
-    
     if not os.path.exists(file_add) or force:
         print('generating participant indices for alpha %.1f' % alpha)
 
@@ -51,5 +53,6 @@ def sample_dirichlet_train_data_train(train_dataset, no_participants, alpha=args
             pickle.dump([tr_per_participant_list, tr_per_participant_list_labels_fr], f)
     else:
         [tr_per_participant_list, tr_per_participant_list_labels_fr] = pickle.load(open(file_add, 'rb'))
+
 
     return tr_per_participant_list, tr_per_participant_list_labels_fr

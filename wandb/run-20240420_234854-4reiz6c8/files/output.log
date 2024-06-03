@@ -1,0 +1,19 @@
+#########Federated Learning With Noise Mask attack############
+fraction of maliciou clients: 0.10 | total number of malicious clients: 100
+e 0 | malicious users: 3 | test acc 0.0987 test loss 2.302075 best test_acc 0.0987
+e 1 | malicious users: 2 | test acc 0.1006 test loss 2.298052 best test_acc 0.1006
+e 2 | malicious users: 2 | test acc 0.1055 test loss 2.300906 best test_acc 0.1055
+e 3 | malicious users: 2 | test acc 0.1553 test loss 2.297250 best test_acc 0.1553
+e 4 | malicious users: 3 | test acc 0.1331 test loss 2.283742 best test_acc 0.1553
+e 5 | malicious users: 1 | test acc 0.1029 test loss 2.295447 best test_acc 0.1553
+e 6 | malicious users: 2 | test acc 0.1585 test loss 2.288317 best test_acc 0.1585
+e 7 | malicious users: 5 | test acc 0.1628 test loss 2.256684 best test_acc 0.1628
+e 8 | malicious users: 2 | test acc 0.1995 test loss 2.276782 best test_acc 0.1995
+e 9 | malicious users: 2 | test acc 0.1937 test loss 2.226740 best test_acc 0.1995
+e 10 | malicious users: 4 | test acc 0.1487 test loss 2.254368 best test_acc 0.1995
+e 11 | malicious users: 3 | test acc 0.2187 test loss 2.244310 best test_acc 0.2187
+e 12 | malicious users: 1 | test acc 0.1859 test loss 2.208742 best test_acc 0.2187
+e 13 | malicious users: 4 | test acc 0.2157 test loss 2.206663 best test_acc 0.2187
+e 14 | malicious users: 1 | test acc 0.1692 test loss 2.232273 best test_acc 0.2187
+e 15 | malicious users: 4 | test acc 0.1897 test loss 2.180967 best test_acc 0.2187
+e 16 | malicious users: 1 | test acc 0.2132 test loss 2.140997 best test_acc 0.2187

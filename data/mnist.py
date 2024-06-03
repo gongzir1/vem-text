@@ -2,6 +2,10 @@ from args import args
 from torchvision import datasets, transforms
 import torchvision
 from data.Dirichlet_noniid import *
+import numpy as np
+import matplotlib.pyplot as plt
+import wandb
+from torch.utils.data import DataLoader, random_split
 
 class MNIST:
     def __init__(self):
@@ -17,8 +21,11 @@ class MNIST:
 
         test_dataset = datasets.MNIST(root=args.data_loc, train=False, download=True, transform=Mytransform)
 
-        tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=args.non_iid_degree, force=False)
+       
 
+
+        # tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=args.non_iid_degree, force=False)
+        tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=wandb.config.non_iid, force=False)
         self.tr_loaders = []
         tr_count = 0
         for pos, indices in tr_per_participant_list.items():
@@ -28,11 +35,24 @@ class MNIST:
             batch_size = args.batch_size
             self.tr_loaders.append(get_train(train_dataset, indices, args.batch_size))
 #         print ("number of total training points:" ,tr_count)
-        self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
-    
+        # self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+        if args.FL_type =="FRL_fang" or args.FL_type =="FRL_defense_Fang":
+             # validation_size = int(0.2 * len(test_dataset)) 
+            validation_size = 100 
+            test_size = len(test_dataset) - validation_size
+
+            validation_dataset, test_dataset = random_split(test_dataset, [validation_size, test_size])
+            self.validation_loader = torch.utils.data.DataLoader(validation_dataset, batch_size=args.test_batch_size, shuffle=False)
+            self.te_loader = torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+        else:
+            self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+
 
     def get_tr_loaders(self):
         return self.tr_loaders
     
     def get_te_loader(self):
         return self.te_loader
+    
+    def get_val_loader(self):
+        return self.validation_loader

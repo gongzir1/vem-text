@@ -1,0 +1,62 @@
+2024-05-02 21:51:58,722 INFO    Thread-2 (_run_job):1204240 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-05-02 21:51:58,722 INFO    Thread-2 (_run_job):1204240 [wandb_setup.py:_flush():76] Configure stats pid to 1204240
+2024-05-02 21:51:58,723 INFO    Thread-2 (_run_job):1204240 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-05-02 21:51:58,723 INFO    Thread-2 (_run_job):1204240 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-05-02 21:51:58,723 INFO    Thread-2 (_run_job):1204240 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'matrix-mnist', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'sweep_id': 'g7n9m0ww', 'run_id': 'hhpvgwqj', 'sweep_param_path': '/home/test/FRL/wandb/sweep-g7n9m0ww/config-hhpvgwqj.yaml'}
+2024-05-02 21:51:58,723 INFO    Thread-2 (_run_job):1204240 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-05-02 21:51:58,723 INFO    Thread-2 (_run_job):1204240 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-05-02 21:51:58,723 INFO    Thread-2 (_run_job):1204240 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-05-02 21:51:58,723 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240502_215158-hhpvgwqj/logs/debug.log
+2024-05-02 21:51:58,724 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240502_215158-hhpvgwqj/logs/debug-internal.log
+2024-05-02 21:51:58,724 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():561] calling init triggers
+2024-05-02 21:51:58,724 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():568] wandb.init called with sweep_config: {'m_r': 0}
+config: {}
+2024-05-02 21:51:58,724 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():611] starting backend
+2024-05-02 21:51:58,724 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():615] setting up manager
+2024-05-02 21:51:58,743 INFO    Thread-2 (_run_job):1204240 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-05-02 21:51:58,745 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():623] backend started and connected
+2024-05-02 21:51:58,760 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_config_callback():1347] config_cb None None {'m_r': 0}
+2024-05-02 21:51:58,761 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():715] updated telemetry
+2024-05-02 21:51:58,766 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-05-02 21:51:59,268 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_on_init():2357] communicating current version
+2024-05-02 21:51:59,343 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_on_init():2366] got version response 
+2024-05-02 21:51:59,344 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():799] starting run threads in backend
+2024-05-02 21:52:00,879 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_console_start():2335] atexit reg
+2024-05-02 21:52:00,879 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-05-02 21:52:00,879 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-05-02 21:52:00,879 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-05-02 21:52:00,880 INFO    Thread-2 (_run_job):1204240 [wandb_init.py:init():842] run started, returning control to user process
+2024-05-02 22:07:05,164 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():373] 500 response executing GraphQL.
+2024-05-02 22:07:05,165 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():374] {"error":"context deadline exceeded"}
+2024-05-02 22:08:01,576 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():373] 500 response executing GraphQL.
+2024-05-02 22:08:01,576 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():374] {"error":"context deadline exceeded"}
+2024-05-02 22:08:59,149 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():373] 500 response executing GraphQL.
+2024-05-02 22:08:59,149 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():374] {"error":"context deadline exceeded"}
+2024-05-02 22:08:59,150 INFO    Thread-1 (_heartbeat):1204240 [retry.py:__call__():172] Retry attempt failed:
+Traceback (most recent call last):
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/lib/retry.py", line 131, in __call__
+    result = self._call_fn(*args, **kwargs)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/internal/internal_api.py", line 369, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/sdk/lib/gql_request.py", line 59, in execute
+    request.raise_for_status()
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://api.wandb.ai/graphql
+2024-05-02 22:09:58,764 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():373] 500 response executing GraphQL.
+2024-05-02 22:09:58,764 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():374] {"error":"context deadline exceeded"}
+2024-05-02 22:11:02,473 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():373] 500 response executing GraphQL.
+2024-05-02 22:11:02,473 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():374] {"error":"context deadline exceeded"}
+2024-05-02 22:12:15,708 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():373] 500 response executing GraphQL.
+2024-05-02 22:12:15,708 ERROR   Thread-1 (_heartbeat):1204240 [internal_api.py:execute():374] {"error":"context deadline exceeded"}
+2024-05-03 06:06:34,695 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_finish():2064] finishing run griffith/matrix-mnist/hhpvgwqj
+2024-05-03 06:06:34,695 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-05-03 06:06:34,695 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_restore():2287] restore
+2024-05-03 06:06:34,695 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_restore():2293] restore done
+2024-05-03 06:06:41,245 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-05-03 06:06:41,247 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-05-03 06:06:41,259 INFO    Thread-2 (_run_job):1204240 [wandb_run.py:_footer_sync_info():3895] logging synced files

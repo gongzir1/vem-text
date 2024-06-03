@@ -1,0 +1,28 @@
+2024-04-16 16:57:23,053 INFO    Thread-2 (_run_job):626108 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-04-16 16:57:23,053 INFO    Thread-2 (_run_job):626108 [wandb_setup.py:_flush():76] Configure stats pid to 626108
+2024-04-16 16:57:23,053 INFO    Thread-2 (_run_job):626108 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-04-16 16:57:23,053 INFO    Thread-2 (_run_job):626108 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-04-16 16:57:23,053 INFO    Thread-2 (_run_job):626108 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'My-attack-new-0.2', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'sweep_id': 'eul8itpi', 'run_id': 'q2bhvnqe', 'sweep_param_path': '/home/test/FRL/wandb/sweep-eul8itpi/config-q2bhvnqe.yaml'}
+2024-04-16 16:57:23,053 INFO    Thread-2 (_run_job):626108 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-04-16 16:57:23,053 INFO    Thread-2 (_run_job):626108 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-04-16 16:57:23,054 INFO    Thread-2 (_run_job):626108 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-04-16 16:57:23,054 INFO    Thread-2 (_run_job):626108 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240416_165723-q2bhvnqe/logs/debug.log
+2024-04-16 16:57:23,054 INFO    Thread-2 (_run_job):626108 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240416_165723-q2bhvnqe/logs/debug-internal.log
+2024-04-16 16:57:23,054 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():561] calling init triggers
+2024-04-16 16:57:23,054 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():568] wandb.init called with sweep_config: {'lr1': 0.01, 'lr2': 0.001, 'α': 0.7, 'β': 0.5, 'γ': 0.5, 'δ': 0.001}
+config: {}
+2024-04-16 16:57:23,055 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():611] starting backend
+2024-04-16 16:57:23,055 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():615] setting up manager
+2024-04-16 16:57:23,070 INFO    Thread-2 (_run_job):626108 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-04-16 16:57:23,073 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():623] backend started and connected
+2024-04-16 16:57:23,090 INFO    Thread-2 (_run_job):626108 [wandb_run.py:_config_callback():1347] config_cb None None {'lr1': 0.01, 'lr2': 0.001, 'α': 0.7, 'β': 0.5, 'γ': 0.5, 'δ': 0.001}
+2024-04-16 16:57:23,090 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():715] updated telemetry
+2024-04-16 16:57:23,095 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-04-16 16:57:23,670 INFO    Thread-2 (_run_job):626108 [wandb_run.py:_on_init():2357] communicating current version
+2024-04-16 16:57:23,851 INFO    Thread-2 (_run_job):626108 [wandb_run.py:_on_init():2366] got version response 
+2024-04-16 16:57:23,852 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():799] starting run threads in backend
+2024-04-16 16:57:25,412 INFO    Thread-2 (_run_job):626108 [wandb_run.py:_console_start():2335] atexit reg
+2024-04-16 16:57:25,412 INFO    Thread-2 (_run_job):626108 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-04-16 16:57:25,412 INFO    Thread-2 (_run_job):626108 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-04-16 16:57:25,412 INFO    Thread-2 (_run_job):626108 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-04-16 16:57:25,413 INFO    Thread-2 (_run_job):626108 [wandb_init.py:init():842] run started, returning control to user process

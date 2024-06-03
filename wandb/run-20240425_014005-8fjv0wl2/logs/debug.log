@@ -1,0 +1,35 @@
+2024-04-25 01:40:05,782 INFO    Thread-30 (_run_job):906093 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-04-25 01:40:05,782 INFO    Thread-30 (_run_job):906093 [wandb_setup.py:_flush():76] Configure stats pid to 906093
+2024-04-25 01:40:05,782 INFO    Thread-30 (_run_job):906093 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-04-25 01:40:05,782 INFO    Thread-30 (_run_job):906093 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-04-25 01:40:05,782 INFO    Thread-30 (_run_job):906093 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'My-attack-Noise-Mask-0.1', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '8fjv0wl2', 'sweep_param_path': '/home/test/FRL/wandb/sweep-rmydj4wl/config-8fjv0wl2.yaml', 'sweep_id': 'rmydj4wl'}
+2024-04-25 01:40:05,782 INFO    Thread-30 (_run_job):906093 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-04-25 01:40:05,783 INFO    Thread-30 (_run_job):906093 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-04-25 01:40:05,783 INFO    Thread-30 (_run_job):906093 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-04-25 01:40:05,783 INFO    Thread-30 (_run_job):906093 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240425_014005-8fjv0wl2/logs/debug.log
+2024-04-25 01:40:05,783 INFO    Thread-30 (_run_job):906093 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240425_014005-8fjv0wl2/logs/debug-internal.log
+2024-04-25 01:40:05,783 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():561] calling init triggers
+2024-04-25 01:40:05,783 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():568] wandb.init called with sweep_config: {'k': 0.5509261276512034, 'lr1': 0.001, 'n_max': 0.0485606500261112, 'nep': 25, 'β': 0.5970012702341913, 'γ': 0.5066797878325779, 'δ': 0.4979426862952151}
+config: {}
+2024-04-25 01:40:05,783 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():611] starting backend
+2024-04-25 01:40:05,784 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():615] setting up manager
+2024-04-25 01:40:05,795 INFO    Thread-30 (_run_job):906093 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-04-25 01:40:05,796 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():623] backend started and connected
+2024-04-25 01:40:05,814 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_config_callback():1347] config_cb None None {'k': 0.5509261276512034, 'lr1': 0.001, 'n_max': 0.0485606500261112, 'nep': 25, 'β': 0.5970012702341913, 'γ': 0.5066797878325779, 'δ': 0.4979426862952151}
+2024-04-25 01:40:05,815 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():715] updated telemetry
+2024-04-25 01:40:05,821 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-04-25 01:40:06,353 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_on_init():2357] communicating current version
+2024-04-25 01:40:06,669 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_on_init():2366] got version response 
+2024-04-25 01:40:06,670 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():799] starting run threads in backend
+2024-04-25 01:40:08,335 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_console_start():2335] atexit reg
+2024-04-25 01:40:08,335 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-04-25 01:40:08,335 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-04-25 01:40:08,335 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-04-25 01:40:08,336 INFO    Thread-30 (_run_job):906093 [wandb_init.py:init():842] run started, returning control to user process
+2024-04-25 07:31:34,470 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_finish():2064] finishing run griffith/My-attack-Noise-Mask-0.1/8fjv0wl2
+2024-04-25 07:31:34,470 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-04-25 07:31:34,470 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_restore():2287] restore
+2024-04-25 07:31:34,470 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_restore():2293] restore done
+2024-04-25 07:31:39,020 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-04-25 07:31:39,021 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-04-25 07:31:39,037 INFO    Thread-30 (_run_job):906093 [wandb_run.py:_footer_sync_info():3895] logging synced files

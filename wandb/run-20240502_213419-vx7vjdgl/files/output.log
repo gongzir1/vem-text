@@ -1,0 +1,5 @@
+
+fraction of maliciou clients: 0.00 | total number of malicious clients: 0
+/home/test/FRL/FL_train_test.py:820: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+  plt.figure(figsize=(8, 6))
+/home/test/FRL/FL_train_test.py:826: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.

@@ -1,0 +1,53 @@
+2024-05-23 16:59:20,659 INFO    Thread-2 (_run_job):1912977 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-05-23 16:59:20,659 INFO    Thread-2 (_run_job):1912977 [wandb_setup.py:_flush():76] Configure stats pid to 1912977
+2024-05-23 16:59:20,660 INFO    Thread-2 (_run_job):1912977 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-05-23 16:59:20,660 INFO    Thread-2 (_run_job):1912977 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-05-23 16:59:20,660 INFO    Thread-2 (_run_job):1912977 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'matrix-cifar10-attack-0.2', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'sweep_id': 'z9c86so2', 'run_id': 'xbal2tzb', 'sweep_param_path': '/home/test/FRL/wandb/sweep-z9c86so2/config-xbal2tzb.yaml'}
+2024-05-23 16:59:20,660 INFO    Thread-2 (_run_job):1912977 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-05-23 16:59:20,660 INFO    Thread-2 (_run_job):1912977 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-05-23 16:59:20,660 INFO    Thread-2 (_run_job):1912977 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-05-23 16:59:20,660 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240523_165920-xbal2tzb/logs/debug.log
+2024-05-23 16:59:20,661 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240523_165920-xbal2tzb/logs/debug-internal.log
+2024-05-23 16:59:20,661 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():561] calling init triggers
+2024-05-23 16:59:20,661 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():568] wandb.init called with sweep_config: {'iteration': 100, 'lr': 0.01, 'm_r': 0.2, 'max_t': 1000, 'nep': 150, 'noise': 1, 'temp': 0.5}
+config: {}
+2024-05-23 16:59:20,661 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():611] starting backend
+2024-05-23 16:59:20,661 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():615] setting up manager
+2024-05-23 16:59:20,677 INFO    Thread-2 (_run_job):1912977 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-05-23 16:59:20,679 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():623] backend started and connected
+2024-05-23 16:59:20,694 INFO    Thread-2 (_run_job):1912977 [wandb_run.py:_config_callback():1347] config_cb None None {'iteration': 100, 'lr': 0.01, 'm_r': 0.2, 'max_t': 1000, 'nep': 150, 'noise': 1, 'temp': 0.5}
+2024-05-23 16:59:20,695 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():715] updated telemetry
+2024-05-23 16:59:20,698 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-05-23 16:59:21,252 INFO    Thread-2 (_run_job):1912977 [wandb_run.py:_on_init():2357] communicating current version
+2024-05-23 16:59:21,351 INFO    Thread-2 (_run_job):1912977 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.0 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-05-23 16:59:21,351 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():799] starting run threads in backend
+2024-05-23 16:59:22,900 INFO    Thread-2 (_run_job):1912977 [wandb_run.py:_console_start():2335] atexit reg
+2024-05-23 16:59:22,900 INFO    Thread-2 (_run_job):1912977 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-05-23 16:59:22,900 INFO    Thread-2 (_run_job):1912977 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-05-23 16:59:22,901 INFO    Thread-2 (_run_job):1912977 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-05-23 16:59:22,901 INFO    Thread-2 (_run_job):1912977 [wandb_init.py:init():842] run started, returning control to user process
+2024-05-24 08:44:23,781 ERROR   Thread-1 (_heartbeat):1912977 [internal_api.py:execute():373] 502 response executing GraphQL.
+2024-05-24 08:44:23,781 ERROR   Thread-1 (_heartbeat):1912977 [internal_api.py:execute():374] 
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>502 Server Error</title>
+</head>
+<body text=#000000 bgcolor=#ffffff>
+<h1>Error: Server Error</h1>
+<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>
+<h2></h2>
+</body></html>
+
+2024-05-24 08:44:43,828 ERROR   Thread-1 (_heartbeat):1912977 [internal_api.py:execute():373] 502 response executing GraphQL.
+2024-05-24 08:44:43,828 ERROR   Thread-1 (_heartbeat):1912977 [internal_api.py:execute():374] 
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>502 Server Error</title>
+</head>
+<body text=#000000 bgcolor=#ffffff>
+<h1>Error: Server Error</h1>
+<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>
+<h2></h2>
+</body></html>
+

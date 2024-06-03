@@ -1,0 +1,9 @@
+2024-05-21 14:32:34,949 INFO    StreamThr :17222 [internal.py:wandb_internal():86] W&B internal server running at pid: 17222, started at: 2024-05-21 14:32:34.948748
+2024-05-21 14:32:34,953 DEBUG   HandlerThread:17222 [handler.py:handle_request():146] handle_request: status
+2024-05-21 14:32:34,974 INFO    WriterThread:17222 [datastore.py:open_for_write():87] open: /home/test/FRL/wandb/run-20240521_143234-6anqf9xw/run-6anqf9xw.wandb
+2024-05-21 14:32:34,976 DEBUG   SenderThread:17222 [sender.py:send():379] send: header
+2024-05-21 14:32:34,980 DEBUG   SenderThread:17222 [sender.py:send():379] send: run
+2024-05-21 14:32:35,495 INFO    SenderThread:17222 [dir_watcher.py:__init__():211] watching files in: /home/test/FRL/wandb/run-20240521_143234-6anqf9xw/files
+2024-05-21 14:32:35,496 INFO    SenderThread:17222 [sender.py:_start_run_threads():1124] run started: 6anqf9xw with start time 1716265954.946183
+2024-05-21 14:32:35,511 DEBUG   HandlerThread:17222 [handler.py:handle_request():146] handle_request: check_version
+2024-05-21 14:32:35,512 DEBUG   SenderThread:17222 [sender.py:send_request():406] send_request: check_version

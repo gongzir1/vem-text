@@ -1,0 +1,54 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.9
+    cli_version: 0.16.6
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1713868308.0
+    t:
+      1:
+      - 1
+      - 5
+      - 41
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 41
+      - 53
+      - 55
+      3:
+      - 2
+      - 23
+      - 37
+      4: 3.10.9
+      5: 0.16.6
+      8:
+      - 5
+      13: linux-x86_64
+k:
+  desc: null
+  value: 0.4818342469955479
+lr1:
+  desc: null
+  value: 0.001
+n_max:
+  desc: null
+  value: 0.059053149235362354
+nep:
+  desc: null
+  value: 25
+β:
+  desc: null
+  value: 0.5069682991881171
+γ:
+  desc: null
+  value: 0.5180646399002089
+δ:
+  desc: null
+  value: 0.480867752661046

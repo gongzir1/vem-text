@@ -1,0 +1,14 @@
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_setup.py:_flush():76] Configure stats pid to 390657
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'mnist-conv2-my-attack-cosine', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '0cpba21v', 'sweep_param_path': '/home/test/FRL/wandb/sweep-1ks3gzjq/config-0cpba21v.yaml', 'sweep_id': '1ks3gzjq'}
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240603_133827-0cpba21v/logs/debug.log
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240603_133827-0cpba21v/logs/debug-internal.log
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_init.py:init():561] calling init triggers
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_init.py:init():568] wandb.init called with sweep_config: {'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2500, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-03 13:38:27,569 INFO    Thread-9 (_run_job):390657 [wandb_init.py:init():606] wandb.init() called when a run is still active

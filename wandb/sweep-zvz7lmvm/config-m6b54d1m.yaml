@@ -1,0 +1,16 @@
+wandb_version: 1
+
+iteration:
+  value: 50
+lr:
+  value: 0.1
+m_r:
+  value: 0.1
+max_t:
+  value: 1300
+nep:
+  value: 50
+noise:
+  value: 1
+temp:
+  value: 0.1

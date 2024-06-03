@@ -1,0 +1,750 @@
+2024-04-14 11:58:21,273 INFO    StreamThr :503055 [internal.py:wandb_internal():86] W&B internal server running at pid: 503055, started at: 2024-04-14 11:58:21.272493
+2024-04-14 11:58:21,277 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status
+2024-04-14 11:58:21,290 INFO    WriterThread:503055 [datastore.py:open_for_write():87] open: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/run-jphi5by1.wandb
+2024-04-14 11:58:21,290 DEBUG   SenderThread:503055 [sender.py:send():379] send: header
+2024-04-14 11:58:21,295 DEBUG   SenderThread:503055 [sender.py:send():379] send: run
+2024-04-14 11:58:21,804 INFO    SenderThread:503055 [dir_watcher.py:__init__():211] watching files in: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files
+2024-04-14 11:58:21,804 INFO    SenderThread:503055 [sender.py:_start_run_threads():1124] run started: jphi5by1 with start time 1713059901.271996
+2024-04-14 11:58:21,829 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: check_version
+2024-04-14 11:58:21,829 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: check_version
+2024-04-14 11:58:21,901 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: run_start
+2024-04-14 11:58:21,920 DEBUG   HandlerThread:503055 [system_info.py:__init__():26] System info init
+2024-04-14 11:58:21,920 DEBUG   HandlerThread:503055 [system_info.py:__init__():41] System info init done
+2024-04-14 11:58:21,920 INFO    HandlerThread:503055 [system_monitor.py:start():194] Starting system monitor
+2024-04-14 11:58:21,920 INFO    SystemMonitor:503055 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-04-14 11:58:21,921 INFO    HandlerThread:503055 [system_monitor.py:probe():214] Collecting system info
+2024-04-14 11:58:21,921 INFO    SystemMonitor:503055 [interfaces.py:start():190] Started cpu monitoring
+2024-04-14 11:58:21,923 INFO    SystemMonitor:503055 [interfaces.py:start():190] Started disk monitoring
+2024-04-14 11:58:21,925 INFO    SystemMonitor:503055 [interfaces.py:start():190] Started gpu monitoring
+2024-04-14 11:58:21,925 INFO    SystemMonitor:503055 [interfaces.py:start():190] Started memory monitoring
+2024-04-14 11:58:21,926 INFO    SystemMonitor:503055 [interfaces.py:start():190] Started network monitoring
+2024-04-14 11:58:21,940 DEBUG   HandlerThread:503055 [system_info.py:probe():150] Probing system
+2024-04-14 11:58:21,942 DEBUG   HandlerThread:503055 [system_info.py:_probe_git():135] Probing git
+2024-04-14 11:58:21,953 DEBUG   HandlerThread:503055 [system_info.py:_probe_git():143] Probing git done
+2024-04-14 11:58:21,953 DEBUG   HandlerThread:503055 [system_info.py:probe():198] Probing system done
+2024-04-14 11:58:21,953 DEBUG   HandlerThread:503055 [system_monitor.py:probe():223] {'os': 'Linux-6.2.0-39-generic-x86_64-with-glibc2.37', 'python': '3.10.9', 'heartbeatAt': '2024-04-14T01:58:21.940328', 'startedAt': '2024-04-14T01:58:21.249232', 'docker': None, 'cuda': None, 'args': ('--data_loc', '/CIFAR10/data/', '--config', 'experiments/cifar10-0.3-conv8.txt'), 'state': 'running', 'program': '/home/test/FRL/main.py', 'codePathLocal': 'main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/gongzir1/FRL_my.git', 'commit': '3813aaf5f47fcc5e6081aa7e90a2dbe272effb33'}, 'email': 'zhaoxi_zhang@163.com', 'root': '/home/test/FRL', 'host': 'test-MS-7B51', 'username': 'test', 'executable': '/home/test/anaconda3/envs/FRL_test/bin/python', 'cpu_count': 6, 'cpu_count_logical': 12, 'cpu_freq': {'current': 1600.0991666666662, 'min': 800.0, 'max': 4700.0}, 'cpu_freq_per_core': [{'current': 1600.099, 'min': 800.0, 'max': 4700.0}, {'current': 1600.0, 'min': 800.0, 'max': 4700.0}, {'current': 1600.982, 'min': 800.0, 'max': 4700.0}, {'current': 1600.116, 'min': 800.0, 'max': 4700.0}, {'current': 1600.002, 'min': 800.0, 'max': 4700.0}, {'current': 1601.127, 'min': 800.0, 'max': 4700.0}, {'current': 1599.875, 'min': 800.0, 'max': 4700.0}, {'current': 1600.813, 'min': 800.0, 'max': 4700.0}, {'current': 1600.149, 'min': 800.0, 'max': 4700.0}, {'current': 1600.056, 'min': 800.0, 'max': 4700.0}, {'current': 1600.13, 'min': 800.0, 'max': 4700.0}, {'current': 1599.522, 'min': 800.0, 'max': 4700.0}], 'disk': {'/': {'total': 439.04788970947266, 'used': 236.89105987548828}}, 'gpu': 'NVIDIA GeForce RTX 3080', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3080', 'memory_total': 10737418240}], 'memory': {'total': 62.72426986694336}}
+2024-04-14 11:58:21,953 INFO    HandlerThread:503055 [system_monitor.py:probe():224] Finished collecting system info
+2024-04-14 11:58:21,953 INFO    HandlerThread:503055 [system_monitor.py:probe():227] Publishing system info
+2024-04-14 11:58:21,953 DEBUG   HandlerThread:503055 [system_info.py:_save_conda():207] Saving list of conda packages installed into the current environment
+2024-04-14 11:58:22,804 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_created():271] file/dir created: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/conda-environment.yaml
+2024-04-14 11:58:23,471 DEBUG   HandlerThread:503055 [system_info.py:_save_conda():222] Saving conda packages done
+2024-04-14 11:58:23,471 INFO    HandlerThread:503055 [system_monitor.py:probe():229] Finished publishing system info
+2024-04-14 11:58:23,472 DEBUG   SenderThread:503055 [sender.py:send():379] send: files
+2024-04-14 11:58:23,472 INFO    SenderThread:503055 [sender.py:_save_file():1390] saving file wandb-metadata.json with policy now
+2024-04-14 11:58:23,518 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: python_packages
+2024-04-14 11:58:23,518 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: python_packages
+2024-04-14 11:58:23,519 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 11:58:23,519 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 11:58:23,521 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 11:58:23,804 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/conda-environment.yaml
+2024-04-14 11:58:23,804 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_created():271] file/dir created: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/wandb-metadata.json
+2024-04-14 11:58:23,805 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_created():271] file/dir created: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/requirements.txt
+2024-04-14 11:58:23,884 DEBUG   SenderThread:503055 [sender.py:send():379] send: telemetry
+2024-04-14 11:58:24,408 INFO    wandb-upload_0:503055 [upload_job.py:push():131] Uploaded file /tmp/tmpxbaefyrcwandb/8vmbw1nb-wandb-metadata.json
+2024-04-14 11:58:24,804 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_created():271] file/dir created: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:58:26,805 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:58:26,886 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:58:31,887 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:58:36,807 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:58:37,210 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:58:38,519 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 11:58:38,519 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 11:58:38,519 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 11:58:42,783 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:58:46,809 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:58:48,650 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:58:53,519 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 11:58:53,519 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 11:58:53,520 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 11:58:53,837 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:58:54,811 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/config.yaml
+2024-04-14 11:58:56,811 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:58:59,075 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:04,813 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:59:04,950 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:08,519 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 11:59:08,519 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 11:59:08,520 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 11:59:10,836 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:14,815 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:59:16,334 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:21,335 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:21,928 DEBUG   SystemMonitor:503055 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-04-14 11:59:21,928 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 11:59:23,519 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 11:59:23,519 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 11:59:23,520 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 11:59:24,817 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:59:26,746 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:32,674 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:34,819 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:59:37,675 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:38,527 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 11:59:38,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 11:59:38,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 11:59:42,821 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:59:43,410 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:48,411 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:51,929 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 11:59:52,823 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 11:59:53,527 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 11:59:53,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 11:59:53,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 11:59:53,846 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 11:59:58,847 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:03,942 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:04,826 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:00:08,527 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:00:08,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:00:08,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:00:09,835 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:12,827 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:00:15,366 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:20,367 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:21,929 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:00:22,830 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:00:23,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:00:23,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:00:23,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:00:25,805 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:31,362 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:32,832 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:00:36,363 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:38,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:00:38,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:00:38,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:00:41,606 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:42,834 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:00:46,607 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:50,835 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:00:51,696 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:00:51,930 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:00:53,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:00:53,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:00:53,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:00:56,951 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:00,838 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:01:02,634 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:07,635 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:08,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:01:08,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:01:08,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:01:10,840 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:01:12,748 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:18,730 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:20,842 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:01:21,930 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:01:23,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:01:23,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:01:23,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:01:23,843 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:28,958 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:30,844 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:01:33,959 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:38,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:01:38,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:01:38,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:01:39,792 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:40,846 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:01:44,793 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:48,848 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:01:50,614 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:01:51,931 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:01:53,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:01:53,528 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:01:53,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:01:55,794 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:00,850 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:02:01,698 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:06,699 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:08,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:02:08,529 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:02:08,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:02:08,852 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:02:11,833 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:17,586 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:18,854 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:02:21,931 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:02:22,932 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:23,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:02:23,529 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:02:23,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:02:28,282 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:28,856 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:02:33,283 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:36,858 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:02:38,528 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:02:38,529 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:02:38,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:02:38,953 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:43,953 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:46,860 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:02:49,858 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:51,932 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:02:53,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:02:53,529 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:02:53,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:02:55,178 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:02:56,862 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:03:00,179 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:05,788 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:06,864 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:03:08,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:03:08,529 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:03:08,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:03:10,861 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:14,866 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:03:16,610 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:21,611 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:21,932 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:03:23,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:03:23,529 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:03:23,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:03:26,868 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:03:26,871 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:31,871 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:36,870 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:03:37,838 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:38,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:03:38,529 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:03:38,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:03:42,841 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:44,872 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:03:48,330 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:51,933 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:03:53,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:03:53,530 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:03:53,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:03:53,783 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:03:56,875 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:03:58,783 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:04,393 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:04,876 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:04:08,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:04:08,530 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:04:08,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:04:09,812 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:14,879 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:04:15,310 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:20,311 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:21,933 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:04:23,529 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:04:23,530 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:04:23,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:04:24,881 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:04:25,976 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:30,977 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:34,883 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:04:36,615 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:38,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:04:38,530 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:04:38,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:04:41,771 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:44,885 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:04:47,062 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:51,934 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:04:52,304 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:04:53,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:04:53,530 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:04:53,532 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:04:54,887 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:04:57,840 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:02,898 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:04,889 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:05:07,899 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:08,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:05:08,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:05:08,530 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:05:13,014 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:14,891 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:05:18,015 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:21,934 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:05:22,893 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:05:23,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:05:23,530 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:05:23,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:05:23,801 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:28,802 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:34,054 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:34,895 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:05:38,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:05:38,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:05:38,531 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:05:39,782 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:44,898 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:05:45,042 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:50,043 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:05:51,934 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:05:52,899 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:05:53,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:05:53,530 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:05:53,532 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:05:55,784 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:00,785 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:02,901 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:06:06,519 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:08,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:06:08,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:06:08,531 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:06:11,606 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:12,904 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:06:16,607 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:21,626 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:21,935 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:06:22,906 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:06:23,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:06:23,531 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:06:23,533 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:06:26,836 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:32,486 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:32,908 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:06:37,487 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:38,530 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:06:38,531 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:06:38,532 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:06:42,910 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:06:43,254 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:48,255 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:51,935 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:06:52,912 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:06:53,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:06:53,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:06:53,531 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:06:53,826 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:06:59,778 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:00,914 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:07:04,779 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:08,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:07:08,531 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:07:08,532 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:07:08,916 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:07:10,752 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:15,753 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:18,918 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:07:20,878 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:21,939 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:07:23,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:07:23,531 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:07:23,532 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:07:26,323 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:28,920 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:07:31,366 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:36,921 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:07:37,310 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:38,531 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:07:38,531 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:07:38,532 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:07:42,831 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:46,923 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:07:48,666 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:51,936 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:07:53,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:07:53,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:07:53,586 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:07:53,779 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:07:54,925 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:07:58,780 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:04,386 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:04,927 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:08:08,541 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:08:08,541 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:08:08,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:08:09,798 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:14,930 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:08:15,126 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:20,127 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:21,936 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:08:23,540 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:08:23,541 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:08:23,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:08:24,932 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:08:25,835 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:30,836 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:32,933 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:08:36,567 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:38,541 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:08:38,541 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:08:38,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:08:42,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:42,935 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:08:47,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:51,937 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:08:52,938 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:08:52,938 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:08:53,541 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:08:53,541 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:08:53,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:08:58,789 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:02,940 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:09:04,474 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:08,541 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:09:08,541 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:09:08,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:09:09,853 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:12,942 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:09:15,310 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:21,213 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:21,938 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:09:22,945 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:09:23,541 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:09:23,541 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:09:23,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:09:26,841 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:30,946 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:09:32,342 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:37,343 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:38,541 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:09:38,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:09:38,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:09:40,949 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:09:42,772 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:47,773 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:50,951 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:09:51,938 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:09:52,939 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:09:53,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:09:53,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:09:53,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:09:58,649 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:00,953 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:10:03,691 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:08,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:10:08,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:10:08,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:10:08,792 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:08,955 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:10:13,793 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:18,822 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:18,957 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:10:21,939 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:10:23,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:10:23,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:10:23,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:10:23,842 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:28,959 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:10:29,438 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:34,439 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:36,961 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:10:38,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:10:38,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:10:38,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:10:39,808 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:44,808 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:46,963 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:10:49,978 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:51,939 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:10:53,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:10:53,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:10:53,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:10:55,566 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:10:56,965 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:11:00,567 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:04,967 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:11:05,913 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:08,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:11:08,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:11:08,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:11:11,801 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:14,969 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:11:17,190 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:21,939 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:11:22,614 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:23,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:11:23,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:11:23,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:11:24,971 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:11:27,849 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:33,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:34,973 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:11:38,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:11:38,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:11:38,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:11:38,851 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:44,322 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:44,975 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:11:49,323 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:51,940 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:11:52,977 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:11:53,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:11:53,542 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:11:53,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:11:54,782 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:11:59,783 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:02,979 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:12:05,334 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:08,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:12:08,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:12:08,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:12:10,802 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:12,982 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:12:16,231 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:20,983 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:12:21,940 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:12:21,941 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:23,542 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:12:23,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:12:23,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:12:27,806 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:30,985 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:12:33,346 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:38,347 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:38,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:12:38,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:12:38,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:12:40,988 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:12:43,821 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:49,666 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:50,990 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:12:51,941 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:12:53,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:12:53,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:12:53,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:12:54,836 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:12:58,992 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:13:00,026 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:05,027 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:08,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:13:08,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:13:08,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:13:08,994 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:13:10,878 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:15,878 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:18,996 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:13:21,742 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:21,941 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:13:23,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:13:23,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:13:23,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:13:26,998 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:13:27,118 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:32,119 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:37,000 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:13:37,322 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:38,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:13:38,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:13:38,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:13:42,799 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:47,002 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:13:47,822 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:51,942 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:13:52,942 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:13:53,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:13:53,543 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:13:53,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:13:57,004 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:13:57,982 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:02,983 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:07,006 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:14:08,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:14:08,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:14:08,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:14:08,843 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:13,843 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:15,008 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:14:17,008 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:14:19,383 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:21,942 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:14:23,543 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:14:23,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:14:23,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:14:25,010 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:14:25,314 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:30,315 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:35,012 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:14:36,100 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:38,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:14:38,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:14:38,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:14:41,829 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:45,014 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:14:47,498 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:51,943 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:14:53,016 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:14:53,027 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:14:53,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:14:53,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:14:53,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:14:58,841 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:03,018 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:15:04,106 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:08,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:15:08,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:15:08,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:15:09,784 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:11,020 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:15:13,021 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:15:15,450 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:21,015 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:21,022 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:15:21,943 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:15:23,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:15:23,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:15:23,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:15:26,804 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:31,024 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:15:32,514 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:37,515 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:38,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:15:38,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:15:38,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:15:41,026 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:15:43,462 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:48,463 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:51,028 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:15:51,946 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:15:53,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:15:53,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:15:53,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:15:53,860 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:15:59,554 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:01,031 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:16:04,555 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:08,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:16:08,544 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:16:08,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:16:09,032 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:16:09,850 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:14,851 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:19,034 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:16:20,090 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:21,944 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:16:23,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:16:23,545 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:16:23,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:16:25,767 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:29,037 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:16:30,926 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:35,927 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:38,544 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:16:38,545 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:16:38,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:16:39,039 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:16:41,823 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:46,823 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:49,041 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:16:51,899 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:16:51,945 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:16:53,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:16:53,545 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:16:53,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:16:57,042 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:16:57,134 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:02,135 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:07,044 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:17:07,405 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:08,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:17:08,545 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:17:08,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:17:12,756 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:17,047 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:17:18,406 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:21,945 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:17:23,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:17:23,545 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:17:23,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:17:23,965 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:27,049 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:17:29,318 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:34,319 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:37,051 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:17:38,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:17:38,545 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:17:38,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:17:39,860 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:44,861 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:47,053 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:17:50,714 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:51,945 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:17:53,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:17:53,545 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:17:53,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:17:56,186 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:17:57,055 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:18:01,187 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:05,057 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:18:06,389 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:08,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:18:08,545 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:18:08,547 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:18:11,842 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:15,059 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:18:17,286 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:21,946 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:18:22,946 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:23,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:18:23,546 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:18:23,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:18:25,061 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:18:28,822 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:33,874 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:35,063 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:18:38,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:18:38,546 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:18:38,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:18:39,860 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:43,065 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:18:45,282 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:50,283 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:18:51,946 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:18:53,067 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:18:53,545 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:18:53,546 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:18:53,547 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:18:55,852 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:00,853 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:04,069 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:19:06,838 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:08,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:19:08,546 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:19:08,548 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:19:11,881 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:14,071 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:19:17,218 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:21,947 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:19:22,947 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:23,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:19:23,546 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:19:23,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:19:26,074 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:19:28,864 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:33,864 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:36,076 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:19:38,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:19:38,546 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:19:38,547 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:19:39,038 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:44,038 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:46,079 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:19:49,239 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:51,947 DEBUG   SenderThread:503055 [sender.py:send():379] send: stats
+2024-04-14 12:19:53,546 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: stop_status
+2024-04-14 12:19:53,546 DEBUG   SenderThread:503055 [sender.py:send_request():406] send_request: stop_status
+2024-04-14 12:19:53,547 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: internal_messages
+2024-04-14 12:19:54,853 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:19:58,082 INFO    Thread-12 :503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:20:00,035 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:20:05,036 DEBUG   HandlerThread:503055 [handler.py:handle_request():146] handle_request: status_report
+2024-04-14 12:20:07,518 WARNING StreamThr :503055 [internal.py:is_dead():414] Internal process exiting, parent pid 503002 disappeared
+2024-04-14 12:20:07,518 ERROR   StreamThr :503055 [internal.py:wandb_internal():152] Internal process shutdown.
+2024-04-14 12:20:08,037 INFO    SenderThread:503055 [sender.py:finish():1546] shutting down sender
+2024-04-14 12:20:08,037 INFO    HandlerThread:503055 [handler.py:finish():866] shutting down handler
+2024-04-14 12:20:08,037 INFO    HandlerThread:503055 [system_monitor.py:finish():203] Stopping system monitor
+2024-04-14 12:20:08,038 INFO    HandlerThread:503055 [interfaces.py:finish():202] Joined cpu monitor
+2024-04-14 12:20:08,039 INFO    WriterThread:503055 [datastore.py:close():296] close: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/run-jphi5by1.wandb
+2024-04-14 12:20:08,039 DEBUG   SystemMonitor:503055 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-04-14 12:20:08,040 DEBUG   SystemMonitor:503055 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-04-14 12:20:08,042 INFO    HandlerThread:503055 [interfaces.py:finish():202] Joined disk monitor
+2024-04-14 12:20:08,044 INFO    HandlerThread:503055 [interfaces.py:finish():202] Joined gpu monitor
+2024-04-14 12:20:08,045 INFO    HandlerThread:503055 [interfaces.py:finish():202] Joined memory monitor
+2024-04-14 12:20:08,045 INFO    HandlerThread:503055 [interfaces.py:finish():202] Joined network monitor
+2024-04-14 12:20:09,142 INFO    SenderThread:503055 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-04-14 12:20:10,086 INFO    SenderThread:503055 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log
+2024-04-14 12:20:10,087 INFO    SenderThread:503055 [dir_watcher.py:finish():388] scan: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files
+2024-04-14 12:20:10,088 INFO    MainThread:503055 [internal.py:handle_exit():76] Internal process exited
+2024-04-14 12:20:10,090 INFO    SenderThread:503055 [dir_watcher.py:finish():402] scan save: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/requirements.txt requirements.txt
+2024-04-14 12:20:10,093 INFO    SenderThread:503055 [dir_watcher.py:finish():402] scan save: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/config.yaml config.yaml
+2024-04-14 12:20:10,094 INFO    SenderThread:503055 [dir_watcher.py:finish():402] scan save: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/output.log output.log
+2024-04-14 12:20:10,095 INFO    SenderThread:503055 [dir_watcher.py:finish():402] scan save: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/conda-environment.yaml conda-environment.yaml
+2024-04-14 12:20:10,096 INFO    SenderThread:503055 [dir_watcher.py:finish():402] scan save: /home/test/FRL/wandb/run-20240414_115821-jphi5by1/files/wandb-metadata.json wandb-metadata.json
+2024-04-14 12:20:10,096 INFO    SenderThread:503055 [file_pusher.py:finish():172] shutting down file pusher
+2024-04-14 12:20:10,097 INFO    SenderThread:503055 [file_pusher.py:join():178] waiting for file pusher
