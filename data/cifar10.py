@@ -68,6 +68,9 @@ class CIFAR10:
     
     def get_te_loader(self):
         return self.te_loader
+    def get_val_loader(self):
+        return self.validation_loader
+    
  
   
 def build_poisoned_training_set(is_train, args):

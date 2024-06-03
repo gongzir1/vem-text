@@ -23,9 +23,9 @@ config={
 "temp":{"values": [0.1]},
 "noise":{"values": [1]},
 # 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
-'k':{"values": [0.1]},
-'m_r':{"values": [0.2]},
-'non_iid':{"values": [0.5,0.3,1]},
+'k':{"values": [0.5]},
+'m_r':{"values": [0.2,0]},
+'non_iid':{"values": [0.5,1]},
 # 'mode':{"values": ['ERR','LFR','combined']},
 },
 }
