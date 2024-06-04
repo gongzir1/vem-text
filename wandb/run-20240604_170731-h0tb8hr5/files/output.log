@@ -1,0 +1,27 @@
+=> Saving data in Logs/FRL~try=419
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  0.5
+batch size is :  8
+test batch size is:  128
+use_cuda:  True
+type of FL:  other_attacks
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.00 | total number of malicious clients: 0
+e 0 | malicious users: 0 | test acc 0.2663 test loss 2.219967 best test_acc 0.2663
+e 1 | malicious users: 0 | test acc 0.3912 test loss 2.110641 best test_acc 0.3912
+e 2 | malicious users: 0 | test acc 0.5250 test loss 1.876845 best test_acc 0.5250
+e 3 | malicious users: 0 | test acc 0.5505 test loss 1.777658 best test_acc 0.5505
+e 4 | malicious users: 0 | test acc 0.5105 test loss 1.686382 best test_acc 0.5505
+e 5 | malicious users: 0 | test acc 0.6067 test loss 1.315665 best test_acc 0.6067
+e 6 | malicious users: 0 | test acc 0.7599 test loss 1.148543 best test_acc 0.7599
+e 7 | malicious users: 0 | test acc 0.6713 test loss 1.314730 best test_acc 0.7599
+e 8 | malicious users: 0 | test acc 0.6928 test loss 0.880719 best test_acc 0.7599
+e 9 | malicious users: 0 | test acc 0.7083 test loss 1.073867 best test_acc 0.7599
+e 10 | malicious users: 0 | test acc 0.7157 test loss 0.877814 best test_acc 0.7599
+e 11 | malicious users: 0 | test acc 0.7215 test loss 0.937247 best test_acc 0.7599
+e 12 | malicious users: 0 | test acc 0.8135 test loss 0.807458 best test_acc 0.8135
+e 13 | malicious users: 0 | test acc 0.7972 test loss 0.664226 best test_acc 0.8135
+e 14 | malicious users: 0 | test acc 0.7862 test loss 0.777968 best test_acc 0.8135
+e 15 | malicious users: 0 | test acc 0.7664 test loss 0.631114 best test_acc 0.8135
+e 16 | malicious users: 0 | test acc 0.8483 test loss 0.691880 best test_acc 0.8483

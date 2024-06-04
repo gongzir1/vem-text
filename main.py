@@ -16,17 +16,19 @@ config={
     "name": "t_acc"
     },
 "parameters":{
-"lr":{"values": [0.1,0.01]},
+"lr":{"values": [0.001,0.01]},
 "nep":{"values": [100]},
 "max_t":{"values": [2000]},
 "iteration":{"values": [50]},
 "temp":{"values": [0.1]},
 "noise":{"values": [1]},
 # 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
-'k':{"values": [0.5]},
-'m_r':{"values": [0.2,0]},
+'k':{"values": [0.1]},
+'m_r':{"values": [0,0.2]},
 'non_iid':{"values": [0.5,1]},
 # 'mode':{"values": ['ERR','LFR','combined']},
+'defense':{"values": ['cosine','Eud']},
+'attacks':{"values": ['noise','grad_acent','min_max','min_sum']},
 },
 }
 
@@ -93,18 +95,13 @@ def main():
         Tr_Mean(tr_loaders, te_loader)
     elif args.FL_type == "Mkrum":
         Mkrum(tr_loaders, te_loader)
-    elif args.FL_type == "FRL_min_max" or args.FL_type == "FRL_min_sum" or args.FL_type =="FRL_noise" or args.FL_type =="FRL_grad_ascent":
+    elif args.FL_type =='other_attacks':
+    # elif args.FL_type == "FRL_min_max" or args.FL_type == "FRL_min_sum" or args.FL_type =="FRL_noise" or args.FL_type =="FRL_grad_ascent":
         FRL_attacks(tr_loaders, te_loader)
     elif args.FL_type =="FRL_label_flip" or args.FL_type =="FRL_grad_ascent_label":
         FRL_train_label_flip_attack(tr_loaders, te_loader)
-    # elif args.FL_type =="My_attack":
-    #     My_attack(tr_loaders, te_loader)
-    # elif args.FL_type =="My_attack_Noise_Mask":
-    #     My_attack_Noise_Mask(tr_loaders, te_loader)
     elif args.FL_type =="FRL_matrix_attack":
         FRL_matrix_attack(tr_loaders, te_loader)
-    # elif args.FL_type =="FRL_grad_ascent_label":
-    #     FRL_grad_ascent_label(tr_loaders, te_loader)
     elif args.FL_type =="FRL_cosine"or args.FL_type =='FRL_Euclidean':
         FRL_matrix_attack_defense(tr_loaders, te_loader)
     elif args.FL_type =="FRL_fang":
@@ -125,5 +122,5 @@ if __name__ == "__main__":
     # main()
     # Start sweep job.
     
-    sweep_id = wandb.sweep(sweep=config, project="mnist-conv2-my-attack-new")
+    sweep_id = wandb.sweep(sweep=config, project="mnist-conv2-other-attacks")
     wandb.agent(sweep_id, function=main, count=400)

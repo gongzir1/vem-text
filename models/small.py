@@ -55,6 +55,25 @@ class Conv2(nn.Module):
         out = out.view(out.size(0), 128 * 7 * 7, 1, 1)  # Flatten the output for the fully connected layers
         out = self.linear(out)
         return out.squeeze()
+class SimpleConvNet(nn.Module):
+    def __init__(self):
+        super(SimpleConvNet, self).__init__()
+        builder = Builder()
+        
+        self.conv1 = builder.conv1x1(1, 64, first_layer=True)  # Change input channels to 1
+        self.relu = nn.ReLU()
+        self.maxpool = nn.MaxPool2d((2, 2))
+        
+        self.fc = nn.Linear(64 * 14 * 14, 10)  # Fully connected layer
+
+    def forward(self, x):
+        out = self.conv1(x)
+        out = self.relu(out)
+        out = self.maxpool(out)
+        
+        out = out.view(out.size(0), -1)  # Flatten the output for the fully connected layer
+        out = self.fc(out)
+        return out
 
 class Conv8(nn.Module):
     def __init__(self):
