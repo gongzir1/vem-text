@@ -36,7 +36,7 @@ class MNIST:
             self.tr_loaders.append(get_train(train_dataset, indices, args.batch_size))
 #         print ("number of total training points:" ,tr_count)
         # self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
-        if args.FL_type =="FRL_fang" or args.FL_type =="FRL_defense_Fang":
+        if args.FL_type =="FRL_fang" or args.FL_type =="FRL_defense_Fang"or args.FL_type =='other_attacks_Fang':
              # validation_size = int(0.2 * len(test_dataset)) 
             validation_size = 100 
             test_size = len(test_dataset) - validation_size

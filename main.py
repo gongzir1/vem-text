@@ -16,7 +16,7 @@ config={
     "name": "t_acc"
     },
 "parameters":{
-"lr":{"values": [0.001,0.01]},
+"lr":{"values": [0.001]},
 "nep":{"values": [100]},
 "max_t":{"values": [2000]},
 "iteration":{"values": [50]},
@@ -24,11 +24,13 @@ config={
 "noise":{"values": [1]},
 # 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
 'k':{"values": [0.1]},
-'m_r':{"values": [0,0.2]},
-'non_iid':{"values": [0.5,1]},
-# 'mode':{"values": ['ERR','LFR','combined']},
-'defense':{"values": ['cosine','Eud']},
-'attacks':{"values": ['noise','grad_acent','min_max','min_sum']},
+'m_r':{"values": [0.05,0.1,0.15,0.25]},
+'non_iid':{"values": [1]},
+'mode':{"values": ['ERR','LFR','combined']},
+# 'defense':{"values": ['cosine','Eud']},
+# 'attacks':{"values": ['min_max','min_sum','noise','grad_ascent']},
+# 'defense':{"values": ['cosine']},
+# 'attacks':{"values": ['grad_ascent']},
 },
 }
 
@@ -72,7 +74,7 @@ def main():
     print ("test batch size is: ", args.test_batch_size)
     
     data_distributer = getattr(data, args.set)()
-    if args.FL_type == "FRL_defense_Fang" or args.FL_type =="FRL_fang":
+    if args.FL_type == "FRL_defense_Fang" or args.FL_type =="FRL_fang" or args.FL_type =='other_attacks_Fang':
         tr_loaders = data_distributer.get_tr_loaders()    # len=10000 list
         te_loader = data_distributer.get_te_loader()
         val_loader = data_distributer.get_val_loader()
@@ -110,6 +112,8 @@ def main():
         FRL_train_defense(tr_loaders, te_loader)
     elif args.FL_type =="FRL_defense_Fang" :
         FRL_train_defense_val(tr_loaders, te_loader,val_loader)
+    elif args.FL_type =="other_attacks_Fang" :
+        other_attacks_val(tr_loaders, te_loader,val_loader)
     else:
         FedAVG(tr_loaders, te_loader)
 
@@ -122,5 +126,5 @@ if __name__ == "__main__":
     # main()
     # Start sweep job.
     
-    sweep_id = wandb.sweep(sweep=config, project="mnist-conv2-other-attacks")
+    sweep_id = wandb.sweep(sweep=config, project="mnist-conv2-other-attacks-ab")
     wandb.agent(sweep_id, function=main, count=400)

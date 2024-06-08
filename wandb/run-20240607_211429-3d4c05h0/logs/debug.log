@@ -1,0 +1,21 @@
+2024-06-07 21:14:29,218 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 21:14:29,218 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '3d4c05h0', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-3d4c05h0.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_211429-3d4c05h0/logs/debug.log
+2024-06-07 21:14:29,220 INFO    Thread-36 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_211429-3d4c05h0/logs/debug-internal.log
+2024-06-07 21:14:29,220 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 21:14:29,220 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 21:14:29,220 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 21:33:48,815 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/3d4c05h0
+2024-06-07 21:33:48,815 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 21:33:48,815 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 21:33:48,816 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 21:33:53,880 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 21:33:53,881 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 21:33:53,887 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files

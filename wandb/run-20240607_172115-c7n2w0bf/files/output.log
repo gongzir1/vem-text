@@ -1,0 +1,13 @@
+=> Saving data in Logs/FRL~try=696
+dataset to use is:  Fashion
+number of FL clients:  1000
+non-iid degree data distribution:  1
+batch size is :  8
+test batch size is:  128
+use_cuda:  True
+type of FL:  FRL_train_defense_val
+#########Federated Learning using FedAVG############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+e 0 | malicious users: 6 | test acc 0.1000 test loss nan best test_acc 0.1000
+val loss nan... exit: The global model is totally destroyed by the adversary
+2.280743360519409

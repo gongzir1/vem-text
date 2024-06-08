@@ -2,6 +2,7 @@ from args import args
 from torchvision import datasets, transforms
 import torchvision
 from data.Dirichlet_noniid import *
+from torch.utils.data import DataLoader, random_split
 
 class Fashion:
     def __init__(self):
@@ -28,7 +29,17 @@ class Fashion:
             batch_size = args.batch_size
             self.tr_loaders.append(get_train(train_dataset, indices, args.batch_size))
 #         print ("number of total training points:" ,tr_count)
-        self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+        # self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+        if args.FL_type =="FRL_fang" or args.FL_type =="FRL_defense_Fang"or args.FL_type =='other_attacks_Fang':
+             # validation_size = int(0.2 * len(test_dataset)) 
+            validation_size = 100 
+            test_size = len(test_dataset) - validation_size
+
+            validation_dataset, test_dataset = random_split(test_dataset, [validation_size, test_size])
+            self.validation_loader = torch.utils.data.DataLoader(validation_dataset, batch_size=args.test_batch_size, shuffle=False)
+            self.te_loader = torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+        else:
+            self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
     
 
     def get_tr_loaders(self):
@@ -36,3 +47,5 @@ class Fashion:
     
     def get_te_loader(self):
         return self.te_loader
+    def get_val_loader(self):
+        return self.validation_loader

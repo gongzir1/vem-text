@@ -50,7 +50,45 @@ def calculate_threshold(r_s,u,m,k,max_t):
     
     return t1,t2,w,w_m,sorted_edges
  
+def calculate_threshold_every_edge(r_s,u,m,k,max_t):
+    w=torch.sort(r_s,1)[1]
+    w_m=torch.sum(w,0)
 
+    #get s_all
+    w_all=w_m*(int(u/m))
+    sorted_w=torch.sort(w_all)[0]
+    sorted_edges=torch.sort(w_all)[1]
+    # get the w
+    n=w.size(1)
+    w_k=sorted_w[int((1-k)*n)]
+
+    w_s=w_k-m*(n-1)
+    w_s2=w_k+m*(n-1)
+
+    # find threshold v 
+    
+    # t1=torch.nonzero(torch.lt(sorted_w,w_s))[-1]
+    # t2=torch.nonzero(torch.gt(sorted_w,w_s2))[0]
+    # handle out of range isseu
+    smaller_indices = torch.nonzero(torch.lt(sorted_w, w_s))
+    greater_indices=torch.nonzero(torch.gt(sorted_w,w_s2))
+
+    # handle the case where no elements are smaller than the threshold
+    t1= torch.tensor(0)
+    t2 = torch.tensor(n)
+
+
+    # solve out of memory issue
+
+    if t2 - t1 > max_t:
+        t1 = torch.tensor(int(n * (1 - k)) - max_t//2, dtype=torch.int32) if torch.tensor(int(n * (1 - k)) - max_t//2, dtype=torch.int32)>0 else torch.tensor(0)
+        t2 = torch.tensor(int(n * (1 - k)) + max_t//2, dtype=torch.int32) if torch.tensor(int(n * (1 - k)) + max_t//2, dtype=torch.int32)<n else torch.tensor(n)
+
+    # w_t1=sorted_w[t1]
+    # w_t2=sorted_w[t2]
+    
+    return t1,t2,w,w_m,sorted_edges
+ 
 def ensure_exact_one_hot(matrix):
     """
     Convert an approximate permutation matrix to an exact permutation matrix using the Hungarian algorithm.

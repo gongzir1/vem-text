@@ -1,0 +1,571 @@
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'sweep_id': 'mtcqssb3', 'run_id': '4xmbadg6', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-4xmbadg6.yaml'}
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_173341-4xmbadg6/logs/debug.log
+2024-06-07 17:33:41,104 INFO    Thread-2 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_173341-4xmbadg6/logs/debug-internal.log
+2024-06-07 17:33:41,105 INFO    Thread-2 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 17:33:41,105 INFO    Thread-2 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_max', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 17:33:41,105 INFO    Thread-2 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 17:54:53,417 INFO    Thread-2 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/4xmbadg6
+2024-06-07 17:54:53,417 INFO    Thread-2 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 17:54:53,417 INFO    Thread-2 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 17:54:53,417 INFO    Thread-2 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 17:54:57,827 INFO    Thread-2 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 17:54:57,828 INFO    Thread-2 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 17:54:57,834 INFO    Thread-2 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 17:55:03,826 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 17:55:03,827 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 17:55:03,827 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 17:55:03,827 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 17:55:03,827 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'vhdppx74', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-vhdppx74.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 17:55:03,827 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 17:55:03,827 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 17:55:03,828 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 17:55:03,828 INFO    Thread-6 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_175503-vhdppx74/logs/debug.log
+2024-06-07 17:55:03,828 INFO    Thread-6 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_175503-vhdppx74/logs/debug-internal.log
+2024-06-07 17:55:03,828 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 17:55:03,829 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_max', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 17:55:03,829 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 17:55:03,829 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 17:55:03,844 INFO    Thread-6 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 17:55:03,844 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 17:55:03,857 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'min_max', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 17:55:03,858 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 17:55:03,862 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 17:55:04,549 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 17:55:04,621 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 17:55:04,621 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 17:55:06,206 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 17:55:06,206 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 17:55:06,206 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 17:55:06,206 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 17:55:06,206 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 17:55:06,273 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 17:55:06,273 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 17:55:06,273 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 17:55:06,273 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 17:55:06,273 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'vhdppx74', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-vhdppx74.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 17:55:06,273 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 17:55:06,273 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 17:55:06,274 INFO    Thread-6 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 17:55:06,274 INFO    Thread-6 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_175506-vhdppx74/logs/debug.log
+2024-06-07 17:55:06,274 INFO    Thread-6 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_175506-vhdppx74/logs/debug-internal.log
+2024-06-07 17:55:06,274 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 17:55:06,274 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_max', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 17:55:06,274 INFO    Thread-6 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 18:15:46,581 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/vhdppx74
+2024-06-07 18:15:46,581 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 18:15:46,581 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 18:15:46,581 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 18:15:51,861 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 18:15:51,862 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 18:15:51,877 INFO    Thread-6 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 18:15:57,852 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 18:15:57,852 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 18:15:57,853 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 18:15:57,853 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 18:15:57,854 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'gmtvx8hh', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-gmtvx8hh.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 18:15:57,854 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 18:15:57,854 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 18:15:57,855 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 18:15:57,855 INFO    Thread-9 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_181557-gmtvx8hh/logs/debug.log
+2024-06-07 18:15:57,856 INFO    Thread-9 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_181557-gmtvx8hh/logs/debug-internal.log
+2024-06-07 18:15:57,856 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 18:15:57,857 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_max', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 18:15:57,857 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 18:15:57,857 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 18:15:57,871 INFO    Thread-9 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 18:15:57,871 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 18:15:57,882 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'min_max', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 18:15:57,883 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 18:15:57,889 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 18:15:58,431 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 18:15:58,569 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 18:15:58,569 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 18:16:00,166 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 18:16:00,167 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 18:16:00,167 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 18:16:00,167 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 18:16:00,167 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 18:16:00,233 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 18:16:00,233 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 18:16:00,233 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 18:16:00,233 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 18:16:00,233 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'gmtvx8hh', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-gmtvx8hh.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 18:16:00,233 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 18:16:00,234 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 18:16:00,234 INFO    Thread-9 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 18:16:00,234 INFO    Thread-9 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_181600-gmtvx8hh/logs/debug.log
+2024-06-07 18:16:00,234 INFO    Thread-9 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_181600-gmtvx8hh/logs/debug-internal.log
+2024-06-07 18:16:00,234 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 18:16:00,234 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_max', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 18:16:00,234 INFO    Thread-9 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 18:36:54,679 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/gmtvx8hh
+2024-06-07 18:36:54,679 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 18:36:54,679 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 18:36:54,679 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 18:36:59,884 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 18:36:59,885 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 18:36:59,902 INFO    Thread-9 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 18:37:03,852 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 18:37:03,852 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 18:37:03,853 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 18:37:03,853 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 18:37:03,853 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'i9ogrs86', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-i9ogrs86.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 18:37:03,853 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 18:37:03,854 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 18:37:03,854 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 18:37:03,854 INFO    Thread-12 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_183703-i9ogrs86/logs/debug.log
+2024-06-07 18:37:03,855 INFO    Thread-12 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_183703-i9ogrs86/logs/debug-internal.log
+2024-06-07 18:37:03,855 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 18:37:03,855 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 18:37:03,855 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 18:37:03,856 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 18:37:03,870 INFO    Thread-12 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 18:37:03,871 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 18:37:03,886 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 18:37:03,887 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 18:37:03,892 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 18:37:04,459 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 18:37:04,876 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 18:37:04,876 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 18:37:06,417 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 18:37:06,417 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 18:37:06,418 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 18:37:06,418 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 18:37:06,418 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'i9ogrs86', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-i9ogrs86.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_183706-i9ogrs86/logs/debug.log
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_183706-i9ogrs86/logs/debug-internal.log
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 18:37:06,482 INFO    Thread-12 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 18:57:44,928 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/i9ogrs86
+2024-06-07 18:57:44,929 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 18:57:44,929 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 18:57:44,929 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 18:57:49,780 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 18:57:49,782 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 18:57:49,797 INFO    Thread-12 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 18:57:52,763 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 18:57:52,764 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 18:57:52,764 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 18:57:52,764 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 18:57:52,765 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'roec7f4a', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-roec7f4a.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 18:57:52,765 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 18:57:52,766 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 18:57:52,766 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 18:57:52,766 INFO    Thread-15 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_185752-roec7f4a/logs/debug.log
+2024-06-07 18:57:52,767 INFO    Thread-15 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_185752-roec7f4a/logs/debug-internal.log
+2024-06-07 18:57:52,767 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 18:57:52,767 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 18:57:52,768 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 18:57:52,768 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 18:57:52,782 INFO    Thread-15 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 18:57:52,783 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 18:57:52,797 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 18:57:52,797 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 18:57:52,802 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 18:57:53,359 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 18:57:53,471 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 18:57:53,472 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 18:57:55,011 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 18:57:55,011 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 18:57:55,011 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 18:57:55,011 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 18:57:55,011 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 18:57:55,075 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 18:57:55,075 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 18:57:55,075 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 18:57:55,075 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 18:57:55,075 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'roec7f4a', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-roec7f4a.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 18:57:55,076 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 18:57:55,076 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 18:57:55,076 INFO    Thread-15 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 18:57:55,076 INFO    Thread-15 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_185755-roec7f4a/logs/debug.log
+2024-06-07 18:57:55,076 INFO    Thread-15 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_185755-roec7f4a/logs/debug-internal.log
+2024-06-07 18:57:55,076 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 18:57:55,076 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 18:57:55,076 INFO    Thread-15 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 19:17:11,398 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/roec7f4a
+2024-06-07 19:17:11,398 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 19:17:11,398 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 19:17:11,398 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 19:17:15,822 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 19:17:15,824 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 19:17:15,829 INFO    Thread-15 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 19:17:27,763 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 19:17:27,763 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 19:17:27,763 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 19:17:27,763 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 19:17:27,763 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'obs5taxi', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-obs5taxi.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 19:17:27,763 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 19:17:27,764 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 19:17:27,764 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 19:17:27,764 INFO    Thread-18 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_191727-obs5taxi/logs/debug.log
+2024-06-07 19:17:27,764 INFO    Thread-18 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_191727-obs5taxi/logs/debug-internal.log
+2024-06-07 19:17:27,764 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 19:17:27,764 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 19:17:27,764 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 19:17:27,764 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 19:17:27,767 INFO    Thread-18 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 19:17:27,767 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 19:17:27,772 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 19:17:27,772 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 19:17:27,775 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 19:17:28,296 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 19:17:28,353 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 19:17:28,354 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 19:17:29,840 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 19:17:29,841 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 19:17:29,841 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 19:17:29,841 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 19:17:29,842 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'obs5taxi', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-obs5taxi.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_191729-obs5taxi/logs/debug.log
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_191729-obs5taxi/logs/debug-internal.log
+2024-06-07 19:17:29,907 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 19:17:29,908 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'min_sum', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 19:17:29,908 INFO    Thread-18 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 19:36:59,424 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/obs5taxi
+2024-06-07 19:36:59,425 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 19:36:59,425 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 19:36:59,425 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 19:37:04,681 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 19:37:04,683 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 19:37:04,687 INFO    Thread-18 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 19:37:08,646 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 19:37:08,646 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 19:37:08,646 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 19:37:08,646 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 19:37:08,646 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'xrxf84ut', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-xrxf84ut.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 19:37:08,646 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 19:37:08,646 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 19:37:08,646 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 19:37:08,647 INFO    Thread-21 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_193708-xrxf84ut/logs/debug.log
+2024-06-07 19:37:08,647 INFO    Thread-21 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_193708-xrxf84ut/logs/debug-internal.log
+2024-06-07 19:37:08,647 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 19:37:08,647 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 19:37:08,647 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 19:37:08,647 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 19:37:08,651 INFO    Thread-21 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 19:37:08,651 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 19:37:08,656 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 19:37:08,657 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 19:37:08,660 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 19:37:09,180 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 19:37:09,267 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 19:37:09,267 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 19:37:10,700 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 19:37:10,701 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 19:37:10,701 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 19:37:10,701 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 19:37:10,701 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 19:37:10,824 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 19:37:10,824 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'xrxf84ut', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-xrxf84ut.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_193710-xrxf84ut/logs/debug.log
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_193710-xrxf84ut/logs/debug-internal.log
+2024-06-07 19:37:10,825 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 19:37:10,826 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 19:37:10,826 INFO    Thread-21 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 19:56:19,622 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/xrxf84ut
+2024-06-07 19:56:19,622 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 19:56:19,623 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 19:56:19,623 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 19:56:23,606 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 19:56:23,608 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 19:56:23,613 INFO    Thread-21 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 19:56:29,600 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 19:56:29,600 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 19:56:29,600 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 19:56:29,600 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'kutky4cn', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-kutky4cn.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_195629-kutky4cn/logs/debug.log
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_195629-kutky4cn/logs/debug-internal.log
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 19:56:29,601 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 19:56:29,602 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 19:56:29,604 INFO    Thread-24 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 19:56:29,605 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 19:56:29,609 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 19:56:29,610 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 19:56:29,613 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 19:56:30,196 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 19:56:30,272 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 19:56:30,272 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 19:56:31,703 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 19:56:31,703 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 19:56:31,703 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 19:56:31,704 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 19:56:31,704 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 19:56:31,768 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 19:56:31,769 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 19:56:31,769 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 19:56:31,769 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 19:56:31,769 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'kutky4cn', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-kutky4cn.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 19:56:31,769 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 19:56:31,769 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 19:56:31,769 INFO    Thread-24 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 19:56:31,769 INFO    Thread-24 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_195631-kutky4cn/logs/debug.log
+2024-06-07 19:56:31,770 INFO    Thread-24 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_195631-kutky4cn/logs/debug-internal.log
+2024-06-07 19:56:31,770 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 19:56:31,770 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 19:56:31,770 INFO    Thread-24 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 20:15:38,277 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/kutky4cn
+2024-06-07 20:15:38,277 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 20:15:38,277 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 20:15:38,278 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 20:15:42,707 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 20:15:42,709 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 20:15:42,714 INFO    Thread-24 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 20:15:54,662 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 20:15:54,662 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 20:15:54,662 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 20:15:54,662 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '6zycddhe', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-6zycddhe.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_201554-6zycddhe/logs/debug.log
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_201554-6zycddhe/logs/debug-internal.log
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 20:15:54,663 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 20:15:54,666 INFO    Thread-27 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 20:15:54,666 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 20:15:54,672 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 20:15:54,672 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 20:15:54,675 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 20:15:55,200 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 20:15:55,320 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 20:15:55,321 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 20:15:56,752 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 20:15:56,752 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 20:15:56,752 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 20:15:56,753 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 20:15:56,753 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '6zycddhe', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-6zycddhe.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 20:15:56,818 INFO    Thread-27 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_201556-6zycddhe/logs/debug.log
+2024-06-07 20:15:56,819 INFO    Thread-27 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_201556-6zycddhe/logs/debug-internal.log
+2024-06-07 20:15:56,819 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 20:15:56,819 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'noise', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 20:15:56,819 INFO    Thread-27 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 20:35:19,317 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/6zycddhe
+2024-06-07 20:35:19,317 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 20:35:19,318 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 20:35:19,318 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 20:35:23,450 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 20:35:23,452 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 20:35:23,457 INFO    Thread-27 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '8s6zfnq9', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-8s6zfnq9.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_203535-8s6zfnq9/logs/debug.log
+2024-06-07 20:35:35,409 INFO    Thread-30 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_203535-8s6zfnq9/logs/debug-internal.log
+2024-06-07 20:35:35,410 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 20:35:35,410 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 20:35:35,410 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 20:35:35,410 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 20:35:35,412 INFO    Thread-30 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 20:35:35,413 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 20:35:35,418 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 20:35:35,418 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 20:35:35,421 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 20:35:35,996 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 20:35:36,061 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 20:35:36,061 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 20:35:37,489 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 20:35:37,490 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 20:35:37,490 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 20:35:37,490 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 20:35:37,490 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 20:35:37,560 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 20:35:37,560 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '8s6zfnq9', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-8s6zfnq9.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_203537-8s6zfnq9/logs/debug.log
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_203537-8s6zfnq9/logs/debug-internal.log
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 20:35:37,561 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'ERR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 20:35:37,562 INFO    Thread-30 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 20:54:50,517 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/8s6zfnq9
+2024-06-07 20:54:50,517 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 20:54:50,517 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 20:54:50,518 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 20:54:54,480 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 20:54:54,481 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 20:54:54,486 INFO    Thread-30 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 20:55:06,442 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 20:55:06,442 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'm8cr6t2b', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-m8cr6t2b.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_205506-m8cr6t2b/logs/debug.log
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_205506-m8cr6t2b/logs/debug-internal.log
+2024-06-07 20:55:06,443 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 20:55:06,444 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 20:55:06,444 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 20:55:06,444 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 20:55:06,447 INFO    Thread-33 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 20:55:06,447 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 20:55:06,452 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 20:55:06,452 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 20:55:06,456 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 20:55:06,951 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 20:55:07,067 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 20:55:07,068 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 20:55:08,501 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 20:55:08,502 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 20:55:08,502 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 20:55:08,502 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 20:55:08,502 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 20:55:08,566 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 20:55:08,566 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 20:55:08,566 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 20:55:08,566 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 20:55:08,567 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': 'm8cr6t2b', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-m8cr6t2b.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 20:55:08,567 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 20:55:08,567 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 20:55:08,567 INFO    Thread-33 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 20:55:08,567 INFO    Thread-33 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_205508-m8cr6t2b/logs/debug.log
+2024-06-07 20:55:08,568 INFO    Thread-33 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_205508-m8cr6t2b/logs/debug-internal.log
+2024-06-07 20:55:08,568 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 20:55:08,568 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'LFR', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 20:55:08,568 INFO    Thread-33 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 21:14:18,316 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/m8cr6t2b
+2024-06-07 21:14:18,316 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 21:14:18,317 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 21:14:18,317 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 21:14:22,794 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 21:14:22,797 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 21:14:22,802 INFO    Thread-33 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-07 21:14:26,950 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 21:14:26,951 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 21:14:26,951 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 21:14:26,951 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 21:14:26,951 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '3d4c05h0', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-3d4c05h0.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 21:14:26,951 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 21:14:26,952 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 21:14:26,952 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 21:14:26,952 INFO    Thread-36 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_211426-3d4c05h0/logs/debug.log
+2024-06-07 21:14:26,952 INFO    Thread-36 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_211426-3d4c05h0/logs/debug-internal.log
+2024-06-07 21:14:26,953 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 21:14:26,953 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 21:14:26,953 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():611] starting backend
+2024-06-07 21:14:26,953 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():615] setting up manager
+2024-06-07 21:14:26,957 INFO    Thread-36 (_run_job):244165 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-06-07 21:14:26,957 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():623] backend started and connected
+2024-06-07 21:14:26,962 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_config_callback():1347] config_cb None None {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+2024-06-07 21:14:26,963 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():715] updated telemetry
+2024-06-07 21:14:26,966 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2024-06-07 21:14:27,509 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_on_init():2357] communicating current version
+2024-06-07 21:14:27,707 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_on_init():2366] got version response upgrade_message: "wandb version 0.17.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-06-07 21:14:27,708 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():799] starting run threads in backend
+2024-06-07 21:14:29,152 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_console_start():2335] atexit reg
+2024-06-07 21:14:29,153 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_redirect():2190] redirect: wrap_raw
+2024-06-07 21:14:29,153 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_redirect():2255] Wrapping output streams.
+2024-06-07 21:14:29,153 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_redirect():2280] Redirects installed.
+2024-06-07 21:14:29,153 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-07 21:14:29,218 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-07 21:14:29,218 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Configure stats pid to 244165
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'fashion-mnist-lenet', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'run_id': '3d4c05h0', 'sweep_param_path': '/home/test/FRL/wandb/sweep-mtcqssb3/config-3d4c05h0.yaml', 'sweep_id': 'mtcqssb3'}
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-07 21:14:29,219 INFO    Thread-36 (_run_job):244165 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240607_211429-3d4c05h0/logs/debug.log
+2024-06-07 21:14:29,220 INFO    Thread-36 (_run_job):244165 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240607_211429-3d4c05h0/logs/debug-internal.log
+2024-06-07 21:14:29,220 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():561] calling init triggers
+2024-06-07 21:14:29,220 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'grad_ascent', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-07 21:14:29,220 INFO    Thread-36 (_run_job):244165 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-07 21:33:48,815 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_finish():2064] finishing run griffith/fashion-mnist-lenet/3d4c05h0
+2024-06-07 21:33:48,815 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-07 21:33:48,815 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_restore():2287] restore
+2024-06-07 21:33:48,816 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_restore():2293] restore done
+2024-06-07 21:33:53,880 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-07 21:33:53,881 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-07 21:33:53,887 INFO    Thread-36 (_run_job):244165 [wandb_run.py:_footer_sync_info():3895] logging synced files

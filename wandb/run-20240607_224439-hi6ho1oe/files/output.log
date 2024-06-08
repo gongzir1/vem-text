@@ -1,0 +1,80 @@
+=> Saving data in Logs/FRL~try=716
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  0.1
+batch size is :  8
+test batch size is:  128
+10
+84
+87
+98
+127
+143
+179
+234
+398
+400
+414
+427
+473
+512
+524
+534
+558
+574
+582
+671
+734
+767
+820
+823
+876
+881
+889
+921
+958
+use_cuda:  True
+type of FL:  other_attacks
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+e 0 | malicious users: 3 | test acc 0.2118 test loss 2.256877 best test_acc 0.2118
+e 1 | malicious users: 2 | test acc 0.2090 test loss 2.245931 best test_acc 0.2118
+e 2 | malicious users: 4 | test acc 0.2007 test loss 2.381286 best test_acc 0.2118
+e 3 | malicious users: 2 | test acc 0.2014 test loss 2.173559 best test_acc 0.2118
+e 4 | malicious users: 7 | test acc 0.3657 test loss 1.971392 best test_acc 0.3657
+e 5 | malicious users: 4 | test acc 0.2366 test loss 2.049042 best test_acc 0.3657
+e 6 | malicious users: 7 | test acc 0.2565 test loss 2.050494 best test_acc 0.3657
+e 7 | malicious users: 8 | test acc 0.2188 test loss 2.260650 best test_acc 0.3657
+e 8 | malicious users: 7 | test acc 0.2501 test loss 1.880688 best test_acc 0.3657
+e 9 | malicious users: 2 | test acc 0.4995 test loss 1.822221 best test_acc 0.4995
+e 10 | malicious users: 4 | test acc 0.4970 test loss 1.579134 best test_acc 0.4995
+e 11 | malicious users: 4 | test acc 0.6309 test loss 1.705437 best test_acc 0.6309
+e 12 | malicious users: 6 | test acc 0.6166 test loss 1.225869 best test_acc 0.6309
+e 13 | malicious users: 2 | test acc 0.5218 test loss 1.443971 best test_acc 0.6309
+e 14 | malicious users: 5 | test acc 0.4172 test loss 1.458130 best test_acc 0.6309
+e 15 | malicious users: 4 | test acc 0.6363 test loss 1.527315 best test_acc 0.6363
+e 16 | malicious users: 8 | test acc 0.3202 test loss 2.086962 best test_acc 0.6363
+e 17 | malicious users: 5 | test acc 0.5821 test loss 1.998586 best test_acc 0.6363
+e 18 | malicious users: 6 | test acc 0.5752 test loss 1.443211 best test_acc 0.6363
+e 19 | malicious users: 4 | test acc 0.5256 test loss 1.604829 best test_acc 0.6363
+e 20 | malicious users: 1 | test acc 0.6866 test loss 1.378178 best test_acc 0.6866
+e 21 | malicious users: 5 | test acc 0.5938 test loss 1.319264 best test_acc 0.6866
+e 22 | malicious users: 6 | test acc 0.4475 test loss 1.709178 best test_acc 0.6866
+e 23 | malicious users: 5 | test acc 0.3514 test loss 1.418471 best test_acc 0.6866
+e 24 | malicious users: 5 | test acc 0.5911 test loss 1.199028 best test_acc 0.6866
+e 25 | malicious users: 4 | test acc 0.7190 test loss 1.204320 best test_acc 0.7190
+e 26 | malicious users: 7 | test acc 0.6757 test loss 1.101570 best test_acc 0.7190
+e 27 | malicious users: 7 | test acc 0.1607 test loss 2.007503 best test_acc 0.7190
+e 28 | malicious users: 4 | test acc 0.6950 test loss 1.454676 best test_acc 0.7190
+e 29 | malicious users: 5 | test acc 0.5678 test loss 1.289574 best test_acc 0.7190
+e 30 | malicious users: 6 | test acc 0.6093 test loss 1.438494 best test_acc 0.7190
+e 31 | malicious users: 3 | test acc 0.6603 test loss 1.262479 best test_acc 0.7190
+e 32 | malicious users: 5 | test acc 0.7559 test loss 1.218740 best test_acc 0.7559
+e 33 | malicious users: 7 | test acc 0.6074 test loss 1.041327 best test_acc 0.7559
+e 34 | malicious users: 10 | test acc 0.0610 test loss 2.319386 best test_acc 0.7559
+e 35 | malicious users: 6 | test acc 0.1194 test loss 2.303873 best test_acc 0.7559
+e 36 | malicious users: 7 | test acc 0.2483 test loss 2.247430 best test_acc 0.7559
+e 37 | malicious users: 4 | test acc 0.0931 test loss 2.260797 best test_acc 0.7559
+e 38 | malicious users: 4 | test acc 0.2382 test loss 2.139149 best test_acc 0.7559

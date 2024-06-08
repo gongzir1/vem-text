@@ -27,3 +27,10 @@ config: {}
 2024-06-04 17:12:12,383 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_redirect():2255] Wrapping output streams.
 2024-06-04 17:12:12,383 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_redirect():2280] Redirects installed.
 2024-06-04 17:12:12,384 INFO    Thread-2 (_run_job):67675 [wandb_init.py:init():842] run started, returning control to user process
+2024-06-04 17:36:36,404 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_finish():2064] finishing run griffith/mnist-conv2-other-attacks/9zhkm4mr
+2024-06-04 17:36:36,404 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-04 17:36:36,404 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_restore():2287] restore
+2024-06-04 17:36:36,404 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_restore():2293] restore done
+2024-06-04 17:36:42,055 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-04 17:36:42,056 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-04 17:36:42,075 INFO    Thread-2 (_run_job):67675 [wandb_run.py:_footer_sync_info():3895] logging synced files
