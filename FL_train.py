@@ -2594,6 +2594,7 @@ def FRL_train(tr_loaders, te_loader):
     
     e=0
     t_best_acc=0
+    print(args.lr,args.lrdc, args.momentum, args.wd, args.local_epochs)
     while e <= args.FL_global_epochs:
         torch.cuda.empty_cache() 
         round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
@@ -2609,6 +2610,7 @@ def FRL_train(tr_loaders, te_loader):
         for kk in round_benign:
             mp = copy.deepcopy(FLmodel)
             optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            # optimizer = optim.Adam([p for p in mp.parameters() if p.requires_grad], lr=args.lr)
             
             scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
             for epoch in range(args.local_epochs):

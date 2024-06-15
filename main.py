@@ -16,7 +16,7 @@ config={
     "name": "t_acc"
     },
 "parameters":{
-"lr":{"values": [0.001]},
+"lr":{"values": [0.01]},
 "nep":{"values": [100]},
 "max_t":{"values": [2000]},
 "iteration":{"values": [50]},
@@ -28,8 +28,8 @@ config={
 'non_iid':{"values": [1]},
 'mode':{"values": ['ERR','LFR','combined']},
 # 'defense':{"values": ['cosine','Eud']},
-# 'attacks':{"values": ['min_max','min_sum','noise','grad_ascent']},
-# 'defense':{"values": ['cosine']},
+'attacks':{"values": ['min_max','min_sum','noise','grad_ascent']},
+'defense':{"values": ['cosine','Eud']},
 # 'attacks':{"values": ['grad_ascent']},
 },
 }
@@ -50,7 +50,7 @@ def main():
     # Make the a directory corresponding to this run for saving results, checkpoints etc.
     i = 0
     while True:
-        run_base_dir = pathlib.Path(f"{args.log_dir}/FRL~try={str(i)}")
+        run_base_dir = pathlib.Path(f"{args.log_dir}/"+args.set+args.FL_type+f"~try={str(i)}")
 
         if not run_base_dir.exists():
             os.makedirs(run_base_dir)
