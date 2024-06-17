@@ -256,6 +256,8 @@ def FRL_matrix_attack_defense(tr_loaders, te_loader):
             selected_user_updates=defense.cosine(FLmodel, user_updates,len(round_malicious))
         elif args.FL_type=='FRL_Euclidean':
             selected_user_updates=defense.Euclidean(FLmodel, user_updates,len(round_malicious))
+        else:
+            selected_user_updates=user_updates
 
 
         FRL_Vote(FLmodel, selected_user_updates, initial_scores)
@@ -381,6 +383,8 @@ def FRL_attacks(tr_loaders,te_loader):
 
         elif wandb.config.defense=='Eud':
             selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+        else:
+            selected_user_updates=user_updates
 
         FRL_Vote(FLmodel, selected_user_updates, initial_scores)
         del user_updates

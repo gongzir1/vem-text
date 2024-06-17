@@ -25,9 +25,9 @@ def parse_arguments():
     parser.add_argument("--set", type=str, default="FEMNIST" , help="Which dataset to use")
     
     parser.add_argument(
-        "--nClients", type=int, default=1000, help="number of clients participating in FL (default: 1000)")
+        "--nClients", type=int, default=3400, help="number of clients participating in FL (default: 1000)")
     parser.add_argument(
-        "--at_fractions", type=float, default=0.2, help="fraction of malicious clients (default: 0%)")
+        "--at_fractions", type=float, default=0, help="fraction of malicious clients (default: 0%)")
     
     parser.add_argument(
         "--non_iid_degree",
@@ -99,7 +99,7 @@ def parse_arguments():
     parser.add_argument(
         "--momentum",
         type=float,
-        default=0.9,
+        default=0.99,
         metavar="M",
         help="Momentum (default: 0.9)",
     )
