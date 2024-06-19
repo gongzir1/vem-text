@@ -14,9 +14,9 @@ from scipy.optimize import linear_sum_assignment
 def calculate_threshold(r_s,u,m,k,max_t):
     w=torch.sort(r_s,1)[1]
     w_m=torch.sum(w,0)
-
+    
     #get s_all
-    w_all=w_m*(int(u/m))
+    w_all=w_m*(int(u/m)-1)
     sorted_w=torch.sort(w_all)[0]
     sorted_edges=torch.sort(w_all)[1]
     # get the w
@@ -161,6 +161,13 @@ def optimize(u,r_s,k,m,device,lr,nep,max_t,temp,iteration,noise):
     
     return mal_rank
 
-
+def reverse(rank,u,r_s,k,m,max_t):
+    t1,t2,w,w_b,sorted_edges=calculate_threshold(r_s,u,m,k,max_t) 
+    mid_tensor = rank[t1:t2]
+    reverse_tensor=torch.flip(mid_tensor, [0])
+    rest_first=rank[:t1]
+    rest_last=rank[t2:]
+    mal_rank=torch.cat((rest_first, reverse_tensor, rest_last), dim=0)
+    return mal_rank
     
 

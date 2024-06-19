@@ -1,0 +1,12 @@
+wandb_version: 1
+
+attacks:
+  value: grad_ascent
+defense:
+  value: FRL
+k:
+  value: 0.1
+m_r:
+  value: 0.2
+non_iid:
+  value: 0.3

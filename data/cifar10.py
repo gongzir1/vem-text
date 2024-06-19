@@ -51,7 +51,7 @@ class CIFAR10:
            
 #         print ("number of total training points:" ,tr_count)
         # self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
-        if args.FL_type =="FRL_fang" or args.FL_type =="FRL_defense_Fang":
+        if args.FL_type =="FRL_fang" or args.FL_type =="FRL_defense_Fang"or args.FL_type =='other_attacks_Fang'or args.FL_type =='FRL_label_flip_fang'or args.FL_type =='Reverse_mid_val':
              # validation_size = int(0.2 * len(test_dataset)) 
             validation_size = 100 
             test_size = len(test_dataset) - validation_size

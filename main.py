@@ -9,33 +9,173 @@ import data
 from FL_train import *
 from args import *
 
-config={
+# config={
 "method": "grid",
 "metric":{
     "goal": "minimize", 
     "name": "t_acc"
     },
 "parameters":{
-"lr":{"values": [0.01]},
-"nep":{"values": [100]},
+# "lr":{"values": [0.001]},
+# "nep":{"values": [100]},
+# "max_t":{"values": [2000]},
+# "iteration":{"values": [50]},
+# "temp":{"values": [0.1]},
+# "noise":{"values": [1]},
+# 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
+'k':{"values": [0.1]},
+'m_r':{"values": [0.05,0.1,0.15,0.25]},
+'non_iid':{"values": [1]},
+# 'non_iid':{"values": [0.1,0.5,0.7,'iid',0.3]},
+# 'mode':{"values": ['ERR','LFR','combined']},
+# 'defense':{"values": ['cosine','Eud','FRL','FABA','Krum']},
+'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
+'defense':{"values": ['DnC','FABA']},
+#  'attacks':{"values": ['rank-reverse']},
+# 'attacks':{"values": ['my_attack']},
+
+#  'poison_p':{"values": [0.2,0.4,0.6,0.8]}
+'poiaon-layer':{"values":'[''],[''],[''],['']'}
+
+},
+}
+# config
+if args.FL_type=='FRL_train_defense':
+    config={
+"method": "grid",
+"metric":{
+    "goal": "minimize", 
+    "name": "t_acc"
+    },
+"parameters":{
+'k':{"values": [0.1]},
+'m_r':{"values": [0.2]},
+'non_iid':{"values": [1]},
+'defense':{"values": ['cosine','Eud','FRL','FABA','Krum','DnC']},
+'attack':{'rank-reverse'}
+},
+}
+
+elif args.FL_type=='my_attack_defense':
+    config={
+"method": "grid",
+"metric":{
+    "goal": "minimize", 
+    "name": "t_acc"
+    },
+"parameters":{
+"lr":{"values": [0.1]},
+"nep":{"values": [50]},
 "max_t":{"values": [2000]},
 "iteration":{"values": [50]},
 "temp":{"values": [0.1]},
 "noise":{"values": [1]},
-# 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
 'k':{"values": [0.1]},
 'm_r':{"values": [0.2]},
 'non_iid':{"values": [1]},
-# 'mode':{"values": ['ERR','LFR','combined']},
-# 'defense':{"values": ['cosine','Eud']},
-# 'attacks':{"values": ['min_max','min_sum','noise','grad_ascent']},
-# 'defense':{"values": ['cosine','Eud','FRL']},
-# 'attacks':{"values": ['grad_ascent']},
+'defense':{"values": ['cosine','Eud','FRL','FABA','Krum','DnC']},
+'attack':{'my_attack'}
+},
+}
+elif args.FL_type=='other_attacks':
+    config={
+"method": "grid",
+"metric":{
+    "goal": "minimize", 
+    "name": "t_acc"
+    },
+"parameters":{
+'k':{"values": [0.1]},
+'m_r':{"values": [0.2]},
+'non_iid':{"values": [1]},
+'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
+'defense':{"values": ['cosine','Eud','FRL','FABA','Krum','DnC']},
+},
+}
+elif args.FL_type=='FRL_label_flip':
+        config={
+"method": "grid",
+"metric":{
+    "goal": "minimize", 
+    "name": "t_acc"
+    },
+"parameters":{
+'k':{"values": [0.1]},
+'m_r':{"values": [00.2]},
+'non_iid':{"values": [1]},
+'defense':{"values": ['cosine','Eud','FRL','FABA','Krum','DnC']},
+'attack':{'label'}
+},
+}
+elif args.FL_type=='FRL_defense_Fang':
+    config={
+"method": "grid",
+"metric":{
+    "goal": "minimize", 
+    "name": "t_acc"
+    },
+"parameters":{
+'k':{"values": [0.1]},
+'m_r':{"values": [0.2]},
+'non_iid':{"values": [1]},
+'mode':{"values": ['ERR','LFR','combined']},
+'attack':{'rank-reverse'}
 },
 }
 
-if args.FL_type=="":
-    config['mode']
+elif args.FL_type=='FRL_fang':
+    config={
+"method": "grid",
+"metric":{
+    "goal": "minimize", 
+    "name": "t_acc"
+    },
+"parameters":{
+"lr":{"values": [0.1]},
+"nep":{"values": [50]},
+"max_t":{"values": [2000]},
+"iteration":{"values": [50]},
+"temp":{"values": [0.1]},
+"noise":{"values": [1]},
+'k':{"values": [0.1]},
+'m_r':{"values": [0.2]},
+'non_iid':{"values": [1]},
+'mode':{"values": ['ERR','LFR','combined']},
+'attack':{'my_attack'}
+},
+}
+elif args.FL_type=='other_attacks_Fang':
+    config={
+"method": "grid",
+"metric":{
+    "goal": "minimize", 
+    "name": "t_acc"
+    },
+"parameters":{
+'k':{"values": [0.1]},
+'m_r':{"values": [0.2]},
+'non_iid':{"values": [1]},
+'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
+'mode':{"values": ['ERR','LFR','combined']},
+},
+}
+elif args.FL_type=='FRL_label_flip_fang':
+        config={
+"method": "grid",
+"metric":{
+    "goal": "minimize", 
+    "name": "t_acc"
+    },
+"parameters":{
+'k':{"values": [0.1]},
+'m_r':{"values": [0,0.2]},
+'non_iid':{"values": [1]},
+'mode':{"values": ['ERR','LFR','combined']},
+'attack':{'label'}
+},
+}
+
+
 
 def main():
     wandb.init()
@@ -50,7 +190,7 @@ def main():
         torch.cuda.manual_seed(args.seed)
         torch.cuda.manual_seed_all(args.seed)
         
-    # Make the a directory corresponding to this run for saving results, checkpoints etc.
+    # Make the a directory corresponding to this run for sval_loaderaving results, checkpoints etc.
     i = 0
     while True:
         run_base_dir = pathlib.Path(f"{args.log_dir}/"+args.set+args.FL_type+f"~try={str(i)}")
@@ -77,7 +217,7 @@ def main():
     print ("test batch size is: ", args.test_batch_size)
     
     data_distributer = getattr(data, args.set)()
-    if args.FL_type == "FRL_defense_Fang" or args.FL_type =="FRL_fang" or args.FL_type =='other_attacks_Fang':
+    if args.FL_type == "FRL_defense_Fang" or args.FL_type =="FRL_fang" or args.FL_type =='other_attacks_Fang'or args.FL_type == 'FRL_label_flip_fang' or args.FL_type =='Reverse_mid_val'or args.FL_type =='other_attacks_agnostic_val' or args.FL_type =='FRL_train_agnostic_val':  
         tr_loaders = data_distributer.get_tr_loaders()    # len=10000 list
         te_loader = data_distributer.get_te_loader()
         val_loader = data_distributer.get_val_loader()
@@ -105,18 +245,34 @@ def main():
         FRL_attacks(tr_loaders, te_loader)
     elif args.FL_type =="FRL_label_flip" or args.FL_type =="FRL_grad_ascent_label":
         FRL_train_label_flip_attack(tr_loaders, te_loader)
+    elif args.FL_type =="FRL_label_flip_fang": 
+        FRL_train_label_flip_attack_fang(tr_loaders, te_loader,val_loader)
     elif args.FL_type =="FRL_matrix_attack":
         FRL_matrix_attack(tr_loaders, te_loader)
-    elif args.FL_type =="FRL_cosine"or args.FL_type =='FRL_Euclidean':
+    elif args.FL_type =="my_attack_defense":
         FRL_matrix_attack_defense(tr_loaders, te_loader)
     elif args.FL_type =="FRL_fang":
         FRL_matrix_attack_defense_val(tr_loaders, te_loader,val_loader)
-    elif args.FL_type =="FRL_defense_cosine" or args.FL_type =="FRL_defense_Eud":
+    elif args.FL_type =="FRP_defense":
         FRL_train_defense(tr_loaders, te_loader)
     elif args.FL_type =="FRL_defense_Fang" :
         FRL_train_defense_val(tr_loaders, te_loader,val_loader)
     elif args.FL_type =="other_attacks_Fang" :
         other_attacks_val(tr_loaders, te_loader,val_loader)
+    elif args.FL_type =="Reverse_mid":
+        Reverse_mid(tr_loaders, te_loader)
+    elif args.FL_type =="Reverse_mid_val":
+        Reverse_mid(tr_loaders, te_loader,val_loader)
+    elif args.FL_type =="other_attacks_agnostic":
+        FRL_attacks_agnostic(tr_loaders, te_loader)
+    elif args.FL_type =="other_attacks_agnostic_val":
+        FRL_attacks_agnostic_val(tr_loaders, te_loader,val_loader)
+    elif args.FL_type =="my_attacks_agnostic":
+        matrix_attack_defense_agnostic(tr_loaders, te_loader)
+    elif args.FL_type =="FRL_train_agnostic":
+        FRL_train_agnostic(tr_loaders, te_loader)
+    elif args.FL_type =="FRL_train_agnostic_val":
+        FRL_train_agnostic_val(tr_loaders, te_loader,val_loader)
     else:
         FedAVG(tr_loaders, te_loader)
 
@@ -129,7 +285,5 @@ if __name__ == "__main__":
     # main()
     # Start sweep job.
     
-    sweep_id = wandb.sweep(sweep=config, project="_".join([
-        args.set, args.model, args.FL_type
-    ]))
+    sweep_id = wandb.sweep(sweep=config, project="mnist-krum")
     wandb.agent(sweep_id, function=main, count=400)

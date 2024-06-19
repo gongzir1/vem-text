@@ -1,0 +1,6 @@
+=> Saving data in Logs/FRL~try=8
+dataset to use is:  FEMNIST
+number of FL clients:  3400
+non-iid degree data distribution:  1
+batch size is :  8
+test batch size is:  128

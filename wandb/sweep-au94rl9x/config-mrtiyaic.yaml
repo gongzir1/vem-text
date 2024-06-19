@@ -1,0 +1,10 @@
+wandb_version: 1
+
+k:
+  value: 0.5
+m_r:
+  value: 0.2
+mode:
+  value: ERR
+non_iid:
+  value: 1

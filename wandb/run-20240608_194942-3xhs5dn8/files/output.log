@@ -1,0 +1,11 @@
+=> Saving data in Logs/FRL~try=776
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  1
+batch size is :  8
+test batch size is:  128
+use_cuda:  True
+type of FL:  FRP_defense
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.05 | total number of malicious clients: 50
+e 0 | malicious users: 1 | test acc 0.2559 test loss 2.208598 best test_acc 0.2559

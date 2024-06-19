@@ -1,0 +1,14 @@
+wandb_version: 1
+
+attacks:
+  value: grad_ascent
+k:
+  value: 0.1
+m_r:
+  value: 0.2
+max_t:
+  value: 2000
+mode:
+  value: ERR
+non_iid:
+  value: 1

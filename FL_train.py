@@ -21,6 +21,817 @@ import my_attack_new
 import other_attacks
 import defense
 
+
+def FRL_train_agnostic_val(tr_loaders, te_loader,val_loader):
+    print ("#########Federated Learning using Rankings############")
+    run = wandb.init()
+    m_r=wandb.config.m_r
+    args.conv_type = 'MaskConv'
+    args.conv_init = 'signed_constant'
+    args.bn_type="NonAffineNoStatsBN"    
+    
+    n_attackers = int(args.nClients * m_r)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(m_r,
+                                                                                        n_attackers)
+    print (sss)
+    with (args.run_base_dir / "output.txt").open("a") as f:
+        f.write("\n"+str(sss))
+    
+    criterion = nn.CrossEntropyLoss().to(args.device)
+    FLmodel = getattr(models, args.model)().to(args.device)
+    
+    initial_scores={}
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
+    
+    e=0
+    t_best_acc=0
+    while e <= args.FL_global_epochs:
+        torch.cuda.empty_cache() 
+
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
+        
+        # round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[round_users < n_attackers]
+        # round_benign = round_users[round_users >= n_attackers]
+        # while len(round_malicious)>=args.round_nclients/2:
+        #     round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        #     round_malicious = round_users[round_users < n_attackers]
+        #     round_benign = round_users[round_users >= n_attackers]
+            
+        user_updates=collections.defaultdict(list)
+        ########################################benign Client Learning#########################################
+        for kk in round_benign:
+            mp = copy.deepcopy(FLmodel)
+            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            
+            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+            for epoch in range(args.local_epochs):
+                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                scheduler.step()
+
+            for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())
+                        user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                        del rank
+            del optimizer, mp, scheduler
+        ########################################malicious Client Learning######################################
+        if len(round_malicious):
+            sum_args_sorts_mal={}
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+
+                for n, m in mp.named_modules():    
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())      # get the rank of current score
+                        rank_arg=torch.sort(rank)[1]
+                        if str(n) in sum_args_sorts_mal:
+                            sum_args_sorts_mal[str(n)]+=rank_arg       # aggreate the ranking of malicious
+                        else:
+                            sum_args_sorts_mal[str(n)]=rank_arg
+                        del rank, rank_arg
+                del optimizer, mp, scheduler
+
+            for n, m in FLmodel.named_modules():
+                if hasattr(m, "scores"):
+                    rank_mal_agr=torch.sort(sum_args_sorts_mal[str(n)], descending=True)[1]    # simply sort in descending order
+                    for kk in round_malicious:
+                        user_updates[str(n)]=rank_mal_agr[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank_mal_agr[None,:]), 0)
+            del sum_args_sorts_mal
+        ########################################Server AGR#########################################
+        selected_user_updates=defense.FRL_fang(FLmodel, user_updates,len(round_users),len(round_malicious),val_loader,criterion, args.device,initial_scores,mode=wandb.config.mode)
+      
+
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+        del user_updates,selected_user_updates
+        if (e+1)%1==0:
+            t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
+            if t_acc>t_best_acc:
+                t_best_acc=t_acc
+
+            sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
+            print (sss)
+            with (args.run_base_dir / "output.txt").open("a") as f:
+                f.write("\n"+str(sss))
+            wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+                # "location":args.run_base_dir / "output.txt"
+
+            })
+        e+=1
+
+def FRL_train_agnostic(tr_loaders, te_loader):
+    print ("#########Federated Learning using Rankings############")
+    run = wandb.init()
+    m_r=wandb.config.m_r
+    args.conv_type = 'MaskConv'
+    args.conv_init = 'signed_constant'
+    args.bn_type="NonAffineNoStatsBN"    
+    
+    n_attackers = int(args.nClients * m_r)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(m_r,
+                                                                                        n_attackers)
+    print (sss)
+    with (args.run_base_dir / "output.txt").open("a") as f:
+        f.write("\n"+str(sss))
+    
+    criterion = nn.CrossEntropyLoss().to(args.device)
+    FLmodel = getattr(models, args.model)().to(args.device)
+    
+    initial_scores={}
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
+    
+    e=0
+    t_best_acc=0
+    while e <= args.FL_global_epochs:
+        torch.cuda.empty_cache() 
+
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
+
+        # round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[round_users < n_attackers]
+        # round_benign = round_users[round_users >= n_attackers]
+        # while len(round_malicious)>=args.round_nclients/2:
+        #     round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        #     round_malicious = round_users[round_users < n_attackers]
+        #     round_benign = round_users[round_users >= n_attackers]
+            
+        user_updates=collections.defaultdict(list)
+        ########################################benign Client Learning#########################################
+        for kk in round_benign:
+            mp = copy.deepcopy(FLmodel)
+            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            
+            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+            for epoch in range(args.local_epochs):
+                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                scheduler.step()
+
+            for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())
+                        user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                        del rank
+            del optimizer, mp, scheduler
+        ########################################malicious Client Learning######################################
+        if len(round_malicious):
+            sum_args_sorts_mal={}
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+
+                for n, m in mp.named_modules():    
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())      # get the rank of current score
+                        rank_arg=torch.sort(rank)[1]
+                        if str(n) in sum_args_sorts_mal:
+                            sum_args_sorts_mal[str(n)]+=rank_arg       # aggreate the ranking of malicious
+                        else:
+                            sum_args_sorts_mal[str(n)]=rank_arg
+                        del rank, rank_arg
+                del optimizer, mp, scheduler
+
+            for n, m in FLmodel.named_modules():
+                if hasattr(m, "scores"):
+                    rank_mal_agr=torch.sort(sum_args_sorts_mal[str(n)], descending=True)[1]    # simply sort in descending order
+                    for kk in round_malicious:
+                        user_updates[str(n)]=rank_mal_agr[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank_mal_agr[None,:]), 0)
+            del sum_args_sorts_mal
+        ########################################Server AGR#########################################
+        if wandb.config.defense=='cosine':
+            selected_user_updates=defense.cosine(FLmodel, user_updates,int(0.2*len(round_users)))
+
+        elif wandb.config.defense=='Eud':
+            selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+        else:
+            selected_user_updates=user_updates
+
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+        del user_updates,selected_user_updates
+        if (e+1)%1==0:
+            t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
+            if t_acc>t_best_acc:
+                t_best_acc=t_acc
+
+            sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
+            print (sss)
+            with (args.run_base_dir / "output.txt").open("a") as f:
+                f.write("\n"+str(sss))
+            wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+                # "location":args.run_base_dir / "output.txt"
+
+            })
+        e+=1
+  
+
+def matrix_attack_defense_agnostic_val(tr_loaders, te_loader,val_loader):
+    print ("#########Federated Learning using Rankings############")
+    # run = wandb.init()
+    k=wandb.config.k
+
+    m_r=wandb.config.m_r
+
+    lr=wandb.config.lr
+    nep=wandb.config.nep
+    max_t=wandb.config.max_t
+    temp=wandb.config.temp
+    iteration=wandb.config.iteration
+    noise=wandb.config.noise
+
+    args.conv_type = 'MaskConv'
+    args.conv_init = 'signed_constant'
+    args.bn_type="NonAffineNoStatsBN"    
+
+    
+    n_attackers = int(args.nClients * m_r)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(m_r,
+                                                                                        n_attackers)
+    print (sss)
+    with (args.run_base_dir / "output.txt").open("a") as f:
+        f.write("\n"+str(sss))
+    
+    criterion = nn.CrossEntropyLoss().to(args.device)
+    FLmodel = getattr(models, args.model)().to(args.device)
+    
+    initial_scores={}
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
+    
+    e=0
+    t_best_acc=0
+    while e <= args.FL_global_epochs:
+        torch.cuda.empty_cache() 
+        # random select
+        # round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[round_users < n_attackers]
+        # round_benign = round_users[round_users >= n_attackers]
+
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
+            
+        user_updates=collections.defaultdict(list)
+        rs=collections.defaultdict(list)
+        # scores=collections.defaultdict(list)
+
+        ########################################benign Client Learning#########################################
+        m_c=collections.defaultdict(list)
+        for n, m in FLmodel.named_modules():
+            if hasattr(m, "scores"):
+                m_c[str(n)]=0
+            
+        for kk in round_benign:
+            mp = copy.deepcopy(FLmodel)
+            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            
+            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+            for epoch in range(args.local_epochs):
+                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                scheduler.step()
+            
+            for n, m in mp.named_modules():
+                if hasattr(m, "scores"):
+                    
+                    rank=Find_rank(m.scores.detach().clone())
+                    
+                    user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                    del rank
+                            
+        del optimizer, mp, scheduler
+        ########################################malicious Client Learning######################################
+        if len(round_malicious):
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        # score=m.scores.flatten()
+                        rank=Find_rank(m.scores.detach().clone())
+                    ########### pass m benign rankings to attacker############
+                        # rank=rank.unsqueeze(0)
+                        rs[str(n)]=rank[None,:] if len(rs[str(n)])==0 else torch.cat((rs[str(n)],rank[None,:]),0)
+     # get the score of all benign users
+
+            # attack 
+            mal_rank={}
+            for n, m in mp.named_modules():
+                if hasattr(m, "scores"):
+                    ######### my attack###########
+                    # optimizer = My_ATTACK_OPTIMISE(args.round_nclients,pms[str(n)],agr_matrix_m[str(n)],args.sparsity,len(round_malicious),mylist,args.device)
+                    mal_rank=my_attack_new.optimize(args.round_nclients,rs[str(n)],k,len(round_malicious),args.device,lr,nep,max_t,temp,iteration,noise)
+                    user_updates[str(n)]=mal_rank if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], mal_rank), 0)
+                    del mal_rank
+                        
+            del mp      
+
+        ########################################Server AGR#########################################
+        selected_user_updates=defense.FRL_fang(FLmodel, user_updates,len(round_users),len(round_malicious),val_loader,criterion, args.device,initial_scores,mode=wandb.config.mode)
+      
+
+
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+        del user_updates
+        if (e+1)%1==0:
+            t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
+            if t_acc>t_best_acc:
+                t_best_acc=t_acc
+
+            sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
+            print (sss)
+            with (args.run_base_dir / "output.txt").open("a") as f:
+                f.write("\n"+str(sss))
+            wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+
+            })
+        e+=1
+ 
+
+# update unknow
+def matrix_attack_defense_agnostic(tr_loaders, te_loader):
+    print ("#########Federated Learning using Rankings############")
+    # run = wandb.init()
+    k=wandb.config.k
+
+    m_r=wandb.config.m_r
+
+    lr=wandb.config.lr
+    nep=wandb.config.nep
+    max_t=wandb.config.max_t
+    temp=wandb.config.temp
+    iteration=wandb.config.iteration
+    noise=wandb.config.noise
+
+    args.conv_type = 'MaskConv'
+    args.conv_init = 'signed_constant'
+    args.bn_type="NonAffineNoStatsBN"    
+
+    
+    n_attackers = int(args.nClients * m_r)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(m_r,
+                                                                                        n_attackers)
+    print (sss)
+    with (args.run_base_dir / "output.txt").open("a") as f:
+        f.write("\n"+str(sss))
+    
+    criterion = nn.CrossEntropyLoss().to(args.device)
+    FLmodel = getattr(models, args.model)().to(args.device)
+    
+    initial_scores={}
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
+    
+    e=0
+    t_best_acc=0
+    while e <= args.FL_global_epochs:
+        torch.cuda.empty_cache() 
+        # random select
+        # round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[round_users < n_attackers]
+        # round_benign = round_users[round_users >= n_attackers]
+
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
+            
+        user_updates=collections.defaultdict(list)
+        rs=collections.defaultdict(list)
+        # scores=collections.defaultdict(list)
+
+        ########################################benign Client Learning#########################################
+        m_c=collections.defaultdict(list)
+        for n, m in FLmodel.named_modules():
+            if hasattr(m, "scores"):
+                m_c[str(n)]=0
+            
+        for kk in round_benign:
+            mp = copy.deepcopy(FLmodel)
+            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            
+            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+            for epoch in range(args.local_epochs):
+                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                scheduler.step()
+            
+            for n, m in mp.named_modules():
+                if hasattr(m, "scores"):
+                    
+                    rank=Find_rank(m.scores.detach().clone())
+                    
+                    user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                    del rank
+                            
+        del optimizer, mp, scheduler
+        ########################################malicious Client Learning######################################
+        if len(round_malicious):
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        # score=m.scores.flatten()
+                        rank=Find_rank(m.scores.detach().clone())
+                    ########### pass m benign rankings to attacker############
+                        # rank=rank.unsqueeze(0)
+                        rs[str(n)]=rank[None,:] if len(rs[str(n)])==0 else torch.cat((rs[str(n)],rank[None,:]),0)
+     # get the score of all benign users
+
+            # attack 
+            mal_rank={}
+            for n, m in mp.named_modules():
+                if hasattr(m, "scores"):
+                    ######### my attack###########
+                    # optimizer = My_ATTACK_OPTIMISE(args.round_nclients,pms[str(n)],agr_matrix_m[str(n)],args.sparsity,len(round_malicious),mylist,args.device)
+                    mal_rank=my_attack_new.optimize(args.round_nclients,rs[str(n)],k,len(round_malicious),args.device,lr,nep,max_t,temp,iteration,noise)
+                    user_updates[str(n)]=mal_rank if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], mal_rank), 0)
+                    del mal_rank
+                        
+            del mp      
+
+        ########################################Server AGR#########################################
+        if wandb.config.defense=='cosine':
+            selected_user_updates=defense.cosine(FLmodel, user_updates,int(0.2*len(round_users)))
+
+        elif wandb.config.defense=='Eud':
+            selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+        
+        else:
+            selected_user_updates=user_updates
+
+
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+        del user_updates
+        if (e+1)%1==0:
+            t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
+            if t_acc>t_best_acc:
+                t_best_acc=t_acc
+
+            sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
+            print (sss)
+            with (args.run_base_dir / "output.txt").open("a") as f:
+                f.write("\n"+str(sss))
+            wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+
+            })
+        e+=1
+ 
+
+def FRL_attacks_agnostic_val(tr_loaders,te_loader,val_loader):
+    # run = wandb.init()
+    m_r=wandb.config.m_r
+
+    print ("#########Federated Learning using Rankings############")
+    args.conv_type = 'MaskConv'
+    args.conv_init = 'signed_constant'
+    args.bn_type="NonAffineNoStatsBN"    
+    
+    n_attackers = int(args.nClients * m_r)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(m_r,
+                                                                                        n_attackers)
+    print (sss)
+    with (args.run_base_dir / "output.txt").open("a") as f:
+        f.write("\n"+str(sss))
+    
+    criterion = nn.CrossEntropyLoss().to(args.device)
+    FLmodel = getattr(models, args.model)().to(args.device)
+    
+    initial_scores={}
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
+    
+    e=0
+    t_best_acc=0
+    while e <= args.FL_global_epochs:
+        torch.cuda.empty_cache() 
+        # round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[round_users < n_attackers]
+        # round_benign = round_users[round_users >= n_attackers]
+        # while len(round_malicious)>=args.round_nclients/2:
+        #     round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        #     round_malicious = round_users[round_users < n_attackers]
+        #     round_benign = round_users[round_users >= n_attackers]
+
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
+       
+        user_updates=collections.defaultdict(list)
+        scores=collections.defaultdict(list)
+        ########################################benign Client Learning#########################################
+        m_c=collections.defaultdict(list)
+        for n, m in FLmodel.named_modules():
+            if hasattr(m, "scores"):
+                m_c[str(n)]=0
+        for kk in round_benign:
+            mp = copy.deepcopy(FLmodel)
+            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            
+            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+            for epoch in range(args.local_epochs):
+                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                scheduler.step()
+
+            for n, m in mp.named_modules():
+                if hasattr(m, "scores"):
+                    rank=Find_rank(m.scores.detach().clone())
+                    score=m.scores.flatten()
+                        ########### pass m benign scores to attacker#############
+                    # if m_c[str(n)]<len(round_benign):
+                    #     scores[str(n)]=score[None,:] if len(scores[str(n)])==0 else torch.cat((scores[str(n)],score[None,:]),0)       # get the score of all benign users
+                    #     m_c[str(n)]=m_c[str(n)]+1
+                    user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                    del rank
+            del optimizer, mp, scheduler
+        ########################################malicious Client Learning######################################
+        attack=wandb.config.attacks
+        if len(round_malicious):
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        score=m.scores.flatten()
+                        ########### store m beign scores #############
+                        scores[str(n)]=score[None,:] if len(scores[str(n)])==0 else torch.cat((scores[str(n)],score[None,:]),0)       # get the score of all benign users
+
+
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        if attack=='min_sum':
+                            mal_scores=other_attacks.min_sum(scores[str(n)],args.device)
+                        elif attack =='min_max':
+                            mal_scores=other_attacks.min_max(scores[str(n)],args.device)
+                        elif attack =='noise':
+                            mal_scores=other_attacks.noise(scores[str(n)],args.device)
+                        elif attack =='grad_ascent':
+                            mal_scores=-m.scores.flatten()
+
+                        
+                        rank=Find_rank_attack(mal_scores.detach().clone())   # get the opsite sign of ig score
+                    
+                        user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                        del rank
+            del optimizer, mp, scheduler
+        ########################################Server AGR#########################################
+
+        selected_user_updates=defense.FRL_fang(FLmodel, user_updates,len(round_users),len(round_malicious),val_loader,criterion, args.device,initial_scores,mode=wandb.config.mode)
+      
+
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+        del user_updates
+        if (e+1)%1==0:
+            t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
+            if t_acc>t_best_acc:
+                t_best_acc=t_acc
+
+            sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
+            print (sss)
+            with (args.run_base_dir / "output.txt").open("a") as f:
+                f.write("\n"+str(sss))
+            wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+                # "location":args.run_base_dir / "output.txt"
+
+            })
+        e+=1
+
+def FRL_attacks_agnostic(tr_loaders,te_loader):
+    # run = wandb.init()
+    m_r=wandb.config.m_r
+
+    print ("#########Federated Learning using Rankings############")
+    args.conv_type = 'MaskConv'
+    args.conv_init = 'signed_constant'
+    args.bn_type="NonAffineNoStatsBN"    
+    
+    n_attackers = int(args.nClients * m_r)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(m_r,
+                                                                                        n_attackers)
+    print (sss)
+    with (args.run_base_dir / "output.txt").open("a") as f:
+        f.write("\n"+str(sss))
+    
+    criterion = nn.CrossEntropyLoss().to(args.device)
+    FLmodel = getattr(models, args.model)().to(args.device)
+    
+    initial_scores={}
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
+    
+    e=0
+    t_best_acc=0
+    while e <= args.FL_global_epochs:
+        torch.cuda.empty_cache() 
+        # round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[round_users < n_attackers]
+        # round_benign = round_users[round_users >= n_attackers]
+        # while len(round_malicious)>=args.round_nclients/2:
+        #     round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        #     round_malicious = round_users[round_users < n_attackers]
+        #     round_benign = round_users[round_users >= n_attackers]
+
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
+       
+        user_updates=collections.defaultdict(list)
+        scores=collections.defaultdict(list)
+        ########################################benign Client Learning#########################################
+        m_c=collections.defaultdict(list)
+        for n, m in FLmodel.named_modules():
+            if hasattr(m, "scores"):
+                m_c[str(n)]=0
+        for kk in round_benign:
+            mp = copy.deepcopy(FLmodel)
+            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            
+            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+            for epoch in range(args.local_epochs):
+                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                scheduler.step()
+
+            for n, m in mp.named_modules():
+                if hasattr(m, "scores"):
+                    rank=Find_rank(m.scores.detach().clone())
+                    score=m.scores.flatten()
+                        ########### pass m benign scores to attacker#############
+                    # if m_c[str(n)]<len(round_benign):
+                    #     scores[str(n)]=score[None,:] if len(scores[str(n)])==0 else torch.cat((scores[str(n)],score[None,:]),0)       # get the score of all benign users
+                    #     m_c[str(n)]=m_c[str(n)]+1
+                    user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                    del rank
+            del optimizer, mp, scheduler
+        ########################################malicious Client Learning######################################
+        attack=wandb.config.attacks
+        if len(round_malicious):
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        score=m.scores.flatten()
+                        ########### store m beign scores #############
+                        scores[str(n)]=score[None,:] if len(scores[str(n)])==0 else torch.cat((scores[str(n)],score[None,:]),0)       # get the score of all benign users
+
+
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        if attack=='min_sum':
+                            mal_scores=other_attacks.min_sum(scores[str(n)],args.device)
+                        elif attack =='min_max':
+                            mal_scores=other_attacks.min_max(scores[str(n)],args.device)
+                        elif attack =='noise':
+                            mal_scores=other_attacks.noise(scores[str(n)],args.device)
+                        elif attack =='grad_ascent':
+                            mal_scores=-m.scores.flatten()
+
+                        
+                        rank=Find_rank_attack(mal_scores.detach().clone())   # get the opsite sign of ig score
+                    
+                        user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                        del rank
+            del optimizer, mp, scheduler
+        ########################################Server AGR#########################################
+        if wandb.config.defense=='cosine':
+            selected_user_updates=defense.cosine(FLmodel, user_updates,int(0.2*len(round_users)))
+
+        elif wandb.config.defense=='Eud':
+            selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+        else:
+            selected_user_updates=user_updates
+
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+        del user_updates
+        if (e+1)%1==0:
+            t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
+            if t_acc>t_best_acc:
+                t_best_acc=t_acc
+
+            sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
+            print (sss)
+            with (args.run_base_dir / "output.txt").open("a") as f:
+                f.write("\n"+str(sss))
+            wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+                # "location":args.run_base_dir / "output.txt"
+
+            })
+        e+=1
+
+
 def FRL_matrix_attack_defense_val(tr_loaders, te_loader,val_loader):
     print ("#########Federated Learning using Rankings############")
     # run = wandb.init()
@@ -252,10 +1063,20 @@ def FRL_matrix_attack_defense(tr_loaders, te_loader):
             del mp      
 
         ########################################Server AGR#########################################
+<<<<<<< HEAD
         if args.FL_type=='FRL_cosine':
             selected_user_updates=defense.cosine(FLmodel, user_updates,len(round_malicious))
         elif args.FL_type=='FRL_Euclidean':
             selected_user_updates=defense.Euclidean(FLmodel, user_updates,len(round_malicious))
+=======
+        if wandb.config.defense=='cosine':
+            selected_user_updates=defense.cosine(FLmodel, user_updates,int(0.2*len(round_users)))
+
+        elif wandb.config.defense=='Eud':
+            selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+        elif wandb.config.defense=='Krum':
+            selected_user_updates=defense.Krum(FLmodel, user_updates,int(0.2*len(round_users)))
+>>>>>>> 536798a (update agrs)
         else:
             selected_user_updates=user_updates
 
@@ -383,6 +1204,15 @@ def FRL_attacks(tr_loaders,te_loader):
 
         elif wandb.config.defense=='Eud':
             selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+<<<<<<< HEAD
+=======
+        elif wandb.config.defense=='Krum':
+            selected_user_updates=defense.Krum(FLmodel, user_updates,int(0.2*len(round_users)))
+        elif wandb.config.defense=='FABA':
+            selected_user_updates=defense.FABA(FLmodel, user_updates,int(0.2*len(round_users)))
+        elif wandb.config.defense=='DnC':
+            selected_user_updates=defense.DnC(FLmodel, user_updates,int(0.2*len(round_users)))
+>>>>>>> 536798a (update agrs)
         else:
             selected_user_updates=user_updates
 
@@ -623,10 +1453,19 @@ def FRL_train_defense(tr_loaders, te_loader):
                         user_updates[str(n)]=rank_mal_agr[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank_mal_agr[None,:]), 0)
             del sum_args_sorts_mal
         ########################################Server AGR#########################################
-        if args.FL_type=='FRL_defense_cosine':
-            selected_user_updates=defense.cosine(FLmodel, user_updates,len(round_malicious))
-        elif args.FL_type=='FRL_defense_Eud':
-            selected_user_updates=defense.Euclidean(FLmodel, user_updates,len(round_malicious))
+        if wandb.config.defense=='cosine':
+            selected_user_updates=defense.cosine(FLmodel, user_updates,int(0.2*len(round_users)))
+
+        elif wandb.config.defense=='Eud':
+            selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+        elif wandb.config.defense=='Krum':
+            selected_user_updates=defense.Krum(FLmodel, user_updates,int(0.2*len(round_users)))
+        elif wandb.config.defense=='FABA':
+            selected_user_updates=defense.FABA(FLmodel, user_updates,int(0.2*len(round_users)))
+        elif wandb.config.defense=='DnC':
+            selected_user_updates=defense.DnC(FLmodel, user_updates,int(0.2*len(round_users)))
+        else:
+            selected_user_updates=user_updates
 
         FRL_Vote(FLmodel, selected_user_updates, initial_scores)
         del user_updates
@@ -747,8 +1586,8 @@ def FRL_train_defense_val(tr_loaders, te_loader,val_loader):
         #     selected_user_updates=defense.cosine(FLmodel, user_updates,len(round_malicious))
         # elif args.FL_type=='FRL_defense_Eud':
         #     selected_user_updates=defense.Euclidean(FLmodel, user_updates,len(round_malicious))
-        if args.FL_type=='FRL_defense_Fang':
-            selected_user_updates=defense.FRL_fang(FLmodel, user_updates,len(round_users),len(round_malicious),val_loader,criterion, args.device,initial_scores,mode=wandb.config.mode)
+        # if args.FL_type=='FRL_defense_Fang':
+        selected_user_updates=defense.FRL_fang(FLmodel, user_updates,len(round_users),len(round_malicious),val_loader,criterion, args.device,initial_scores,mode=wandb.config.mode)
        
 
         FRL_Vote(FLmodel, selected_user_updates, initial_scores)
@@ -770,6 +1609,246 @@ def FRL_train_defense_val(tr_loaders, te_loader,val_loader):
                 # "location":args.run_base_dir / "output.txt"
 
             })
+        e+=1
+def Reverse_mid(tr_loaders,te_loader):
+    max_t=wandb.config.max_t
+    k=wandb.config.k
+    
+    print ("#########Federated Learning using Rankings############")
+    args.conv_type = 'MaskConv'
+    args.conv_init = 'signed_constant'
+    args.bn_type="NonAffineNoStatsBN"  
+    n_attackers = int(args.nClients * args.at_fractions)  
+    
+    n_attackers = int(args.nClients * args.at_fractions)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(args.at_fractions,
+                                                                                        n_attackers)
+    print (sss)
+    with (args.run_base_dir / "output.txt").open("a") as f:
+        f.write("\n"+str(sss))
+    
+    criterion = nn.CrossEntropyLoss().to(args.device)
+    FLmodel = getattr(models, args.model)().to(args.device)
+    
+    initial_scores={}
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
+    
+    e=0
+    t_best_acc=0
+    while e <= args.FL_global_epochs:
+        torch.cuda.empty_cache() 
+        round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[:1]
+        # round_benign = round_users[1:]
+        round_malicious = round_users[round_users < n_attackers]
+        round_benign = round_users[round_users >= n_attackers]
+        while len(round_malicious)>=args.round_nclients/2:
+            round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+            round_malicious = round_users[round_users < n_attackers]
+            round_benign = round_users[round_users >= n_attackers]
+            
+        user_updates=collections.defaultdict(list)
+        rs=collections.defaultdict(list)
+
+        ########################################benign Client Learning#########################################
+        m_c=collections.defaultdict(list)
+        for n, m in FLmodel.named_modules():
+            if hasattr(m, "scores"):
+                m_c[str(n)]=0
+    
+       
+        for kk in round_benign:
+            mp = copy.deepcopy(FLmodel)
+            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            
+            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+            for epoch in range(args.local_epochs):
+                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                scheduler.step()
+            for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())
+                          ########### pass m benign rankings to attacker#############
+                        if m_c[str(n)]<len(round_malicious):
+                            # rank=rank.unsqueeze(0)
+                            rs[str(n)]=rank[None,:] if len(rs[str(n)])==0 else torch.cat((rs[str(n)],rank[None,:]),0)
+                            m_c[str(n)]=m_c[str(n)]+1
+                 
+                        user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                        del rank
+            del optimizer, mp, scheduler
+        ########################################malicious Client Learning######################################
+        if len(round_malicious):
+            mal_rank={}
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+                ################ attack on m directly ###############
+                # lr=0.01
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())
+
+                        mal_rank=my_attack_new.reverse(rank,args.round_nclients,rs[str(n)],k,len(round_malicious),max_t)
+               
+                        user_updates[str(n)]=mal_rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], mal_rank[None,:]), 0)
+                        del rank
+            del optimizer, mp, scheduler
+        ########################################Server AGR#########################################
+        if wandb.config.defense=='cosine':
+            selected_user_updates=defense.cosine(FLmodel, user_updates,int(0.2*len(round_users)))
+
+        elif wandb.config.defense=='Eud':
+            selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+        del user_updates
+        if (e+1)%1==0:
+            t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
+            if t_acc>t_best_acc:
+                t_best_acc=t_acc
+    
+        
+
+            sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
+            print (sss)
+            with (args.run_base_dir / "output.txt").open("a") as f:
+                f.write("\n"+str(sss))
+        wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+                # "pick out":cs_not_selected,
+                # "location":args.run_base_dir / "output.txt"
+
+            }
+        )
+        e+=1
+def Reverse_mid(tr_loaders,te_loader,val_loader):
+    max_t=wandb.config.max_t
+    k=wandb.config.k
+    
+    print ("#########Federated Learning using Rankings############")
+    args.conv_type = 'MaskConv'
+    args.conv_init = 'signed_constant'
+    args.bn_type="NonAffineNoStatsBN"  
+    n_attackers = int(args.nClients * args.at_fractions)  
+    
+    n_attackers = int(args.nClients * args.at_fractions)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(args.at_fractions,
+                                                                                        n_attackers)
+    print (sss)
+    with (args.run_base_dir / "output.txt").open("a") as f:
+        f.write("\n"+str(sss))
+    
+    criterion = nn.CrossEntropyLoss().to(args.device)
+    FLmodel = getattr(models, args.model)().to(args.device)
+    
+    initial_scores={}
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
+    
+    e=0
+    t_best_acc=0
+    while e <= args.FL_global_epochs:
+        torch.cuda.empty_cache() 
+        round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[:1]
+        # round_benign = round_users[1:]
+        round_malicious = round_users[round_users < n_attackers]
+        round_benign = round_users[round_users >= n_attackers]
+        while len(round_malicious)>=args.round_nclients/2:
+            round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+            round_malicious = round_users[round_users < n_attackers]
+            round_benign = round_users[round_users >= n_attackers]
+            
+        user_updates=collections.defaultdict(list)
+        rs=collections.defaultdict(list)
+
+        ########################################benign Client Learning#########################################
+        m_c=collections.defaultdict(list)
+        for n, m in FLmodel.named_modules():
+            if hasattr(m, "scores"):
+                m_c[str(n)]=0
+    
+       
+        for kk in round_benign:
+            mp = copy.deepcopy(FLmodel)
+            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+            
+            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+            for epoch in range(args.local_epochs):
+                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                scheduler.step()
+            for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())
+                          ########### pass m benign rankings to attacker#############
+                        if m_c[str(n)]<len(round_malicious):
+                            # rank=rank.unsqueeze(0)
+                            rs[str(n)]=rank[None,:] if len(rs[str(n)])==0 else torch.cat((rs[str(n)],rank[None,:]),0)
+                            m_c[str(n)]=m_c[str(n)]+1
+                 
+                        user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                        del rank
+            del optimizer, mp, scheduler
+        ########################################malicious Client Learning######################################
+        if len(round_malicious):
+            mal_rank={}
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                torch.cuda.empty_cache()  
+                mp = copy.deepcopy(FLmodel)
+                optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                for epoch in range(args.local_epochs):
+                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    scheduler.step()
+                ################ attack on m directly ###############
+                # lr=0.01
+                for n, m in mp.named_modules():
+                    if hasattr(m, "scores"):
+                        rank=Find_rank(m.scores.detach().clone())
+
+                        mal_rank=my_attack_new.reverse(rank,args.round_nclients,rs[str(n)],k,len(round_malicious),max_t)
+               
+                        user_updates[str(n)]=mal_rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], mal_rank[None,:]), 0)
+                        del rank
+            del optimizer, mp, scheduler
+        ########################################Server AGR#########################################
+        selected_user_updates=defense.FRL_fang(FLmodel, user_updates,len(round_users),len(round_malicious),val_loader,criterion, args.device,initial_scores,mode=wandb.config.mode)
+       
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
+        del user_updates
+        if (e+1)%1==0:
+            t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
+            if t_acc>t_best_acc:
+                t_best_acc=t_acc
+    
+        
+
+            sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
+            print (sss)
+            with (args.run_base_dir / "output.txt").open("a") as f:
+                f.write("\n"+str(sss))
+        wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+                # "pick out":cs_not_selected,
+                # "location":args.run_base_dir / "output.txt"
+
+            }
+        )
         e+=1
  
 # def FRL_grad_ascent_label(tr_loaders,te_loader):
@@ -1021,6 +2100,7 @@ def FRL_matrix_attack(tr_loaders, te_loader):
     
     e=0
     t_best_acc=0
+    posioned=0
     while e <= args.FL_global_epochs:
         torch.cuda.empty_cache() 
         # random select
@@ -1028,16 +2108,16 @@ def FRL_matrix_attack(tr_loaders, te_loader):
         round_malicious = round_users[round_users < n_attackers]
         round_benign = round_users[round_users >= n_attackers]
 
-        # all_clients = np.arange(args.nClients)
-        # malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
         
-        # # Select clients for the round
-        # round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
 
-        # num_round_malicious = int(args.round_nclients * m_r)
-        # # Ensure exactly num_round_malicious malicious clients
-        # round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
-        # round_benign = np.setdiff1d(round_users, round_malicious) 
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
             
         user_updates=collections.defaultdict(list)
         rs=collections.defaultdict(list)
@@ -1075,27 +2155,56 @@ def FRL_matrix_attack(tr_loaders, te_loader):
         del optimizer, mp, scheduler
         ########################################malicious Client Learning######################################
         if len(round_malicious):
-            mal_rank={}
-            # for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
-            #     torch.cuda.empty_cache()  
-            #     mp = copy.deepcopy(FLmodel)
-            #     optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
-            #     scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
-            #     for epoch in range(args.local_epochs):
-            #         train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
-            #         scheduler.step()
-            torch.cuda.empty_cache()  
-            mp = copy.deepcopy(FLmodel)
-            for n, m in mp.named_modules():
-                if hasattr(m, "scores"):
+            poison_iteration=True
+            
+            if poison_iteration==True:
+                if e ==0 or e % (args.FL_global_epochs/(wandb.config.poison_p*args.FL_global_epochs))==0:
+                    mal_rank={}
+                    torch.cuda.empty_cache()  
+                    mp = copy.deepcopy(FLmodel)
+                    for n, m in mp.named_modules():
+                        if hasattr(m, "scores"):
 
-                    ######### my attack###########
-                    # optimizer = My_ATTACK_OPTIMISE(args.round_nclients,pms[str(n)],agr_matrix_m[str(n)],args.sparsity,len(round_malicious),mylist,args.device)
-                    mal_rank=my_attack_new.optimize(args.round_nclients,rs[str(n)],k,len(round_malicious),args.device,lr,nep,max_t,temp,iteration,noise)
-                    user_updates[str(n)]=mal_rank if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], mal_rank), 0)
-                    del mal_rank
-                        
-            del mp      
+                            ######### my attack###########
+                            # optimizer = My_ATTACK_OPTIMISE(args.round_nclients,pms[str(n)],agr_matrix_m[str(n)],args.sparsity,len(round_malicious),mylist,args.device)
+                            mal_rank=my_attack_new.optimize(args.round_nclients,rs[str(n)],k,len(round_malicious),args.device,lr,nep,max_t,temp,iteration,noise)
+                            user_updates[str(n)]=mal_rank if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], mal_rank), 0)
+                            del mal_rank
+                    del mp 
+                    posioned+=1
+                else:
+                    for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
+                            torch.cuda.empty_cache()  
+                            mp = copy.deepcopy(FLmodel)
+                            optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
+                            scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
+                            for epoch in range(args.local_epochs):
+                                train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                                scheduler.step()
+                            for n, m in mp.named_modules():
+                                if hasattr(m, "scores"):
+                                    rank=Find_rank(m.scores.detach().clone())
+                                    user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                                    del rank
+                            del optimizer, mp, scheduler
+
+            # elif poison_layers==True:
+                
+                
+            else:
+                    mal_rank={}
+                    torch.cuda.empty_cache()  
+                    mp = copy.deepcopy(FLmodel)
+                    for n, m in mp.named_modules():
+                        if hasattr(m, "scores"):
+
+                            ######### my attack###########
+                            # optimizer = My_ATTACK_OPTIMISE(args.round_nclients,pms[str(n)],agr_matrix_m[str(n)],args.sparsity,len(round_malicious),mylist,args.device)
+                            mal_rank=my_attack_new.optimize(args.round_nclients,rs[str(n)],k,len(round_malicious),args.device,lr,nep,max_t,temp,iteration,noise)
+                            user_updates[str(n)]=mal_rank if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], mal_rank), 0)
+                            del mal_rank
+                                
+                    del mp      
 
         ########################################Server AGR#########################################
 
@@ -1118,7 +2227,9 @@ def FRL_matrix_attack(tr_loaders, te_loader):
 
             })
         e+=1
+    print(posioned)
  
+
 # def FRL_matrix_attack_old(tr_loaders, te_loader):
 #     print ("#########Federated Learning using Rankings############")
 #     run = wandb.init()
@@ -1651,148 +2762,7 @@ def FRL_matrix_attack(tr_loaders, te_loader):
 #         )
 #         e+=1
  
-# def My_attack_new(tr_loaders,te_loader):
-#     run = wandb.init()
 
-#     lr1 = wandb.config.lr1
-#     lr2 = wandb.config.lr2
-    
-
-#     α=wandb.config.α
-#     γ=wandb.config.γ
-#     k_s=wandb.config.k_s
-#     β = wandb.config.β
-#     δ=wandb.config.δ
-#     v=wandb.config.v
-#     scale1=wandb.config.scale1
-#     scale2=wandb.config.scale2
-#     nep=wandb.config.nep
-#     l_c=wandb.config.l_c
-    
-    
-
-#     print ("#########Federated Learning using Rankings############")
-#     args.conv_type = 'MaskConv'
-#     args.conv_init = 'signed_constant'
-#     args.bn_type="NonAffineNoStatsBN"  
-#     n_attackers = int(args.nClients * args.at_fractions)  
-    
-#     n_attackers = int(args.nClients * args.at_fractions)
-#     sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(args.at_fractions,
-#                                                                                         n_attackers)
-#     print (sss)
-#     with (args.run_base_dir / "output.txt").open("a") as f:
-#         f.write("\n"+str(sss))
-    
-#     criterion = nn.CrossEntropyLoss().to(args.device)
-#     FLmodel = getattr(models, args.model)().to(args.device)
-    
-#     initial_scores={}
-#     for n, m in FLmodel.named_modules():
-#         if hasattr(m, "scores"):
-#             initial_scores[str(n)]=m.scores.detach().clone().flatten().sort()[0]
-    
-#     e=0
-#     t_best_acc=0
-#     while e <= args.FL_global_epochs:
-#         torch.cuda.empty_cache() 
-#         round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
-#         # round_malicious = round_users[:1]
-#         # round_benign = round_users[1:]
-#         round_malicious = round_users[round_users < n_attackers]
-#         round_benign = round_users[round_users >= n_attackers]
-#         while len(round_malicious)>=args.round_nclients/2:
-#             round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
-#             round_malicious = round_users[round_users < n_attackers]
-#             round_benign = round_users[round_users >= n_attackers]
-            
-#         user_updates=collections.defaultdict(list)
-#         ########################################benign Client Learning#########################################
-#         for kk in round_benign:
-#             mp = copy.deepcopy(FLmodel)
-#             optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
-            
-#             scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
-#             for epoch in range(args.local_epochs):
-#                 train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
-#                 scheduler.step()
-#             for n, m in mp.named_modules():
-#                     if hasattr(m, "scores"):
-#                         rank=Find_rank(m.scores.detach().clone())
-#                         user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
-#                         del rank
-#             del optimizer, mp, scheduler
-#         ########################################malicious Client Learning######################################
-#         if len(round_malicious):
-#             mal_rank={}
-#             for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
-#                 torch.cuda.empty_cache()  
-#                 mp = copy.deepcopy(FLmodel)
-#                 optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
-#                 scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
-#                 for epoch in range(args.local_epochs):
-#                     train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
-#                     scheduler.step()
-#                 ################ attack on m directly ###############
-#                 # lr=0.01
-#                 for n, m in mp.named_modules():
-#                     if hasattr(m, "scores"):
-        
-#                         optimizer = MalOptimizer(m.scores.flatten(),args.device,α,γ,β,δ,lr1,lr2,k_s,v,scale1,scale2,nep,l_c)
-#                         mask_tensor_b,d = optimizer.optimize_mask_on_m()
-
-#                         ####################### get binary mask############################
-#                         scalared=100000*(2*mask_tensor_b-1)
-#                         final_mask=torch.sigmoid(scalared)
-                        
-#                         #####################get mal score#####################
-#                         masked_input = m.scores.flatten() * final_mask                           
-#                         masked_mal=-(masked_input/abs(d.item()))
-#                         mal_score=m.scores.flatten()+masked_mal
-#                         ####################################################
-                                 
-        
-#                 #####################################################
-#                         rank=Find_rank(mal_score.detach().clone())
-#                         user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
-#                         del rank
-#             del optimizer, mp, scheduler
-#         ########################################Server AGR#########################################
-#         # similarities = compare_user_updates(FLmodel, user_updates)      
-#         # for i, sim in enumerate(similarities, 1):
-#         #     print(f"Pair {i}: Cosine Similarity = {sim}")
- 
-#         # print("Pairwise Cosine Similarities:")
-#         # for key, value in similarities.items():
-#         #     print(f"Pair {key}: Similarity {value}")
-#         # cs_selected,cs_not_selected =cosine_distance_PICK_OUT(user_updates,FLmodel,len(round_malicious))  
-
-
-#         FRL_Vote(FLmodel, user_updates, initial_scores)
-#         del user_updates
-#         if (e+1)%1==0:
-#             t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
-#             if t_acc>t_best_acc:
-#                 t_best_acc=t_acc
-    
-        
-
-#             sss='e %d | malicious users: %d | test acc %.4f test loss %.6f best test_acc %.4f' % (e, len(round_malicious), t_acc, t_loss, t_best_acc)
-#             print (sss)
-#             with (args.run_base_dir / "output.txt").open("a") as f:
-#                 f.write("\n"+str(sss))
-#         wandb.log(
-#             {
-#                 "val_acc": t_acc,
-#                 "best_acc":t_best_acc,
-#                 "loss":t_loss,
-#                 # "pick out":cs_not_selected,
-#                 # "location":args.run_base_dir / "output.txt"
-
-#             }
-#         )
-#         e+=1
- 
 # def My_attack(tr_loaders,te_loader):
 #     run = wandb.init()
 
@@ -2325,14 +3295,25 @@ def FRL_matrix_attack(tr_loaders, te_loader):
 #         e+=1
 
 
-def Test_random(tr_loaders, te_loader):
+def FRL_train_label_flip_attack_fang(tr_loaders,te_loader,val_loader):
+    # run = wandb.init()
+
+    # note that we define values from `wandb.config`
+    # instead of defining hard values
+    # lr = wandb.config.lr
+    # # k_s = wandb.config.k_s
+    # # n_s=wandb.config.n_s
+    # α=wandb.config.α
+    m_r=wandb.config.m_r
+
+
     print ("#########Federated Learning using Rankings############")
     args.conv_type = 'MaskConv'
     args.conv_init = 'signed_constant'
     args.bn_type="NonAffineNoStatsBN"    
     
-    n_attackers = int(args.nClients * args.at_fractions)
-    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(args.at_fractions,
+    n_attackers = int(args.nClients * m_r)
+    sss = "fraction of maliciou clients: %.2f | total number of malicious clients: %d"%(m_r,
                                                                                         n_attackers)
     print (sss)
     with (args.run_base_dir / "output.txt").open("a") as f:
@@ -2350,13 +3331,25 @@ def Test_random(tr_loaders, te_loader):
     t_best_acc=0
     while e <= args.FL_global_epochs:
         torch.cuda.empty_cache() 
-        round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
-        round_malicious = round_users[round_users < n_attackers]
-        round_benign = round_users[round_users >= n_attackers]
-        while len(round_malicious)>=args.round_nclients/2:
-            round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
-            round_malicious = round_users[round_users < n_attackers]
-            round_benign = round_users[round_users >= n_attackers]
+
+        # round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[round_users < n_attackers]
+        # round_benign = round_users[round_users >= n_attackers]
+        # while len(round_malicious)>=args.round_nclients/2:
+        #     round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        #     round_malicious = round_users[round_users < n_attackers]
+        #     round_benign = round_users[round_users >= n_attackers]
+
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
             
         user_updates=collections.defaultdict(list)
         ########################################benign Client Learning#########################################
@@ -2377,71 +3370,37 @@ def Test_random(tr_loaders, te_loader):
             del optimizer, mp, scheduler
         ########################################malicious Client Learning######################################
         if len(round_malicious):
-            sum_args_sorts_mal={}
-            for kk in np.random.choice(n_attackers, min(n_attackers, args.rand_mal_clients), replace=False):
+            for kk in np.random.choice(n_attackers, min(len(round_malicious), args.rand_mal_clients), replace=False):
                 torch.cuda.empty_cache()  
                 mp = copy.deepcopy(FLmodel)
                 optimizer = optim.SGD([p for p in mp.parameters() if p.requires_grad], lr=args.lr*(args.lrdc**e), momentum=args.momentum, weight_decay=args.wd)
                 scheduler = CosineAnnealingLR(optimizer, T_max=args.local_epochs)
                 for epoch in range(args.local_epochs):
-                    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+                    train_loss, train_acc = train_label_flip(tr_loaders[kk], mp, criterion, optimizer, args.device)
                     scheduler.step()
-
-                for n, m in mp.named_modules():    
-                    if hasattr(m, "scores"):
-                        rank=Find_rank(m.scores.detach().clone())      # get the rank of current score
-                        rank_arg=torch.sort(rank)[1]
-
-                            # aggreate the ranking of malicious 
-                        if str(n) in sum_args_sorts_mal:
-                            sum_args_sorts_mal[str(n)]+=rank_arg       
-                        else:
-                            sum_args_sorts_mal[str(n)]=rank_arg
-                        del rank, rank_arg
-
-                        #  get the ramdom rank
-                    
-                        
-                        # random_indices = torch.randperm(len(rank))
-
-                        # # Use the random indices to reorder the tensor
-                        # random_rank = rank[random_indices]
-
-                        # user_updates[str(n)]=random_rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], random_rank[None,:]), 0)
-
-                # print(user_updates[str(n)])
-
-                del optimizer, mp, scheduler
-
-            # reverse aggreation ranking
-            for n, m in FLmodel.named_modules():
-                if hasattr(m, "scores"):
-                    # rank_mal_agr=torch.sort(sum_args_sorts_mal[str(n)], descending=True)[1]    # simply sort in descending order
-                    # print('descending')
-                    # print(rank_mal_agr)
-
-                    # shuffle the ranking
-                    n = len(sum_args_sorts_mal[str(n)])
-
-                    # Create a list of indices from 0 to n-1
-                    indices = list(range(n))
-
-                    # Shuffle the list of indices randomly
-                    random.shuffle(indices)
-
-                    # Convert the shuffled list of indices to a tensor
-                    rank_mal_agr = torch.tensor(indices)
-                    # print('random')
-                    # print(rank_mal_agr)
-
-                    
+                if args.FL_type =="FRL_label_flip_fang":
+                    for n, m in mp.named_modules():
+                        if hasattr(m, "scores"):
+                            rank=Find_rank(m.scores.detach().clone())
+                            
+                            user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                            del rank
+                elif args.FL_type =="FRL_grad_ascent_label":
+                    for n, m in mp.named_modules():
+                        if hasattr(m, "scores"):
+                            rank=Find_rank(-m.scores.detach().clone())
+                            
+                            user_updates[str(n)]=rank[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank[None,:]), 0)
+                            del rank
 
 
-                    for kk in round_malicious:
-                        user_updates[str(n)]=rank_mal_agr[None,:] if len(user_updates[str(n)]) == 0 else torch.cat((user_updates[str(n)], rank_mal_agr[None,:]), 0)
-            del sum_args_sorts_mal
+                
+            del optimizer, mp, scheduler
         ########################################Server AGR#########################################
-        FRL_Vote(FLmodel, user_updates, initial_scores)
+        if args.FL_type=='FRL_label_flip_fang':
+            selected_user_updates=defense.FRL_fang(FLmodel, user_updates,len(round_users),int(0.2*len(round_users)),val_loader,criterion, args.device,initial_scores,mode=wandb.config.mode)
+
+        FRL_Vote(FLmodel, selected_user_updates, initial_scores)
         del user_updates
         if (e+1)%1==0:
             t_loss, t_acc = test(te_loader, FLmodel, criterion, args.device) 
@@ -2452,8 +3411,15 @@ def Test_random(tr_loaders, te_loader):
             print (sss)
             with (args.run_base_dir / "output.txt").open("a") as f:
                 f.write("\n"+str(sss))
-        e+=1
+            wandb.log(
+            {
+                "val_acc": t_acc,
+                "best_acc":t_best_acc,
+                "loss":t_loss,
+                # "location":args.run_base_dir / "output.txt"
 
+            })
+        e+=1
 
 def FRL_train_label_flip_attack(tr_loaders,te_loader):
     # run = wandb.init()
@@ -2491,13 +3457,26 @@ def FRL_train_label_flip_attack(tr_loaders,te_loader):
     t_best_acc=0
     while e <= args.FL_global_epochs:
         torch.cuda.empty_cache() 
-        round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
-        round_malicious = round_users[round_users < n_attackers]
-        round_benign = round_users[round_users >= n_attackers]
-        while len(round_malicious)>=args.round_nclients/2:
-            round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
-            round_malicious = round_users[round_users < n_attackers]
-            round_benign = round_users[round_users >= n_attackers]
+
+        all_clients = np.arange(args.nClients)
+        malicious_clients = np.random.choice(all_clients, n_attackers, replace=False)
+        
+        # Select clients for the round
+        round_users = np.random.choice(all_clients, args.round_nclients, replace=False)
+
+        num_round_malicious = int(args.round_nclients * m_r)
+        # Ensure exactly num_round_malicious malicious clients
+        round_malicious = np.random.choice(round_users, num_round_malicious, replace=False)
+        round_benign = np.setdiff1d(round_users, round_malicious) 
+
+
+        # round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        # round_malicious = round_users[round_users < n_attackers]
+        # round_benign = round_users[round_users >= n_attackers]
+        # while len(round_malicious)>=args.round_nclients/2:
+        #     round_users = np.random.choice(args.nClients, args.round_nclients, replace=False)
+        #     round_malicious = round_users[round_users < n_attackers]
+        #     round_benign = round_users[round_users >= n_attackers]
             
         user_updates=collections.defaultdict(list)
         ########################################benign Client Learning#########################################
@@ -2550,6 +3529,8 @@ def FRL_train_label_flip_attack(tr_loaders,te_loader):
 
         elif wandb.config.defense=='Eud':
             selected_user_updates=defense.Euclidean(FLmodel, user_updates,int(0.2*len(round_users)))
+        else:
+            selected_user_updates=user_updates
 
         FRL_Vote(FLmodel, selected_user_updates, initial_scores)
         del user_updates

@@ -1,0 +1,14 @@
+wandb_version: 1
+
+attacks:
+  value: rank-reverse
+defense:
+  value: cosine
+k:
+  value: 0.1
+m_r:
+  value: 0.2
+non_iid:
+  value: 1
+poison_p:
+  value: 0.2

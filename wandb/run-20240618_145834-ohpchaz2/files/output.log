@@ -1,0 +1,38 @@
+=> Saving data in Logs/FRL~try=12
+dataset to use is:  FEMNIST
+number of FL clients:  3400
+non-iid degree data distribution:  1
+batch size is :  8
+test batch size is:  128
+generating participant indices for alpha 1.0
+7
+138
+211
+229
+237
+260
+306
+535
+549
+587
+1162
+1300
+1471
+1562
+1591
+1819
+2059
+2315
+2491
+2494
+2521
+2537
+2655
+2768
+3191
+3260
+3355
+use_cuda:  True
+type of FL:  FRP_defense
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 680

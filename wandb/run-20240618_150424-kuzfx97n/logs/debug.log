@@ -1,0 +1,31 @@
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_setup.py:_flush():76] Current SDK version is 0.16.6
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_setup.py:_flush():76] Configure stats pid to 16091
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_setup.py:_flush():76] Loading settings from /home/test/.config/wandb/settings
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_setup.py:_flush():76] Loading settings from /home/test/FRL/wandb/settings
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'femnist', 'entity': 'griffith', 'root_dir': '/home/test/FRL', 'sweep_id': 'tzpy6pvf', 'run_id': 'kuzfx97n', 'sweep_param_path': '/home/test/FRL/wandb/sweep-tzpy6pvf/config-kuzfx97n.yaml'}
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/test/FRL/main.py', 'program': '/home/test/FRL/main.py'}
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_init.py:_log_setup():521] Logging user logs to /home/test/FRL/wandb/run-20240618_150424-kuzfx97n/logs/debug.log
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_init.py:_log_setup():522] Logging internal logs to /home/test/FRL/wandb/run-20240618_150424-kuzfx97n/logs/debug-internal.log
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_init.py:init():561] calling init triggers
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_init.py:init():568] wandb.init called with sweep_config: {'attacks': 'rank-reverse', 'defense': 'cosine', 'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.2, 'max_t': 2000, 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
+config: {}
+2024-06-18 15:04:24,377 INFO    Thread-2 (_run_job):16091 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-18 15:04:25,222 INFO    Thread-2 (_run_job):16091 [wandb_run.py:_finish():2064] finishing run griffith/femnist/kuzfx97n
+2024-06-18 15:04:25,222 INFO    Thread-2 (_run_job):16091 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 1
+2024-06-18 15:04:25,222 INFO    Thread-2 (_run_job):16091 [wandb_run.py:_restore():2287] restore
+2024-06-18 15:04:25,222 INFO    Thread-2 (_run_job):16091 [wandb_run.py:_restore():2293] restore done
+2024-06-18 15:04:29,275 INFO    Thread-2 (_run_job):16091 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-18 15:04:29,276 INFO    Thread-2 (_run_job):16091 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-18 15:04:29,280 INFO    Thread-2 (_run_job):16091 [wandb_run.py:_footer_sync_info():3895] logging synced files
+2024-06-18 15:04:29,341 ERROR   MainThread:16091 [pyagent.py:_run_jobs_from_queue():236] Run kuzfx97n errored:
+Traceback (most recent call last):
+  File "/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/wandb/agents/pyagent.py", line 308, in _run_job
+    self._function()
+  File "/home/test/FRL/main.py", line 119, in main
+    FRL_train_defense(tr_loaders, te_loader)
+  File "/home/test/FRL/FL_train.py", line 1405, in FRL_train_defense
+    train_loss, train_acc = train(tr_loaders[kk], mp, criterion, optimizer, args.device)
+TypeError: 'DataLoader' object is not subscriptable
+

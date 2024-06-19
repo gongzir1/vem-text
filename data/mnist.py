@@ -2,6 +2,7 @@ from args import args
 from torchvision import datasets, transforms
 import torchvision
 from data.Dirichlet_noniid import *
+from data.iid import *
 # import numpy as np
 # import matplotlib.pyplot as plt
 import wandb
@@ -21,11 +22,19 @@ class MNIST:
 
         test_dataset = datasets.MNIST(root=args.data_loc, train=False, download=True, transform=Mytransform)
 
-       
 
 
         # tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=args.non_iid_degree, force=False)
-        tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=wandb.config.non_iid, force=False)
+        # tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=wandb.config.non_iid, force=False)
+        if wandb.config.non_iid=='iid':
+            tr_per_participant_list = sample_iid_train_data(train_dataset, args.nClients)
+            # plot_distribution(train_data_per_participant, args.nClients)
+        else:
+            tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=wandb.config.non_iid, force=False)
+     
+        
+        
+        
         self.tr_loaders = []
         tr_count = 0
         for pos, indices in tr_per_participant_list.items():
@@ -36,7 +45,7 @@ class MNIST:
             self.tr_loaders.append(get_train(train_dataset, indices, args.batch_size))
 #         print ("number of total training points:" ,tr_count)
         # self.te_loader= torch.utils.data.DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
-        if args.FL_type =="FRL_fang" or args.FL_type =="FRL_defense_Fang"or args.FL_type =='other_attacks_Fang':
+        if args.FL_type =="FRL_fang" or args.FL_type =="FRL_defense_Fang"or args.FL_type =='other_attacks_Fang'or args.FL_type =='FRL_label_flip_fang'or args.FL_type =='Reverse_mid_val'or args.FL_type =='other_attacks_agnostic_val'or args.FL_type =='FRL_train_agnostic_val': 
              # validation_size = int(0.2 * len(test_dataset)) 
             validation_size = 100 
             test_size = len(test_dataset) - validation_size

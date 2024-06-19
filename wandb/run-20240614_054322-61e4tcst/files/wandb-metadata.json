@@ -1,0 +1,113 @@
+{
+    "os": "Linux-6.2.0-39-generic-x86_64-with-glibc2.37",
+    "python": "3.10.9",
+    "heartbeatAt": "2024-06-13T19:43:22.716082",
+    "startedAt": "2024-06-13T19:43:22.083068",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--data_loc",
+        "/CIFAR10/data/",
+        "--config",
+        "experiments/004_config_MNIST_LeNet_FRL_1000users_noniid1.0_nomalicious.txt"
+    ],
+    "state": "running",
+    "program": "/home/test/FRL/main.py",
+    "codePathLocal": "main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/gongzir1/FRL_my.git",
+        "commit": "9f5bf153e86cc085319f64b07953f0910b824169"
+    },
+    "email": "zhaoxi_zhang@163.com",
+    "root": "/home/test/FRL",
+    "host": "test-MS-7B51",
+    "username": "test",
+    "executable": "/home/test/anaconda3/envs/FRL_test/bin/python",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 4164.691833333333,
+        "min": 800.0,
+        "max": 4700.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 4403.507,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4301.144,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4393.583,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4440.542,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4407.567,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4397.825,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4399.398,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4300.167,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 1900.222,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4343.478,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4301.308,
+            "min": 800.0,
+            "max": 4700.0
+        },
+        {
+            "current": 4387.561,
+            "min": 800.0,
+            "max": 4700.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 439.04788970947266,
+            "used": 266.7604293823242
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        }
+    ],
+    "memory": {
+        "total": 62.72426223754883
+    }
+}

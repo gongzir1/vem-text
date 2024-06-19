@@ -1,0 +1,41 @@
+=> Saving data in Logs/FRL~try=932
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  0.1
+batch size is :  8
+test batch size is:  128
+10
+84
+87
+98
+127
+143
+179
+234
+398
+400
+414
+427
+473
+512
+524
+534
+558
+574
+582
+671
+734
+767
+820
+823
+876
+881
+889
+921
+958
+use_cuda:  True
+type of FL:  other_attacks_agnostic
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+/home/test/anaconda3/envs/FRL_test/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "

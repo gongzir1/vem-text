@@ -41,3 +41,10 @@ config: {}
 2024-06-08 11:51:04,624 INFO    Thread-18 (_run_job):275191 [wandb_init.py:init():568] wandb.init called with sweep_config: {'iteration': 50, 'k': 0.1, 'lr': 0.001, 'm_r': 0.1, 'max_t': 2000, 'mode': 'combined', 'nep': 100, 'noise': 1, 'non_iid': 1, 'temp': 0.1}
 config: {}
 2024-06-08 11:51:04,624 INFO    Thread-18 (_run_job):275191 [wandb_init.py:init():606] wandb.init() called when a run is still active
+2024-06-08 12:12:30,002 INFO    Thread-18 (_run_job):275191 [wandb_run.py:_finish():2064] finishing run griffith/mnist-conv2-other-attacks-ab/tj5z14hh
+2024-06-08 12:12:30,002 INFO    Thread-18 (_run_job):275191 [wandb_run.py:_atexit_cleanup():2304] got exitcode: 0
+2024-06-08 12:12:30,003 INFO    Thread-18 (_run_job):275191 [wandb_run.py:_restore():2287] restore
+2024-06-08 12:12:30,003 INFO    Thread-18 (_run_job):275191 [wandb_run.py:_restore():2293] restore done
+2024-06-08 12:12:35,191 INFO    Thread-18 (_run_job):275191 [wandb_run.py:_footer_history_summary_info():3936] rendering history
+2024-06-08 12:12:35,193 INFO    Thread-18 (_run_job):275191 [wandb_run.py:_footer_history_summary_info():3968] rendering summary
+2024-06-08 12:12:35,199 INFO    Thread-18 (_run_job):275191 [wandb_run.py:_footer_sync_info():3895] logging synced files

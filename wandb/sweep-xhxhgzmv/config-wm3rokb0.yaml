@@ -1,0 +1,12 @@
+wandb_version: 1
+
+attacks:
+  value: noise
+k:
+  value: 0.1
+m_r:
+  value: 0.2
+mode:
+  value: LFR
+non_iid:
+  value: iid
