@@ -10,35 +10,35 @@ from FL_train import *
 from args import *
 
 # config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-# "lr":{"values": [0.001]},
-# "nep":{"values": [100]},
-# "max_t":{"values": [2000]},
-# "iteration":{"values": [50]},
-# "temp":{"values": [0.1]},
-# "noise":{"values": [1]},
-# 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
-'k':{"values": [0.1]},
-'m_r':{"values": [0.05,0.1,0.15,0.25]},
-'non_iid':{"values": [1]},
-# 'non_iid':{"values": [0.1,0.5,0.7,'iid',0.3]},
-# 'mode':{"values": ['ERR','LFR','combined']},
-# 'defense':{"values": ['cosine','Eud','FRL','FABA','Krum']},
-'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
-'defense':{"values": ['DnC','FABA']},
-#  'attacks':{"values": ['rank-reverse']},
-# 'attacks':{"values": ['my_attack']},
+# "method": "grid",
+# "metric":{
+#     "goal": "minimize", 
+#     "name": "t_acc"
+#     },
+# "parameters":{
+# # "lr":{"values": [0.001]},
+# # "nep":{"values": [100]},
+# # "max_t":{"values": [2000]},
+# # "iteration":{"values": [50]},
+# # "temp":{"values": [0.1]},
+# # "noise":{"values": [1]},
+# # 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
+# 'k':{"values": [0.1]},
+# 'm_r':{"values": [0.05,0.1,0.15,0.25]},
+# 'non_iid':{"values": [1]},
+# # 'non_iid':{"values": [0.1,0.5,0.7,'iid',0.3]},
+# # 'mode':{"values": ['ERR','LFR','combined']},
+# # 'defense':{"values": ['cosine','Eud','FRL','FABA','Krum']},
+# 'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
+# 'defense':{"values": ['DnC','FABA']},
+# #  'attacks':{"values": ['rank-reverse']},
+# # 'attacks':{"values": ['my_attack']},
 
-#  'poison_p':{"values": [0.2,0.4,0.6,0.8]}
-'poiaon-layer':{"values":'[''],[''],[''],['']'}
+# #  'poison_p':{"values": [0.2,0.4,0.6,0.8]}
+# 'poiaon-layer':{"values":'[''],[''],[''],['']'}
 
-},
-}
+# },
+# }
 # config
 if args.FL_type=='FRL_train_defense':
     config={
