@@ -55,6 +55,34 @@ class Conv2(nn.Module):
         out = out.view(out.size(0), 128 * 7 * 7, 1, 1)  # Flatten the output for the fully connected layers
         out = self.linear(out)
         return out.squeeze()
+    
+
+class Conv2_19(nn.Module):
+    def __init__(self):
+        super(Conv2_19, self).__init__()
+        builder = Builder()
+        self.convs = nn.Sequential(
+            builder.conv3x3(1, 64, first_layer=True),  # Change input channels to 1
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # Max pooling after first conv layer
+
+            builder.conv3x3(64, 128),  # Second conv layer
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),  # Max pooling after second conv layer
+        )
+
+        self.linear = nn.Sequential(
+            builder.conv1x1(128 * 7 * 7, 256),  # Adjust dimensions accordingly
+            nn.ReLU(),
+            builder.conv1x1(256, 62),  # Fully connected layer 2 (output layer)
+        )
+
+    def forward(self, x):
+        out = self.convs(x)
+        out = out.view(out.size(0), 128 * 7 * 7, 1, 1)  # Flatten the output for the fully connected layers
+        out = self.linear(out)
+        return out.squeeze()
+
 class SimpleConvNet(nn.Module):
     def __init__(self):
         super(SimpleConvNet, self).__init__()
@@ -108,6 +136,48 @@ class Conv8(nn.Module):
             builder.conv1x1(256, 256),
             nn.ReLU(),
             builder.conv1x1(256, 10),
+        )
+
+    def forward(self, x):
+        out = self.convs(x)
+        out = out.view(out.size(0), 512 * 2 * 2, 1, 1)
+        out = self.linear(out)
+        return out.squeeze()
+
+
+class Conv8_100(nn.Module):
+    def __init__(self):
+        super(Conv8_100, self).__init__()
+        builder = Builder()
+        self.convs = nn.Sequential(
+            builder.conv3x3(3, 64, first_layer=True),
+            nn.ReLU(),
+            builder.conv3x3(64, 64),
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),
+            builder.conv3x3(64, 128),
+            nn.ReLU(),
+            builder.conv3x3(128, 128),
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),
+            builder.conv3x3(128, 256),
+            nn.ReLU(),
+            builder.conv3x3(256, 256),
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),
+            builder.conv3x3(256, 512),
+            nn.ReLU(),
+            builder.conv3x3(512, 512),
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2))
+        )
+
+        self.linear = nn.Sequential(
+            builder.conv1x1(512 * 2 * 2, 256),
+            nn.ReLU(),
+            builder.conv1x1(256, 256),
+            nn.ReLU(),
+            builder.conv1x1(256, 100),
         )
 
     def forward(self, x):

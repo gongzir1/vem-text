@@ -22,10 +22,10 @@ def parse_arguments():
         default="Logs",
         help="Location to logs/checkpoints",)
     
-    parser.add_argument("--set", type=str, default="FEMNIST" , help="Which dataset to use")
+    parser.add_argument("--set", type=str, default="EMNIST" , help="Which dataset to use")
     
     parser.add_argument(
-        "--nClients", type=int, default=3400, help="number of clients participating in FL (default: 1000)")
+        "--nClients", type=int, default=1000, help="number of clients participating in FL (default: 1000)")
     parser.add_argument(
         "--at_fractions", type=float, default=0, help="fraction of malicious clients (default: 0%)")
     
@@ -57,7 +57,7 @@ def parse_arguments():
     )
     
     parser.add_argument(
-        "--data_loc", type=str, default="./FEMNIST", help="Location to store data",
+        "--data_loc", type=str, default="./emnist/data", help="Location to store data",
     )
     parser.add_argument(
         "--data_backdoor", type=str, default="./cifar10/data/backdoor", help="Location to store backdoor data",

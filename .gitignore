@@ -9,3 +9,7 @@ wandb/debug-internal.log
 wandb/debug.log
 wandb/latest-run
 femnist/*
+emnist/*
+cifar100/*
+CIFAR100_train_dirichlet_a_1.0_n1000.pkl
+EMNIST_train_dirichlet_a_1.0_n1000.pkl

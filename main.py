@@ -23,16 +23,19 @@ config={
 "temp":{"values": [0.1]},
 "noise":{"values": [1]},
 # 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
-'k':{"values": [0.6]},
+'k':{"values": [0.1]},
 'm_r':{"values": [0.2]},
 'non_iid':{"values": [1]},
-'mode':{"values": ['ERR','LFR','combined']},
+# 'mode':{"values": ['ERR','LFR','combined']},
 # 'defense':{"values": ['cosine','Eud']},
-'attacks':{"values": ['min_max','min_sum','noise','grad_ascent']},
-'defense':{"values": ['cosine','Eud','FRL']},
+# 'attacks':{"values": ['min_max','min_sum','noise','grad_ascent']},
+# 'defense':{"values": ['cosine','Eud','FRL']},
 # 'attacks':{"values": ['grad_ascent']},
 },
 }
+
+if args.FL_type=="":
+    config['mode']
 
 def main():
     wandb.init()
@@ -126,5 +129,7 @@ if __name__ == "__main__":
     # main()
     # Start sweep job.
     
-    sweep_id = wandb.sweep(sweep=config, project="mnist-conv2-other-attacks-ab")
+    sweep_id = wandb.sweep(sweep=config, project="_".join([
+        args.set, args.model, args.FL_type
+    ]))
     wandb.agent(sweep_id, function=main, count=400)
