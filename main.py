@@ -9,171 +9,136 @@ import data
 from FL_train import *
 from args import *
 
+
 # config={
-# "method": "grid",
-# "metric":{
-#     "goal": "minimize", 
-#     "name": "t_acc"
+#     "method": "grid",
+#     "metric":{
+#         "goal": "minimize", 
+#         "name": "t_acc"
+#         },
+#     "parameters":{
+#     # "lr":{"values": [0.01]},
+#     # "nep":{"values": [50]},
+#     # "max_t":{"values": [2000]},
+#     # "iteration":{"values": [50]},
+#     # "temp":{"values": [0.001]},
+#     # "noise":{"values": [1]},
+#     'k':{"values": [0.5]},
+#     'm_r':{"values": [0.2,0]},
+#     'non_iid':{"values": [1]},
+#     # 'non_iid':{"values": [0.1,0.5,0.9,'iid']},
+#     # 'mode':{"values": ['ERR','LFR','combined']},
+#     # 'defense':{"values": ['FRL','FABA','DnC','cosine','Eud',]},
+#     # 'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
+#     # 'defense':{"values": ['FABA','DnC']},
+#     'defense':{"values": ['foolsgold']},
+#     'attacks':{"values": ['lable']},
+#     # 'attacks':{"values": ['rank-reverse']},
+#     # 'attacks':{"values": ['my_attack']},
+#     # 'defense':{"values": ['my_DnC']},
+#     #  'poison_p':{"values": [0.2,0.4,0.6,0.8]}
+#     # 'poison_layer':{"values":[['linear.2'],['linear.0','linear.2'],['convs.3','linear.0','linear.2'],['convs.0','convs.3','linear.0','linear.2']]},
 #     },
-# "parameters":{
-# # "lr":{"values": [0.001]},
-# # "nep":{"values": [100]},
-# # "max_t":{"values": [2000]},
-# # "iteration":{"values": [50]},
-# # "temp":{"values": [0.1]},
-# # "noise":{"values": [1]},
-# # 'FL_type':{"values": ["FRL_cosine","FRL_Euclidean"]},
-# 'k':{"values": [0.1]},
-# 'm_r':{"values": [0.05,0.1,0.15,0.25]},
-# 'non_iid':{"values": [1]},
-# # 'non_iid':{"values": [0.1,0.5,0.7,'iid',0.3]},
-# # 'mode':{"values": ['ERR','LFR','combined']},
-# # 'defense':{"values": ['cosine','Eud','FRL','FABA','Krum']},
-# 'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
-# 'defense':{"values": ['DnC','FABA']},
-# #  'attacks':{"values": ['rank-reverse']},
-# # 'attacks':{"values": ['my_attack']},
+#     }
 
-# #  'poison_p':{"values": [0.2,0.4,0.6,0.8]}
-# 'poiaon-layer':{"values":'[''],[''],[''],['']'}
+if args.FL_type =='other_attacks':
+    config={
+    "method": "grid",
+    "metric":{
+        "goal": "minimize", 
+        "name": "t_acc"
+        },
+    "parameters":{
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0.2]},
+    'non_iid':{"values": [1]},
+    'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
+    'defense':{"values": ['foolsgold']},
+    'attacks':{"values": ['lable']},
+      },
+    }
+elif args.FL_type =='other_attacks_Fang':
+    config={
+    "method": "grid",
+    "metric":{
+        "goal": "minimize", 
+        "name": "t_acc"
+        },
+    "parameters":{
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0.2]},
+    'non_iid':{"values": [1]},
+    'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
+    'defense':{"values": ['fl_trust']},
+    },
+    }
+elif args.FL_type =='FRL_label_flip_fang':
+       config={
+    "method": "grid",
+    "metric":{
+        "goal": "minimize", 
+        "name": "t_acc"
+        },
+    "parameters":{
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0.2,0]},
+    'non_iid':{"values": [1]},
+    'attacks':{"values": ['label']},
+    'defense':{"values": ['fl_trust']},
+    },
+    }
+elif args.FL_type =='FRP_defense':
+       config={
+    "method": "grid",
+    "metric":{
+        "goal": "minimize", 
+        "name": "t_acc"
+        },
+    "parameters":{
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0.2]},
+    'non_iid':{"values": [1]},
+    'attacks':{"values": ['rank-reverse']},
+    'defense':{"values": ['foolsgold']},
+    },
+    }
+elif args.FL_type =='FRL_defense_Fang':
+       config={
+    "method": "grid",
+    "metric":{
+        "goal": "minimize", 
+        "name": "t_acc"
+        },
+    "parameters":{
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0.2]},
+    'non_iid':{"values": [1]},
+    'attacks':{"values": ['rank-reverse']},
+    'defense':{"values": ['fl_trust']},
+    },
+    }
+elif args.FL_type =='FRL_fang':
+       config={
+    "method": "grid",
+    "metric":{
+        "goal": "minimize", 
+        "name": "t_acc"
+        },
+    "parameters":{
+    "lr":{"values": [0.01]},
+    "nep":{"values": [50,30]},
+    "max_t":{"values": [2000]},
+    "iteration":{"values": [50,30]},
+    "temp":{"values": [0.0010]},
+    "noise":{"values": [1]},
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0.2]},
+    'non_iid':{"values": [1]},
+    'attacks':{"values": ['my_attack']},
+    'defense':{"values": ['fl_trust']},
+    },
+    }
 
-# },
-# }
-# config
-if args.FL_type=='FRL_train_defense':
-    config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-'k':{"values": [0.1]},
-'m_r':{"values": [0.2]},
-'non_iid':{"values": [1]},
-'defense':{"values": ['cosine','Eud','FRL','FABA','Krum','DnC']},
-'attack':{'rank-reverse'}
-},
-}
-
-elif args.FL_type=='my_attack_defense':
-    config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-"lr":{"values": [0.1]},
-"nep":{"values": [50]},
-"max_t":{"values": [2000]},
-"iteration":{"values": [50]},
-"temp":{"values": [0.1]},
-"noise":{"values": [1]},
-'k':{"values": [0.1]},
-'m_r':{"values": [0.2]},
-'non_iid':{"values": [1]},
-'defense':{"values": ['cosine','Eud','FRL','FABA','Krum','DnC']},
-'attack':{'my_attack'}
-},
-}
-elif args.FL_type=='other_attacks':
-    config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-'k':{"values": [0.1]},
-'m_r':{"values": [0.2]},
-'non_iid':{"values": [1]},
-'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
-'defense':{"values": ['cosine','Eud','FRL','FABA','Krum','DnC']},
-},
-}
-elif args.FL_type=='FRL_label_flip':
-        config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-'k':{"values": [0.1]},
-'m_r':{"values": [00.2]},
-'non_iid':{"values": [1]},
-'defense':{"values": ['cosine','Eud','FRL','FABA','Krum','DnC']},
-'attack':{'label'}
-},
-}
-elif args.FL_type=='FRL_defense_Fang':
-    config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-'k':{"values": [0.1]},
-'m_r':{"values": [0.2]},
-'non_iid':{"values": [1]},
-'mode':{"values": ['ERR','LFR','combined']},
-'attack':{'rank-reverse'}
-},
-}
-
-elif args.FL_type=='FRL_fang':
-    config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-"lr":{"values": [0.1]},
-"nep":{"values": [50]},
-"max_t":{"values": [2000]},
-"iteration":{"values": [50]},
-"temp":{"values": [0.1]},
-"noise":{"values": [1]},
-'k':{"values": [0.1]},
-'m_r':{"values": [0.2]},
-'non_iid':{"values": [1]},
-'mode':{"values": ['ERR','LFR','combined']},
-'attack':{'my_attack'}
-},
-}
-elif args.FL_type=='other_attacks_Fang':
-    config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-'k':{"values": [0.1]},
-'m_r':{"values": [0.2]},
-'non_iid':{"values": [1]},
-'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
-'mode':{"values": ['ERR','LFR','combined']},
-},
-}
-elif args.FL_type=='FRL_label_flip_fang':
-        config={
-"method": "grid",
-"metric":{
-    "goal": "minimize", 
-    "name": "t_acc"
-    },
-"parameters":{
-'k':{"values": [0.1]},
-'m_r':{"values": [0,0.2]},
-'non_iid':{"values": [1]},
-'mode':{"values": ['ERR','LFR','combined']},
-'attack':{'label'}
-},
-}
 
 
 
@@ -259,10 +224,6 @@ def main():
         FRL_train_defense_val(tr_loaders, te_loader,val_loader)
     elif args.FL_type =="other_attacks_Fang" :
         other_attacks_val(tr_loaders, te_loader,val_loader)
-    elif args.FL_type =="Reverse_mid":
-        Reverse_mid(tr_loaders, te_loader)
-    elif args.FL_type =="Reverse_mid_val":
-        Reverse_mid(tr_loaders, te_loader,val_loader)
     elif args.FL_type =="other_attacks_agnostic":
         FRL_attacks_agnostic(tr_loaders, te_loader)
     elif args.FL_type =="other_attacks_agnostic_val":
@@ -285,5 +246,5 @@ if __name__ == "__main__":
     # main()
     # Start sweep job.
     
-    sweep_id = wandb.sweep(sweep=config, project="mnist-krum")
+    sweep_id = wandb.sweep(sweep=config, project="cifar-args")
     wandb.agent(sweep_id, function=main, count=400)

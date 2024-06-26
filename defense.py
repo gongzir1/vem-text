@@ -172,7 +172,7 @@ def FRL_fang(FLmodel, user_updates,round_users,n_attackers,val_loader,criterion,
     return selected_dict
 
 
-def fl_trust(FLmodel, user_updates,round_users,n_attackers,val_loader,criterion,device,initial_scores,mode):
+def fl_trust(FLmodel, user_updates,round_users,n_attackers,val_loader,criterion,device,initial_scores,e):
     k=round_users-n_attackers
     b_update=collections.defaultdict(list)
     b_rank_cat=[]
@@ -188,17 +188,15 @@ def fl_trust(FLmodel, user_updates,round_users,n_attackers,val_loader,criterion,
     for n, m in mp.named_modules():
         if hasattr(m, "scores"):
             b_rank=Find_rank(m.scores.detach().clone())
-        b_update[str(n)]=b_rank[None,:] if len(b_update[str(n)]) == 0 else torch.cat((b_update[str(n)], b_rank[None,:]), 0)
-        del b_rank
+            b_update[str(n)]=b_rank[None,:] if len(b_update[str(n)]) == 0 else torch.cat((b_update[str(n)], b_rank[None,:]), 0)
+            del b_rank
 
     for n, m in FLmodel.named_modules():
         if hasattr(m, "scores"): 
             if len(b_rank_cat) == 0: # Check if concatenated_updates_tensor is empty
-                b_rank_cat = b_rank[str(n)].float()
+                b_rank_cat = b_update[str(n)].float()
             else:
-                b_rank_cat = torch.stack([torch.cat((row_a, row_b)) for row_a, row_b in zip(b_rank_cat, b_rank[str(n)])])
-
-    
+                b_rank_cat = torch.stack([torch.cat((row_a, row_b)) for row_a, row_b in zip(b_rank_cat, b_update[str(n)])])
     # concat user updates
 
     similarities = []
@@ -211,31 +209,27 @@ def fl_trust(FLmodel, user_updates,round_users,n_attackers,val_loader,criterion,
             else:
                 concatenated_updates_tensor = torch.stack([torch.cat((row_a, row_b)) for row_a, row_b in zip(concatenated_updates_tensor, user_updates[str(n)])])
 
-    x1 = concatenated_updates_tensor
+    x1 = b_rank_cat
     x2 =concatenated_updates_tensor
     eps=1e-8
     w1 = x1.norm(p=2, dim=1, keepdim=True)
-    w2 = w1 if x2 is x1 else x2.norm(p=2, dim=1, keepdim=True)
+    w2 = x2.norm(p=2, dim=1, keepdim=True)
     similarities = torch.mm(x1, x2.t()) / (w1 * w2.t()).clamp(min=eps)
-    k=len(concatenated_updates_tensor)-n_attackers
-
-
-    k_nearest = torch.topk(similarities, k, dim=1)      # return the largest for each client 
-    neighbour_dist = torch.zeros(concatenated_updates_tensor.size(0))
-    for i in range(concatenated_updates_tensor.size(0)):
-        idx = k_nearest.indices[i]
-        neighbour = similarities[idx][:,idx]
-        neighbour_dist[i] = neighbour.sum()
-
-    all_indices = torch.arange(neighbour_dist.size(0)) 
-    cos_selected = torch.topk(neighbour_dist, k).indices
-
-    selected_dict = defaultdict(lambda: torch.empty(len(cos_selected), user_updates[next(iter(user_updates))].size(1)))
-
+    relu = torch.nn.ReLU()
+    norm = b_rank_cat.norm()
+    scores=relu(similarities)
+    
+    #######majority voting###########
     for n, m in FLmodel.named_modules():
-        if hasattr(m, "scores"): 
-            selected_dict[n]=user_updates[str(n)][cos_selected]
-    return selected_dict
+        if hasattr(m, "scores"):
+            args_sorts=torch.sort(scores.transpose(0,1)*user_updates[str(n)])[1]
+            sum_args_sorts=torch.sum(args_sorts, 0)         
+            idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+            temp1=m.scores.detach().clone()
+            temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
+            m.scores=torch.nn.Parameter(temp1)                       
+            del idxx, temp1
+
 
 def FABA(FLmodel, user_updates, n_attackers):
     concatenated_updates_tensor = []
@@ -334,3 +328,131 @@ def DnC(FLmodel, user_updates, num_byzantine: int, sub_dim: int = 1000, num_iter
             selected_dict[n]=user_updates[str(n)][benign_ids]
     return selected_dict
 
+def foolsgold(FLmodel, user_updates,device,initial_scores):
+    similarities = []
+    concatenated_updates_tensor = []
+    user_updates_new=collections.defaultdict(list)
+
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            if len(concatenated_updates_tensor) == 0: # Check if concatenated_updates_tensor is empty
+                concatenated_updates_tensor = user_updates[str(n)].float()
+            else:
+                concatenated_updates_tensor = torch.stack([torch.cat((row_a, row_b)) for row_a, row_b in zip(concatenated_updates_tensor, user_updates[str(n)])])
+
+    x1 = concatenated_updates_tensor
+    x2 =concatenated_updates_tensor
+    eps=1e-4
+    w1 = x1.norm(p=2, dim=1, keepdim=True)
+    w2 = w1 if x2 is x1 else x2.norm(p=2, dim=1, keepdim=True)
+    n_clients = concatenated_updates_tensor.shape[0]
+
+    cs = torch.mm(x1, x2.t()) / (w1 * w2.t()).clamp(min=eps)
+    cs = cs - torch.eye(n_clients, device=device)
+
+    # cs = smp.cosine_similarity(grads) - np.eye(n_clients)
+    maxcs = torch.max(cs, dim=1).values
+
+    # Pardoning step
+    for i in range(n_clients):
+        for j in range(n_clients):
+            if i == j:
+                continue
+            if maxcs[i] < maxcs[j]:
+                cs[i, j] = cs[i, j] * maxcs[i] / maxcs[j]
+
+    wv = 1 - torch.max(cs, dim=1).values
+    wv = torch.clamp(wv, 0, 1)
+
+    # Rescale so that max value is 0.99
+    wv = wv / torch.max(wv)
+    wv[wv == 1] = 0.99
+    wv[wv==0]=0.1
+
+    # Logit function
+    # wv = torch.log(wv / (1 - wv)+eps) + 0.5  # Added eps to avoid log(0)
+    # wv = torch.clamp(wv, 0, 1)
+    # wv=wv/torch.sum(wv).item()
+    wv=wv.view(25,1)
+    #######majority voting###########
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            args_sorts=torch.sort(wv*user_updates[str(n)])[1]
+            sum_args_sorts=torch.sum(args_sorts, 0)         
+            idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+            temp1=m.scores.detach().clone()
+            temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
+            m.scores=torch.nn.Parameter(temp1)                       
+            del idxx, temp1
+
+
+def My_Dnc_defense(FLmodel, user_updates, num_byzantine: int, sub_dim: int = 1000, num_iters: int = 5) -> torch.Tensor:
+    updates = []
+    # all_updates = []
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            update_tensor = user_updates[str(n)].float()
+           
+            if len(updates) == 0:
+                updates = update_tensor
+            else:
+                updates = torch.stack([torch.cat((row_a, row_b)) for row_a, row_b in zip(updates, update_tensor)])
+
+
+    d = len(updates[0])
+
+    benign_ids = []
+    for x in range(num_iters):
+        indices = torch.randperm(d)[:sub_dim]
+        sub_updates = updates[:, indices]
+
+        # check intersection 
+        # Convert each row to a set of unique elements
+        sets_of_elements = [set(sub_updates[row].tolist()) for row in range(sub_updates.size(0))]
+
+        # Initialize a list to store the count of common elements for each row
+        common_counts = [0] * len(sets_of_elements)
+
+        # Compute the number of common elements for each pair of rows
+        for i in range(len(sets_of_elements)):
+            for j in range(i + 1, len(sets_of_elements)):
+                common_elements = sets_of_elements[i].intersection(sets_of_elements[j])
+                common_count = len(common_elements)
+                common_counts[i] += common_count
+                common_counts[j] += common_count
+
+        # Convert the list to a tensor
+        common_counts_tensor = torch.tensor(common_counts)
+
+        # Specify the value of k
+        k=num_byzantine
+
+        # Find the top k rows with the most common elements
+        top_k_indices = torch.topk(common_counts_tensor, k//2).indices
+        bottom_k_indices = torch.topk(common_counts_tensor, k//2, largest=False).indices
+        combined_indices = torch.cat((top_k_indices, bottom_k_indices)).tolist()
+
+
+        # Remove the combined indices from the original set of indices and append to benign_ids
+        all_indices = set(range(len(common_counts_tensor)))
+        remaining_indices = list(all_indices - set(combined_indices))
+        benign_ids.append(remaining_indices)
+
+    # Convert the first list to a set to start the intersection
+    intersection_set = set(benign_ids[0])
+
+    # Iterate over the rest of the lists and get the intersection
+    for lst in benign_ids[1:]:
+        intersection_set.intersection_update(lst)
+
+    # Convert the set back to a list
+    benign_ids = list(intersection_set)
+    selected_dict = defaultdict(lambda: torch.empty(len(benign_ids), user_updates[next(iter(user_updates))].size(1)))
+
+    # benign_updates = updates[benign_ids, :]
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            selected_dict[n]=user_updates[str(n)][benign_ids]
+    return selected_dict
+
+  

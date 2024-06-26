@@ -185,3 +185,70 @@ class Conv8_100(nn.Module):
         out = out.view(out.size(0), 512 * 2 * 2, 1, 1)
         out = self.linear(out)
         return out.squeeze()
+    
+
+class VGG(nn.Module):
+    def __init__(self, num_classes=10):
+        super(VGG, self).__init__()
+        builder = Builder()
+        self.convs = nn.Sequential(
+            # Block 1
+            builder.conv3x3(3, 64, first_layer=True),  # 128 -> 64
+            nn.ReLU(),
+            builder.conv3x3(64, 64),  # 128 -> 64
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),
+            
+            # Block 2
+            builder.conv3x3(64, 128),  # 256 -> 128
+            nn.ReLU(),
+            builder.conv3x3(128, 128),  # 256 -> 128
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),
+            
+            # Block 3
+            builder.conv3x3(128, 256),  # 512 -> 256
+            nn.ReLU(),
+            builder.conv3x3(256, 256),  # 512 -> 256
+            nn.ReLU(),
+            builder.conv3x3(256, 256),  # 512 -> 256
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),
+            
+            # Block 4
+            builder.conv3x3(256, 512),  # 1024 -> 512
+            nn.ReLU(),
+            builder.conv3x3(512, 512),  # 1024 -> 512
+            nn.ReLU(),
+            builder.conv3x3(512, 512),  # 1024 -> 512
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2)),
+            
+            # Block 5
+            builder.conv3x3(512, 512),  # 1024 -> 512
+            nn.ReLU(),
+            builder.conv3x3(512, 512),  # 1024 -> 512
+            nn.ReLU(),
+            builder.conv3x3(512, 512),  # 1024 -> 512
+            nn.ReLU(),
+            nn.MaxPool2d((2, 2))
+        )
+
+        self.linear = nn.Sequential(
+            builder.conv1x1(512, 4096),  # Adjusted to match the reduced channels
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            builder.conv1x1(4096, 4096),  # Adjusted to match the reduced channels
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            builder.conv1x1(4096, num_classes),
+        )
+
+    def forward(self, x):
+        out = self.convs(x)
+        out = out.view(out.size(0), 512, 1, 1)  # Adjusted to match the reduced channels
+        out = self.linear(out)
+        return out.squeeze()
+
+
+   

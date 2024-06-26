@@ -22,7 +22,7 @@ def parse_arguments():
         default="Logs",
         help="Location to logs/checkpoints",)
     
-    parser.add_argument("--set", type=str, default="EMNIST" , help="Which dataset to use")
+    parser.add_argument("--set", type=str, default="MNIST" , help="Which dataset to use")
     
     parser.add_argument(
         "--nClients", type=int, default=1000, help="number of clients participating in FL (default: 1000)")
@@ -57,7 +57,7 @@ def parse_arguments():
     )
     
     parser.add_argument(
-        "--data_loc", type=str, default="./emnist/data", help="Location to store data",
+        "--data_loc", type=str, default="./cifar100/data", help="Location to store data",
     )
     parser.add_argument(
         "--data_backdoor", type=str, default="./cifar10/data/backdoor", help="Location to store backdoor data",
@@ -68,7 +68,7 @@ def parse_arguments():
     )
     
     parser.add_argument(
-        "--FL_type", type=str, default='FedAVG', help="Type of FL (defualt: FRL)"
+        "--FL_type", type=str, default='other_attacks', help="Type of FL (defualt: FRL)"
     )
     
     parser.add_argument(
@@ -111,7 +111,7 @@ def parse_arguments():
         help="Weight decay (default: 0.0001)",
     )
     
-    parser.add_argument("--model", type=str, default="Conv8", help="Type of model (default: Conv8().")
+    parser.add_argument("--model", type=str, default="Conv2", help="Type of model (default: Conv8().")
 
     parser.add_argument(
         "--sparsity", type=float, default=0.5, help="how sparse is each layer, when using MaskConv"

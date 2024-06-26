@@ -33,8 +33,6 @@ class MNIST:
             tr_per_participant_list, tr_diversity = sample_dirichlet_train_data_train(train_dataset, args.nClients, alpha=wandb.config.non_iid, force=False)
      
         
-        
-        
         self.tr_loaders = []
         tr_count = 0
         for pos, indices in tr_per_participant_list.items():
