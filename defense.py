@@ -386,7 +386,7 @@ def foolsgold(FLmodel, user_updates,device,initial_scores):
             del idxx, temp1
 
 
-def My_Dnc_defense(FLmodel, user_updates, num_byzantine: int, sub_dim: int = 1000, num_iters: int = 5) -> torch.Tensor:
+def My_Dnc_defense_old(FLmodel, user_updates, num_byzantine: int, sub_dim: int = 1000, num_iters: int = 5) -> torch.Tensor:
     updates = []
     # all_updates = []
     for n, m in FLmodel.named_modules():
@@ -455,4 +455,195 @@ def My_Dnc_defense(FLmodel, user_updates, num_byzantine: int, sub_dim: int = 100
             selected_dict[n]=user_updates[str(n)][benign_ids]
     return selected_dict
 
-  
+def test(FLmodel, user_updates,sub_dim: int = 1000, num_iters: int = 5) -> torch.Tensor:
+    updates = []
+    avg_max=0
+    avg_min=0
+    # all_updates = []
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            update_tensor = user_updates[str(n)].float()
+           
+            if len(updates) == 0:
+                updates = update_tensor
+            else:
+                updates = torch.stack([torch.cat((row_a, row_b)) for row_a, row_b in zip(updates, update_tensor)])
+
+
+    d = len(updates[0])
+
+    benign_ids = []
+    for x in range(num_iters):
+        indices = torch.randperm(d)[:sub_dim]
+        sub_updates = updates[:, indices]
+
+        # check intersection 
+        # Convert each row to a set of unique elements
+        sets_of_elements = [set(sub_updates[row].tolist()) for row in range(sub_updates.size(0))]
+
+        # Initialize a list to store the count of common elements for each row
+        common_counts = [0] * len(sets_of_elements)
+
+        # Compute the number of common elements for each pair of rows
+        for i in range(len(sets_of_elements)):
+            for j in range(i + 1, len(sets_of_elements)):
+                common_elements = sets_of_elements[i].intersection(sets_of_elements[j])
+                common_count = len(common_elements)
+                common_counts[i] += common_count
+                common_counts[j] += common_count
+
+        # Convert the list to a tensor
+        common_counts_tensor = torch.tensor(common_counts)
+        max_val=torch.max(common_counts_tensor)
+        min_val=torch.min(common_counts_tensor)
+        avg_max += max_val.item()
+        avg_min += min_val.item()
+
+    # Calculate the average max and min values
+    avg_max /= num_iters
+    avg_min /= num_iters
+
+    return avg_max,avg_min
+
+        # rest
+
+    #     # Specify the value of k
+    #     k=num_byzantine
+
+    #     # Find the top k rows with the most common elements
+    #     top_k_indices = torch.topk(common_counts_tensor, k//2).indices
+    #     bottom_k_indices = torch.topk(common_counts_tensor, k//2, largest=False).indices
+    #     combined_indices = torch.cat((top_k_indices, bottom_k_indices)).tolist()
+
+
+    #     # Remove the combined indices from the original set of indices and append to benign_ids
+    #     all_indices = set(range(len(common_counts_tensor)))
+    #     remaining_indices = list(all_indices - set(combined_indices))
+    #     benign_ids.append(remaining_indices)
+
+    # # Convert the first list to a set to start the intersection
+    # intersection_set = set(benign_ids[0])
+
+    # # Iterate over the rest of the lists and get the intersection
+    # for lst in benign_ids[1:]:
+    #     intersection_set.intersection_update(lst)
+
+    # # Convert the set back to a list
+    # benign_ids = list(intersection_set)
+    # selected_dict = defaultdict(lambda: torch.empty(len(benign_ids), user_updates[next(iter(user_updates))].size(1)))
+
+    # # benign_updates = updates[benign_ids, :]
+    # for n, m in FLmodel.named_modules():
+    #     if hasattr(m, "scores"): 
+    #         selected_dict[n]=user_updates[str(n)][benign_ids]
+    # return selected_dict
+
+def My_Dnc_defense(FLmodel, user_updates, maxt,mint,sub_dim: int = 1000, num_iters: int = 5) -> torch.Tensor:
+    updates = []
+    sum_com=torch.zeros(25)
+    # all_updates = []
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            update_tensor = user_updates[str(n)].float()
+           
+            if len(updates) == 0:
+                updates = update_tensor
+            else:
+                updates = torch.stack([torch.cat((row_a, row_b)) for row_a, row_b in zip(updates, update_tensor)])
+
+
+    d = len(updates[0])
+
+    benign_ids = []
+    for x in range(num_iters):
+        indices = torch.randperm(d)[:sub_dim]
+        sub_updates = updates[:, indices]
+
+        # check intersection 
+        # Convert each row to a set of unique elements
+        sets_of_elements = [set(sub_updates[row].tolist()) for row in range(sub_updates.size(0))]
+
+        # Initialize a list to store the count of common elements for each row
+        common_counts = [0] * len(sets_of_elements)
+
+        # Compute the number of common elements for each pair of rows
+        for i in range(len(sets_of_elements)):
+            for j in range(i + 1, len(sets_of_elements)):
+                common_elements = sets_of_elements[i].intersection(sets_of_elements[j])
+                common_count = len(common_elements)
+                common_counts[i] += common_count
+                common_counts[j] += common_count
+
+        # Convert the list to a tensor
+        common_counts_tensor = torch.tensor(common_counts)
+        sum_com += common_counts_tensor
+    
+    avg=sum_com/num_iters
+
+    # benign_ids = np.where((avg >= mint) & (avg <= maxt))[0]
+    benign_ids = torch.nonzero((avg >= mint) & (avg <= maxt), as_tuple=True)[0]
+
+    # Convert the set back to a list
+    # benign_ids = list(indices_within_threshold)
+    selected_dict = defaultdict(lambda: torch.empty(len(benign_ids), user_updates[next(iter(user_updates))].size(1)))
+
+    # benign_updates = updates[benign_ids, :]
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            selected_dict[n]=user_updates[str(n)][benign_ids]
+    return selected_dict
+
+def My_Dnc_defense_topk(FLmodel, user_updates, maxt,mint,sub_dim: int = 1000, num_iters: int = 5) -> torch.Tensor:
+    updates = []
+    sum_com=torch.zeros(25)
+    # all_updates = []
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            update_tensor = user_updates[str(n)].float()
+           
+            if len(updates) == 0:
+                updates = update_tensor
+            else:
+                updates = torch.stack([torch.cat((row_a, row_b)) for row_a, row_b in zip(updates, update_tensor)])
+
+
+    d = len(updates[0])
+
+    benign_ids = []
+    for x in range(num_iters):
+        indices = torch.randperm(d)[:sub_dim]
+        sub_updates = updates[:, indices]
+
+        # check intersection 
+        # Convert each row to a set of unique elements
+        sets_of_elements = [set(sub_updates[row].tolist()) for row in range(sub_updates.size(0))]
+
+        # Initialize a list to store the count of common elements for each row
+        common_counts = [0] * len(sets_of_elements)
+
+        # Compute the number of common elements for each pair of rows
+        for i in range(len(sets_of_elements)):
+            for j in range(i + 1, len(sets_of_elements)):
+                common_elements = sets_of_elements[i].intersection(sets_of_elements[j])
+                common_count = len(common_elements)
+                common_counts[i] += common_count
+                common_counts[j] += common_count
+
+        # Convert the list to a tensor
+        common_counts_tensor = torch.tensor(common_counts)
+        sum_com += common_counts_tensor
+    
+    avg=sum_com/num_iters
+
+    # benign_ids = np.where((avg >= mint) & (avg <= maxt))[0]
+    benign_ids = torch.nonzero((avg >= mint) & (avg <= maxt), as_tuple=True)[0]
+
+    # Convert the set back to a list
+    # benign_ids = list(indices_within_threshold)
+    selected_dict = defaultdict(lambda: torch.empty(len(benign_ids), user_updates[next(iter(user_updates))].size(1)))
+
+    # benign_updates = updates[benign_ids, :]
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"): 
+            selected_dict[n]=user_updates[str(n)][benign_ids]
+    return selected_dict

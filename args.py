@@ -27,7 +27,7 @@ def parse_arguments():
     parser.add_argument(
         "--nClients", type=int, default=1000, help="number of clients participating in FL (default: 1000)")
     parser.add_argument(
-        "--at_fractions", type=float, default=0, help="fraction of malicious clients (default: 0%)")
+        "--at_fractions", type=float, default=0.2, help="fraction of malicious clients (default: 0%)")
     
     parser.add_argument(
         "--non_iid_degree",
@@ -46,7 +46,7 @@ def parse_arguments():
     parser.add_argument(
         "--batch_size",
         type=int,
-        default=8,
+        default=32,
         help="input batch size for training (default: 8)",
     )
     parser.add_argument(
@@ -68,7 +68,7 @@ def parse_arguments():
     )
     
     parser.add_argument(
-        "--FL_type", type=str, default='other_attacks', help="Type of FL (defualt: FRL)"
+        "--FL_type", type=str, default='FRL_matrix_attack', help="Type of FL (defualt: FRL)"
     )
     
     parser.add_argument(

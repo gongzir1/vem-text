@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
-
+import wandb
 
 
 def Find_rank(scores):
@@ -96,6 +96,102 @@ def FRL_Vote(FLmodel, user_updates, initial_scores):
             args_sorts=torch.sort(user_updates[str(n)])[1]
             sum_args_sorts=torch.sum(args_sorts, 0)         
             idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+            temp1=m.scores.detach().clone()
+            temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
+            m.scores=torch.nn.Parameter(temp1)                       
+            del idxx, temp1
+
+def sep(FLmodel, user_updates):
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            if str(n)=='convs.0':                                                           # only record the first layer
+                args_sorts=torch.sort(user_updates[str(n)])[1]
+                sum_args_sorts=torch.sum(args_sorts, 0)      
+                idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+                # record the top k% edge id
+                id_selected=idxx[len(idxx)//2:]
+                id_not_selected=idxx[:len(idxx)//2]
+    
+    return id_selected, id_not_selected
+
+def update_and_record_crossings(FLmodel, user_updates,selected_old, not_selected_old, crossings):
+    # Convert current states to sets for efficient membership checking
+    selected_old_set, not_selected_old_set = set(selected_old.cpu().numpy()), set(not_selected_old.cpu().numpy())
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            if str(n)=='convs.0':                                                           # only record the first layer
+                args_sorts=torch.sort(user_updates[str(n)])[1]
+                sum_args_sorts=torch.sum(args_sorts, 0)      
+                idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+                # record the top k% edge id
+                id_selected=set((idxx[len(idxx)//2:]).cpu().numpy())
+                id_not_selected=set((idxx[:len(idxx)//2]).cpu().numpy())
+
+    total = set(range(len(idxx)))
+
+    # Record crossings for each item
+    for item in total:
+        if (item in not_selected_old_set and item in id_selected) or (item in selected_old_set and item in id_not_selected):
+            crossings[item] += 1
+    
+    return crossings
+                
+
+
+def FRL_Vote_adaptive(FLmodel, user_updates, initial_scores,k_a):
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            args_sorts=torch.sort(user_updates[str(n)])[1]
+            sum_args_sorts=torch.sum(k_a*args_sorts, 0)         
+            idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+            temp1=m.scores.detach().clone()
+            temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
+            m.scores=torch.nn.Parameter(temp1)                       
+            del idxx, temp1
+
+
+def FRL_Vote_both(FLmodel, user_updates, initial_scores):
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            intersection=0
+            args_sorts=torch.sort(user_updates[str(n)])[1]
+            sum_args_sorts=torch.sum(args_sorts, 0)         
+            idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+            ############plot #############
+            top_k_mal=torch.topk(torch.sort(idxx)[1],len(idxx)//10)[1]
+            ############################
+            ##########benign ##########
+            user_updates_b=user_updates[str(n)][:20]
+            args_sorts_b=torch.sort(user_updates_b)[1]
+            sum_args_sorts_b=torch.sum(args_sorts_b, 0)         
+            idxx_b=torch.sort(sum_args_sorts_b)[1]          # get the rank again
+            ############plot #############
+            top_k_b=torch.topk(torch.sort(idxx_b)[1],len(idxx)//10)[1]
+            ################intersection#############
+            # Convert tensors to sets
+            set1 = set(top_k_b.tolist())
+            set2 = set(top_k_mal.tolist())
+
+            # Find intersection
+            intersection = set1.intersection(set2)
+
+            # Get the length of the intersection
+            intersection_length = len(intersection)
+            succ=len(idxx)//10-intersection_length
+            succ_rate=succ/(len(idxx)//10)
+
+            # with (args.run_base_dir / "inter.txt").open("a") as f:
+            #     f.write("\n" + str(intersection_length) + ", " + str(succ) + ", " + str(succ_rate))
+            with (args.run_base_dir / "inter.txt").open("a") as f:
+                f.write("\n"+str(succ_rate))
+            wandb.log(
+            {
+                "inter": intersection_length,
+                "succ":succ,
+                "succ_rate":succ_rate
+
+            })
+            
             temp1=m.scores.detach().clone()
             temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
             m.scores=torch.nn.Parameter(temp1)                       
