@@ -1,3 +1,0 @@
-Create sweep with ID: dr0tv8jb
-Sweep URL: https://wandb.ai/griffith/different-k-mnist-attack-0.1/sweeps/dr0tv8jb
-[34m[1mwandb[39m[22m: [33mWARNING[39m Calling wandb.login() after wandb.init() has no effect.

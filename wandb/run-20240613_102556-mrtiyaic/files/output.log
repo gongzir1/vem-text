@@ -1,8 +1,0 @@
-=> Saving data in Logs/FRL~try=897
-dataset to use is:  CIFAR10
-number of FL clients:  1000
-non-iid degree data distribution:  1
-batch size is :  8
-test batch size is:  128
-Files already downloaded and verified
-Files already downloaded and verified

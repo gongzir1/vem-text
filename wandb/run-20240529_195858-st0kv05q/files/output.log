@@ -1,3 +1,0 @@
-Create sweep with ID: u4zoyf17
-Sweep URL: https://wandb.ai/griffith/mnist-conv2-my-attack-non-iid-0.5/sweeps/u4zoyf17
-[34m[1mwandb[39m[22m: [33mWARNING[39m Calling wandb.login() after wandb.init() has no effect.

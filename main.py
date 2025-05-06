@@ -51,11 +51,11 @@ if args.FL_type =='other_attacks':
     "parameters":{
     'k':{"values": [0.1]},
     'm_r':{"values": [0,0.2]},
-    'non_iid':{"values": [1]},
+    'non_iid':{"values": ['iid']},
     'attacks':{"values": ['grad_ascent','min_max','min_sum','noise']},
     # 'attacks':{"values": ['noise']},
     'defense':{"values": ['my_defense_adaptive']},
-    'k_a':{"values": [0.5,1]},
+    # 'k_a':{"values": [0.5,1]},
     # 'maxt':{"values": [1000]},
     # 'mint':{"values": [5,10,15,20,25,30]},
     # 'mint':{"values": [10,15,5]},
@@ -152,15 +152,16 @@ elif args.FL_type =='FRL_fang':
     "iteration":{"values": [40]},
     "temp":{"values": [0.0001]},
     "noise":{"values": [1]},
-    'k':{"values": [0.1]},
-    'm_r':{"values": [0.05,0.1,0.15,0.25]},
-    'non_iid':{"values": [1]},
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0,0.2]},
+    'non_iid':{"values": ['iid']},
     'attacks':{"values": ['my_attack']},
     'defense':{"values": ['FRL_fang']},
-    'mode':{"values": ['ERR','LFR','combined']},
+    'defense':{"values": ['fl_trust']},
+    'mode':{"values": ['combined']},
     },
     }
-elif args.FL_type =='my_attack_defense':
+elif args.FL_type =='my_attack_defense' or args.FL_type=='FRL_matrix_attack_defense_upper_bound' or args.FL_type=='FRL_matrix_attack_defense_forcasting' or args.FL_type=='compare_different_estimation':
        config={
     "method": "grid",
     "metric":{
@@ -168,21 +169,37 @@ elif args.FL_type =='my_attack_defense':
         "name": "t_acc"
         },
     "parameters":{
-    "lr":{"values": [0.01]},
-    "nep":{"values": [40]},
+    "lr":{"values": [0.1]},
+    "nep":{"values": [50]},
     "max_t":{"values": [2000]},
     "iteration":{"values": [50]},
     "temp":{"values": [0.0001]},
     "noise":{"values": [1]},
-    'k':{"values": [0.1]},
-    'm_r':{"values": [0.05,0.1,0.15,0.25]},
-    'non_iid':{"values": [1]},
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0.2]},
+    'non_iid':{"values": [0.1]},
     'attacks':{"values": ['my_attack']},
-    'defense':{"values": ['FRL','FABA','DnC','cosine','Eud','foolsgold']},
-    # 'defense':{"values": ['cosine','Eud','foolsgold']}, 
+    # 'threshold':{"values": [0.1,0.5,0.9]},
+    # "k_a":{"values":[0.1,0.5,1,1.5,2,2.5]},
+    # "k_a":{"values":[2.5]},
+    # 'sub_dim':{"values": [50,100,300,1500,3000]},
+    # 'maxt':{"values": [1000]},
+    # 'mint':{"values": [20]},
+    # 'num_iters':{"values": [1,3,5,7,9,10]},
+    # 'filter_frac':{"values": [1,0.5,0.3,0.8]},
+    # 'alpha':{'max': 0.99,'min': 0.01,'distribution': 'uniform'},
+    # 'alpha':{"values":[0.7]},
+    # 'defense':{"values": ['FRL','FABA','cosine','Eud','foolsgold']},
+    # 'defense':{"values": ['foolsgold']},
+    'defense':{"values": ['FRL']},
+    # 'defense':{"values": ['My_Dnc_defense_topk']}, 
+    # 'select_percentage':{"values": [0.2,0.4,0.6,0.8,1]},
+    # 'select_percentage':{"values": [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]},
+        # 'select_percentage':{"values": [1]},
+    # 'defense':{"values": ['FRL','My_Dnc_defense_topk']}, 
     },
     }
-elif args.FL_type =='Reverse_mid'or args.FL_type =='FRL_matrix_attack':
+elif args.FL_type =='Reverse_mid'or args.FL_type =='FRL_matrix_attack'or args.FL_type =='Reverse_mid_certified':
        config={
     "method": "grid",
     "metric":{
@@ -190,23 +207,43 @@ elif args.FL_type =='Reverse_mid'or args.FL_type =='FRL_matrix_attack':
         "name": "t_acc"
         },
     "parameters":{
-    "lr":{"values": [0.01]},
-    "nep":{"values": [40]},
+    "lr":{"values": [0.2]},
+    "nep":{"values": [50]},
     "max_t":{"values": [2000]},
     "iteration":{"values": [40]},
     "temp":{"values": [0.001]},
     "noise":{"values": [1]},
-    'k':{"values": [0.1]},
-    'm_r':{"values": [0]},
-    'non_iid':{"values": [1]},
-    'attacks':{"values": ['my_attack']},
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0.2]},
+    'non_iid':{"values": [0.1,0.3,0.5,0.9,'iid']},
+    # 'attacks':{"values": ['my_attack_new']},
+    # 'defense':{"values": ['FoundationFL','FLCert']},
     'defense':{"values": ['FRL']},
+    # 'poison_layer':{"values":[['linear.2'],['linear.0','linear.2'],['convs.3','linear.0','linear.2'],['convs.0','convs.3','linear.0','linear.2']]},
+    # 'poison_p':{"values":[0.2,0.4,0.6,0.8]}
     },
     }
+else:
+    config={
+    "method": "grid",
+    "metric":{
+        "goal": "minimize", 
+        "name": "t_acc"
+        },
+    "parameters":{
+    # "lr":{"values": [0.01]},
+    # "nep":{"values": [40]},
+    # "max_t":{"values": [2000]},
+    # "iteration":{"values": [40]},
+    # "temp":{"values": [0.001]},
+    # "noise":{"values": [1]},
+    'k':{"values": [0.5]},
+    'm_r':{"values": [0]},
+    'non_iid':{"values": ['iid']},
+    },
+    }
+     
        
-       
-
-
 
 
 def main():
@@ -249,14 +286,13 @@ def main():
     print ("test batch size is: ", args.test_batch_size)
     
     data_distributer = getattr(data, args.set)()
-    if args.FL_type == "FRL_defense_Fang" or args.FL_type =="FRL_fang" or args.FL_type =='other_attacks_Fang'or args.FL_type == 'FRL_label_flip_fang' or args.FL_type =='Reverse_mid_val'or args.FL_type =='other_attacks_agnostic_val' or args.FL_type =='FRL_train_agnostic_val':  
+    if args.FL_type == "FRL_defense_Fang" or args.FL_type =="FRL_fang" or args.FL_type =='other_attacks_Fang'or args.FL_type == 'FRL_label_flip_fang' or args.FL_type =='Reverse_mid_val'or args.FL_type =='other_attacks_agnostic_val' or args.FL_type =='Reverse_mid_certified':  
         tr_loaders = data_distributer.get_tr_loaders()    # len=10000 list
         te_loader = data_distributer.get_te_loader()
         val_loader = data_distributer.get_val_loader()
     else:
         tr_loaders = data_distributer.get_tr_loaders()
         te_loader = data_distributer.get_te_loader()
-    
     
     args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     use_cuda = torch.cuda.is_available()
@@ -283,8 +319,16 @@ def main():
         FRL_matrix_attack(tr_loaders, te_loader)
     elif args.FL_type =="Reverse_mid":
         Reverse_mid(tr_loaders, te_loader)
+    elif args.FL_type =="Reverse_mid_certified":
+        Reverse_mid_certified(tr_loaders, te_loader)
     elif args.FL_type =="my_attack_defense":
         FRL_matrix_attack_defense(tr_loaders, te_loader)
+    elif args.FL_type =="FRL_matrix_attack_defense_upper_bound":
+        FRL_matrix_attack_defense_upper_bound(tr_loaders, te_loader)
+    elif args.FL_type =="FRL_matrix_attack_defense_forcasting":
+        FRL_matrix_attack_defense_forcasting(tr_loaders, te_loader)
+    elif args.FL_type =="compare_different_estimation":
+        compare_different_estimation(tr_loaders, te_loader)  
     elif args.FL_type =="FRL_fang":
         FRL_matrix_attack_defense_val(tr_loaders, te_loader,val_loader)
     elif args.FL_type =="FRP_defense":
@@ -306,7 +350,6 @@ def main():
     else:
         FedAVG(tr_loaders, te_loader)
 
-
     end_time = time.time()  # Record the end time
     total_time = end_time - start_time   
     print(total_time)
@@ -315,5 +358,6 @@ if __name__ == "__main__":
     # main()
     # Start sweep job.
     
-    sweep_id = wandb.sweep(sweep=config, project="edge_cross_rate")
+    sweep_id = wandb.sweep(sweep=config, project="selection-boundary")
     wandb.agent(sweep_id, function=main, count=400)
+    

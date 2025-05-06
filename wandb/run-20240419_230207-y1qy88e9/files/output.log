@@ -1,7 +1,0 @@
-#########Federated Learning With Noise Mask attack############
-fraction of maliciou clients: 0.10 | total number of malicious clients: 100
-e 0 | malicious users: 1 | test acc 0.0999 test loss 2.302770 best test_acc 0.0999
-e 1 | malicious users: 1 | test acc 0.1169 test loss 2.297454 best test_acc 0.1169
-e 2 | malicious users: 2 | test acc 0.1000 test loss 2.302485 best test_acc 0.1169
-e 3 | malicious users: 2 | test acc 0.1000 test loss 2.298065 best test_acc 0.1169
-e 4 | malicious users: 5 | test acc 0.1020 test loss 2.294004 best test_acc 0.1169

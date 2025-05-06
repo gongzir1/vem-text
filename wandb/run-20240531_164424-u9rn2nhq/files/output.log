@@ -1,9 +1,0 @@
-=> Saving data in Logs/FRL~try=325
-dataset to use is:  MNIST
-number of FL clients:  1000
-non-iid degree data distribution:  0.3
-batch size is :  8
-test batch size is:  128
-use_cuda:  True
-type of FL:  wandb.config.FL_type
-#########Federated Learning using FedAVG############

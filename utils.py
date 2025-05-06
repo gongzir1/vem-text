@@ -1,3 +1,4 @@
+import collections
 from args import args
 from eval import *
 from misc import *
@@ -90,6 +91,25 @@ def plot(FLmodel, user_updates,i):
 #                 m.scores=torch.nn.Parameter(temp1)                       
 #                 del idxx, temp1
 
+import torch
+
+def get_selected_edges(FLmodel, user_updates, k_percent):
+    all_idxx = []  # List to store idxx tensors
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            args_sorts = torch.sort(user_updates[str(n)])[1]
+            sum_args_sorts = torch.sum(args_sorts, 0)
+            idxx = torch.sort(sum_args_sorts)[1]  # Get the rank again
+            
+            k = max(1, int(len(idxx) * k_percent))  # Compute k% (at least 1)
+            idxx = idxx[-k:]  # Select the last k% of indices
+            
+            all_idxx.append(idxx)  # Add a new dimension before appending
+
+    return all_idxx # Concatenate along dim=0
+
+
+
 def FRL_Vote(FLmodel, user_updates, initial_scores):
     for n, m in FLmodel.named_modules():
         if hasattr(m, "scores"):
@@ -101,6 +121,34 @@ def FRL_Vote(FLmodel, user_updates, initial_scores):
             m.scores=torch.nn.Parameter(temp1)                       
             del idxx, temp1
 
+def Get_group_models(FLmodel, user_updates, initial_scores):
+    group_model = copy.deepcopy(FLmodel)
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            args_sorts=torch.sort(user_updates[str(n)])[1]
+            sum_args_sorts=torch.sum(args_sorts, 0)         
+            idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+
+            temp1=m.scores.detach().clone()
+            temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
+            m.scores=torch.nn.Parameter(temp1)                       
+            del idxx, temp1                      
+    return group_model
+
+def FRL_Vote_return_rank(FLmodel, user_updates, initial_scores):
+    new_dic=collections.defaultdict(list)
+    for n, m in FLmodel.named_modules():
+        if hasattr(m, "scores"):
+            args_sorts=torch.sort(user_updates[str(n)])[1]
+            sum_args_sorts=torch.sum(args_sorts, 0)         
+            idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+
+            new_dic[str(n)]=idxx
+
+            # temp1=m.scores.detach().clone()
+            # temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
+            # m.scores=torch.nn.Parameter(temp1)                       
+    return new_dic
 def sep(FLmodel, user_updates):
     for n, m in FLmodel.named_modules():
         if hasattr(m, "scores"):
@@ -130,13 +178,14 @@ def update_and_record_crossings(FLmodel, user_updates,selected_old, not_selected
     total = set(range(len(idxx)))
 
     # Record crossings for each item
+    # for item in total:
+    #     if (item in not_selected_old_set and item in id_selected) or (item in selected_old_set and item in id_not_selected):
+    #         crossings[item] += 1
     for item in total:
-        if (item in not_selected_old_set and item in id_selected) or (item in selected_old_set and item in id_not_selected):
+        if item in selected_old_set and item in id_not_selected:
             crossings[item] += 1
-    
     return crossings
-                
-
+               
 
 def FRL_Vote_adaptive(FLmodel, user_updates, initial_scores,k_a):
     for n, m in FLmodel.named_modules():
@@ -153,10 +202,13 @@ def FRL_Vote_adaptive(FLmodel, user_updates, initial_scores,k_a):
 def FRL_Vote_both(FLmodel, user_updates, initial_scores):
     for n, m in FLmodel.named_modules():
         if hasattr(m, "scores"):
-            intersection=0
             args_sorts=torch.sort(user_updates[str(n)])[1]
             sum_args_sorts=torch.sum(args_sorts, 0)         
             idxx=torch.sort(sum_args_sorts)[1]          # get the rank again
+            # calculate intersection
+            # if str(n)=='convs.0':
+            intersection=0
+
             ############plot #############
             top_k_mal=torch.topk(torch.sort(idxx)[1],len(idxx)//10)[1]
             ############################
@@ -177,25 +229,27 @@ def FRL_Vote_both(FLmodel, user_updates, initial_scores):
 
             # Get the length of the intersection
             intersection_length = len(intersection)
-            succ=len(idxx)//10-intersection_length
-            succ_rate=succ/(len(idxx)//10)
+            # succ=len(idxx)//10-intersection_length
+            not_change=intersection_length
+            succ_rate=1-not_change/(len(idxx)//10)
 
             # with (args.run_base_dir / "inter.txt").open("a") as f:
             #     f.write("\n" + str(intersection_length) + ", " + str(succ) + ", " + str(succ_rate))
             with (args.run_base_dir / "inter.txt").open("a") as f:
                 f.write("\n"+str(succ_rate))
-            wandb.log(
-            {
-                "inter": intersection_length,
-                "succ":succ,
-                "succ_rate":succ_rate
+            # wandb.log(
+            # {
+            #     "inter": intersection_length,
+            #     "succ":succ,
+            #     "succ_rate":succ_rate
 
-            })
+            # })
             
             temp1=m.scores.detach().clone()
             temp1.flatten()[idxx]=initial_scores[str(n)] # assign the score based on ranking
             m.scores=torch.nn.Parameter(temp1)                       
             del idxx, temp1
+    return succ_rate
             
 def Get_local_models(FLmodel, user_updates, initial_scores,users):
     local_models = []
@@ -339,7 +393,6 @@ def train(trainloader, model, criterion, optimizer, device):
         optimizer.step()
         
     return (losses.avg, top1.avg)
-
 
 def test(testloader, model, criterion, device):
     model.eval()
@@ -693,3 +746,5 @@ def compare_user_updates_ranked_cluster_layer_wise(FLmodel, user_updates):
                 plt.axvline(x=i, color='black', linestyle='--')
             plt.show()
         # print('finish')
+
+
