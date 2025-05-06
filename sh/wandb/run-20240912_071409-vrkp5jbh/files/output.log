@@ -1,0 +1,60 @@
+=> Saving data in Logs/MNISTmy_attack_defense~try=0
+dataset to use is:  MNIST
+number of FL clients:  1000
+non-iid degree data distribution:  iid
+batch size is :  32
+test batch size is:  128
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 403: Forbidden
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz to ./MNIST/data/MNIST/raw/train-images-idx3-ubyte.gz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+97.2%
+Extracting ./MNIST/data/MNIST/raw/train-images-idx3-ubyte.gz to ./MNIST/data/MNIST/raw
+
+100.0%
+Failed to download (trying next):
+HTTP Error 403: Forbidden
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz to ./MNIST/data/MNIST/raw/train-labels-idx1-ubyte.gz
+100.0%
+Extracting ./MNIST/data/MNIST/raw/train-labels-idx1-ubyte.gz to ./MNIST/data/MNIST/raw
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 403: Forbidden
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz to ./MNIST/data/MNIST/raw/t10k-images-idx3-ubyte.gz
+
+83.5%
+Extracting ./MNIST/data/MNIST/raw/t10k-images-idx3-ubyte.gz to ./MNIST/data/MNIST/raw
+
+100.0%
+Failed to download (trying next):
+HTTP Error 403: Forbidden
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz to ./MNIST/data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+Extracting ./MNIST/data/MNIST/raw/t10k-labels-idx1-ubyte.gz to ./MNIST/data/MNIST/raw
+generating IID participant indices
+use_cuda:  True
+type of FL:  my_attack_defense
+#########Federated Learning using Rankings############
+fraction of maliciou clients: 0.20 | total number of malicious clients: 200
+100.0%

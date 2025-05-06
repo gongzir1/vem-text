@@ -1,0 +1,1 @@
+python main.py --set MNIST --model "Conv2" --batch_size 32 --local_epochs 5 --FL_global_epochs 100 --lr 0.5  --data_loc "./MNIST/data/"  --FL_type "Reverse_mid" 
